@@ -1,7 +1,7 @@
 public class Level{
     private ArrayList(Task) tasks;
 
-    public Level(int numTasks){
+    public Level(){
         tasks = new ArrayList(Task);
     }
 
@@ -46,5 +46,17 @@ public class Task{
 }
 
 public class Game{
+    public Game(){
+        Player p = new Player();
+        Map m = new Map();
+        Level Freshman = new Level();
+        Level Sophomore = new Level();
+        Level Junior = new Level();
+        Level Senior = new Level();
+    }
+
+    public 
+
+
 
 }
