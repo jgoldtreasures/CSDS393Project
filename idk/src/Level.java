@@ -6,12 +6,12 @@ public class Level {
     }
 
     public void addTask(int numActions){
-        tasks.add(new Task(numActions));
+        tasks.add(new Task(name, instructions, numActions, rewards));
     }
 
     public boolean isFinished(){
-        for(int i = 0; i < actions.length; i++){
-            if(actions[i].isFinished() == false){
+        for(int i = 0; i < tasks.size(); i++){
+            if(tasks[i].isFinished() == false){
                 return false;
             }
         }
