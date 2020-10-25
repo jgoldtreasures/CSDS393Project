@@ -24,4 +24,21 @@ public class gameTest {
         tasks.get(0).completeAction(1);
         assertTrue(test.isFinished());
     }
+
+    @Test
+    public void completionTest(){
+        Game g = new Game();
+        Level s = g.getSenior();
+        ArrayList<Task> tasks = s.getTasks();
+        tasks.get(0).completeAction(0);
+        tasks.get(0).completeAction(1);
+        tasks.get(1).completeAction(0);
+        tasks.get(1).completeAction(1);
+        tasks.get(1).completeAction(2);
+        tasks.get(1).completeAction(3);
+        tasks.get(1).completeAction(4);
+        tasks.get(1).completeAction(5);
+        assertTrue(g.gameFinished());
+
+    }
 }
