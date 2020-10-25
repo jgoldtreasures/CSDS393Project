@@ -59,4 +59,12 @@ public class gameTest {
         assertEquals(g.getJunior().getTasks().get(0).getName(), Junior.getTasks().get(0).getName());
     }
 
+
+    @Test
+    public void testDay(){
+        Day d = new Day("Monday");
+        d.useHours(5);
+        assertEquals(d.whatDayIsIt(), "Monday");
+        assertEquals(d.getHour(), 5);
+    }
 }
