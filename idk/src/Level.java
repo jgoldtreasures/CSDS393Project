@@ -6,7 +6,8 @@ public class Level {
     }
 
     public void addTask(int numActions){
-        tasks.add(new Task(name, instructions, numActions, rewards));
+        Task temp = new Task(name, instructions, numActions, rewards);
+        tasks.add(temp);
     }
 
     public boolean isFinished(){

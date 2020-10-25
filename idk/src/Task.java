@@ -31,5 +31,8 @@ public class Task {
         return rewards;
     }
 
+    public String getName(){ return name;}
+
+    public String getInstructions(){ return instructions;}
 
 }
