@@ -1,6 +1,6 @@
 import java.util.Arrays;
 import java.util.List;
-/*
+
 public class Building {
     private int x;
     private int y;
@@ -31,11 +31,11 @@ public class Building {
         return this.tasks;
     }
 
-    public void removeTask(String task) {
-        List<Task> taskList = Arrays.asList(tasks.getTasks());
-        taskList.removeIf(task1 -> task1.getName() == task);
-        tasks = new TaskManager(taskList);      //need task manager constructor to take list of tasks as argument
-    }
+//    public void removeTask(String task) {
+//        List<Task> taskList = Arrays.asList(tasks.getTasks());
+//        taskList.removeIf(task1 -> task1.getName() == task);
+//        tasks = new TaskManager(taskList);      //need task manager constructor to take list of tasks as argument
+//    }
 
     public Person[] getNpcs() {
         return this.npcs;
@@ -45,14 +45,11 @@ public class Building {
         List<Person> npcList = Arrays.asList(npcs);
         boolean changed = false;
         for (Person npc : npcList) {
-            if (npc.getName == name) {
-                npcList.remove(npc);
+            if (npc.getName() == name) {
                 npc.setStatus("DORMANT");      //need npc to have setStatus method
                 changed = true;
-                npcList.add(npc);
             }
         }
         return changed;
     }
 }
- */
