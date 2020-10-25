@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class Player {
     private int xPos;
     private int yPos;
-    private int[] attArr; //Maybe change this later
+    private int[] attArr; //Maybe change this later from int[] to Attribute[]
     private int[] status;
 
     public String[] attributeTitles = {"Health", "Hygine", "Intelligence", "Strength", "SocialStanding"};

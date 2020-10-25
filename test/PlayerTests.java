@@ -55,6 +55,7 @@ public class PlayerTests {
         assertArrayEquals(p1.getStatus(),goalStatus);
     }
 
+    //NEEDS TO BE CHANGED SO THAT I CAN USE getVal in attribute class rather than hardcoding
     @Test
     public void attValueGetTest(){
         int healthVal = p1.getAttributeVal("Health");
