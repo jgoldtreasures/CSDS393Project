@@ -1,30 +1,11 @@
-import java.awt.event.KeyEvent;
-
 public class Game{
     private Player p;
     private Map m;
-/*
-    public void acceptInput(){
-        KeyEvent event = new KeyEvent();
-        while (true) {
-            if (event.getKeyCode() == KeyEvent.VK_UP) {
-                p.setY(p.getY() + 25);
-            }
-            if (event.getKeyCode() == KeyEvent.VK_DOWN) {
-                p.setY(p.getY() - 25);
-            }
-            if (event.getKeyCode() == KeyEvent.VK_LEFT) {
-                p.setX(p.getX() - 25);
-            }
-            if (event.getKeyCode() == KeyEvent.VK_RIGHT) {
-                p.setX(p.getX() + 25);
-            }
-            if (event.getKeyCode() == KeyEvent.VK_ENTER) {
-                m.enterBuilding(p.getX(), p.getY());
-            }
-        }
+
+    public Player getPlayer(){
+        return p;
     }
-*/
+
     public void startGame(){
         p = new Player(100,100);
         m = new Map();

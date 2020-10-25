@@ -18,6 +18,10 @@ public class Player {
         return this.yPos;
     }
 
+    public void setX(int x) {xPos = x;}
+
+    public void setY(int y) {yPos = y;}
+
     //Where attribute format is [Health, Hygiene, Intelligence, Strength, SocialStanding]
     public int getAttributeVal(String attName){
         return 5;

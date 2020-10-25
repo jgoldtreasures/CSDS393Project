@@ -20,4 +20,8 @@ public class Level {
         }
         return true;
     }
+
+    public ArrayList<Task> getTasks(){return tasks;}
+
+
 }
