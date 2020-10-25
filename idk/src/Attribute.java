@@ -19,11 +19,24 @@ public class Attribute {
         return new Attribute(getAttName(),getAttVal());
     }
 
-    public void createAttribute(String name, int val){
-        new Attribute(name, val);
+    public static Attribute createAttribute(String name, int val){
+        return new Attribute(name, val);
     }
 
     public void changeAttribute(int val){
         this.attVal += val;
+    }
+
+    /*The following method is just for the test file so that I can compare objects
+        However, it shouldn't be used in the main file because each attribute name should be unique
+     */
+    public boolean attributesEqual(Attribute att2){
+        boolean attsEquiv = false;
+        if(this.getAttName().equals(att2.getAttName())) {
+            if(this.getAttVal() == att2.getAttVal()){
+                attsEquiv=true;
+            }
+        }
+        return attsEquiv;
     }
 }
