@@ -24,8 +24,8 @@ public class Game{
         Player p = new Player();
         Map m = new Map();
         Level Freshman = new Level();
-        Freshman.addTask("Choose Roommate", "Go to the Freshman Dorms and choose one of the available roommates", 2, [1,0,0,0,0]);
-        Freshman.addTask("Take Campus Tour", "Visit every building on campus", 10, [0,1,0,0,0]);
+        Freshman.addTask("Choose Roommate", "Go to the Freshman Dorms and choose one of the available roommates", 2, [1,0,0,0,0,0]);
+        Freshman.addTask("Take Campus Tour", "Visit every building on campus", 10, [0,1,0,0,0,0]);
         Level Sophomore = new Level();
         Level Junior = new Level();
         Level Senior = new Level();
