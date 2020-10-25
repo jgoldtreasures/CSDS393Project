@@ -1,13 +1,18 @@
+import java.util.Arrays;
+
 public class Player {
     private int xPos;
     private int yPos;
-    private Attribute[] attList;
+    private int[] attArr; //Maybe change this later
     private int[] status;
 
-    public Player(int xPos, int yPos){
+    public String[] attributeTitles = {"Health", "Hygine", "Intelligence", "Strength", "SocialStanding"};
+
+    public Player(int xPos, int yPos,int[] status, int[] attArr){
         this.xPos = xPos;
         this.yPos = yPos;
-
+        this.status = status;
+        this.attArr = attArr;
     }
 
     public int getX(){
@@ -24,7 +29,8 @@ public class Player {
 
     //Where attribute format is [Health, Hygiene, Intelligence, Strength, SocialStanding]
     public int getAttributeVal(String attName){
-        return 5;
+        int indexInAtt = Arrays.asList(attributeTitles).indexOf(attName);
+        return attArr[indexInAtt];
     }
 
     // Where status format is [Tired, Sick, Dirty]
@@ -48,6 +54,8 @@ public class Player {
                 break;
             case "Clean":
                 status[2] = 0;
+                break;
+            default:
                 break;
         }
     }

@@ -13,7 +13,7 @@ public class Game{
     public Game(){
         //Building b needs to be changed
         Building[] b = {};
-        p = new Player(100,100);
+        p = new Player(100,100, new int[] {0,0,0}, new int[] {0,0,0,0,0});
         m = new Map(b);
 
         Freshman = new Level();
