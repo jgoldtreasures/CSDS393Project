@@ -26,10 +26,6 @@ public class Game{
         Senior.addTask("Complete Capstone", "Go to you major's specific buildings and complete your major's specific objectives to graduate!", 6, new int[]{2,2,2,2,2,2});
     }
 
-    public Player getPlayer(){
-        return p;
-    }
-
     public Level getSenior(){
         return Senior;
     }
