@@ -1,6 +1,11 @@
+import java.awt.event.KeyEvent;
+
 public class Game{
+    private Player p;
+    private Map m;
+/*
     public void acceptInput(){
-        KeyEvent event = new KeyEvent;
+        KeyEvent event = new KeyEvent();
         while (true) {
             if (event.getKeyCode() == KeyEvent.VK_UP) {
                 p.setY(p.getY() + 25);
@@ -19,13 +24,13 @@ public class Game{
             }
         }
     }
-
+*/
     public void startGame(){
-        Player p = new Player();
-        Map m = new Map();
+        p = new Player(100,100);
+        m = new Map();
         Level Freshman = new Level();
-        Freshman.addTask("Choose Roommate", "Go to the Freshman Dorms and choose one of the available roommates", 2, [1,0,0,0,0,0]);
-        Freshman.addTask("Take Campus Tour", "Visit every building on campus", 10, [0,1,0,0,0,0]);
+        Freshman.addTask("Choose Roommate", "Go to the Freshman Dorms and choose one of the available roommates", 2, new int[]{1,0,0,0,0,0});
+        Freshman.addTask("Take Campus Tour", "Visit every building on campus", 10, new int[]{0, 1, 0, 0, 0, 0});
         Level Sophomore = new Level();
         Level Junior = new Level();
         Level Senior = new Level();
@@ -35,3 +40,4 @@ public class Game{
     }
 
 }
+

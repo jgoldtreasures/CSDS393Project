@@ -1,6 +1,6 @@
 import java.util.Arrays;
 import java.util.List;
-
+/*
 public class Building {
     private int x;
     private int y;
@@ -55,3 +55,4 @@ public class Building {
         return changed;
     }
 }
+ */

@@ -1,18 +1,20 @@
+import java.util.ArrayList;
+
 public class Level {
-    private ArrayList(Task) tasks;
+    private ArrayList<Task> tasks;
 
     public Level(){
-        tasks = new ArrayList(Task);
+        this.tasks = new ArrayList<Task>();
     }
 
-    public void addTask(int numActions){
+    public void addTask(String name, String instructions, int numActions, int[] rewards){
         Task temp = new Task(name, instructions, numActions, rewards);
         tasks.add(temp);
     }
 
     public boolean isFinished(){
         for(int i = 0; i < tasks.size(); i++){
-            if(tasks[i].isFinished() == false){
+            if(tasks.get(i).isFinished() == false){
                 return false;
             }
         }
