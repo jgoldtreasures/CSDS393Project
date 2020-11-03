@@ -1,5 +1,7 @@
 import org.junit.Test;
 import java.util.ArrayList;
+import java.io.*;
+import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -66,5 +68,16 @@ public class gameTest {
         d.useHours(5);
         assertEquals(d.whatDayIsIt(), "Monday");
         assertEquals(d.getHour(), 5);
+    }
+
+    @Test
+    public void testSave(){
+        Game g = new Game();
+        g.getFreshman().setFinish();
+        g.save();
+        Scanner reader = new Scanner("save.txt");
+        assertEquals("save.txt", reader.next());
+        g.load();
+        assertEquals(true, g.getFreshman().isFinished());
     }
 }
