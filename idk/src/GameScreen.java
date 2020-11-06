@@ -25,34 +25,40 @@ public class GameScreen {
         gameScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //gameScreen.getContentPane().setBackground(Color.BLACK);
         gameScreen.setLayout(null);
-        gameScreen.setVisible(true);
         con = gameScreen.getContentPane();
 
         titleNamePanel = new JPanel();
-        titleNamePanel.setBounds(120,100,550,100);
+        titleNamePanel.setBounds(120,150,550,100);
         titleNamePanel.setBackground(Color.DARK_GRAY);
         titleNameLabel = new JLabel("CWRU RPG");
         titleNameLabel.setFont(titleFont);
         titleNameLabel.setForeground(Color.white);
-        titleNamePanel.add(titleNameLabel);
-        con.add(titleNamePanel);
+
 
         startButtonPanel = new JPanel();
         startButtonPanel.setBounds(300, 300 ,150, 50);
-        startButtonPanel.setBackground(Color.lightGray);
         startButton = new JButton("Start");
+        startButton.setBackground(Color.darkGray);
+        startButton.setForeground(Color.white);
         startButton.setFont(normalFont);
-        startButtonPanel.add(startButton);
-        con.add(startButtonPanel);
-/*
+
         loadButtonPanel = new JPanel();
-        loadButtonPanel.setBounds(300, 375 ,150, 50);
+        loadButtonPanel.setBounds(300, 350 ,150, 50);
         loadButton = new JButton("Load");
         loadButton.setBackground(Color.darkGray);
-        loadButton.setForeground(Color.darkGray);
+        loadButton.setForeground(Color.white);
+        loadButton.setFont(normalFont);
+
+        titleNamePanel.add(titleNameLabel);
+        startButtonPanel.add(startButton);
         loadButtonPanel.add(loadButton);
+
+        con.add(titleNamePanel);
+        con.add(startButtonPanel);
         con.add(loadButtonPanel);
-*/
+
+        gameScreen.setVisible(true);
+
         //popup menu window
 
         //image for map
