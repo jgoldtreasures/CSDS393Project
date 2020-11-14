@@ -53,6 +53,7 @@ public class Game{
         return false;
     }
 
+    //You also need to save and load the player's attributes and (maybe) completed tasks
     public void save(){
         try {
             File create = new File("save.txt");

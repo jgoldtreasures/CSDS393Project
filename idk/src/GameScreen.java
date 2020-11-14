@@ -18,8 +18,6 @@ public class GameScreen {
 
     public GameScreen() {
         //image homescreen - intro, save, and load
-        //Right now I'm just doing visual stuff
-        //actual connections will come later
         gameScreen = new JFrame();
         gameScreen.setSize(800,600);
         gameScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
