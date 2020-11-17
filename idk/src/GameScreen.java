@@ -86,6 +86,9 @@ public class GameScreen {
         imageLabel.setIcon(image);
         imagePanel.add(imageLabel);
 
+        //need to be able to start even if there is a saved file - give warning though
+        //also give warning when trying to save over a saved file
+        //if we close screen and reload, is the load file still saved?
         //image for each building
         //Will take a specfic image from a connected folder for the image
         //will also standardize the format for the buildings
