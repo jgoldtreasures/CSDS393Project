@@ -3,10 +3,12 @@ import java.util.ArrayList;
 public class Level {
     private ArrayList<Task> tasks;
     private boolean finish;
+    private String name;
 
-    public Level(){
+    public Level(String name){
         this.tasks = new ArrayList<Task>();
         finish = false;
+        this.name = name;
     }
 
     public void addTask(String name, String instructions, int numActions, int[] rewards){
@@ -35,5 +37,7 @@ public class Level {
         finish = true;
     }
 
-
+    public String getName(){
+        return name;
+    }
 }

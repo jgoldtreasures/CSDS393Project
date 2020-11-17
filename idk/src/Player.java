@@ -6,7 +6,7 @@ public class Player {
     private int[] attArr; //Maybe change this later from int[] to Attribute[]
     private int[] status;
 
-    public String[] attributeTitles = {"Health", "Hygine", "Intelligence", "Strength", "SocialStanding"};
+    public String[] attributeTitles = {"Health", "Hygiene", "Intelligence", "Strength", "SocialStanding"};
 
     public Player(int xPos, int yPos,int[] status, int[] attArr){
         this.xPos = xPos;
@@ -31,6 +31,10 @@ public class Player {
     public int getAttributeVal(String attName){
         int indexInAtt = Arrays.asList(attributeTitles).indexOf(attName);
         return attArr[indexInAtt];
+    }
+
+    public int[] getAttributes(){
+        return attArr;
     }
 
     // Where status format is [Tired, Sick, Dirty]
