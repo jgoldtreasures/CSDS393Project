@@ -156,6 +156,28 @@ public class GameScreen {
 
     }
 
+    public void createVealeScreen(){
+        image = new ImageIcon("idk/resources/Veale.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createMillisScreen(){
+        image = new ImageIcon("idk/resources/Millis.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createRockefellerScreen(){
+        image = new ImageIcon("idk/resources/Rockefeller.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+
     private Image getScaledImage(Image srcImg, int w, int h){
         BufferedImage resizedImage = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = resizedImage.createGraphics();
