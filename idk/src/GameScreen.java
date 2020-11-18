@@ -8,7 +8,7 @@ public class GameScreen extends JPanel implements Runnable{
 
     static JFrame gameScreen;
     Container con;
-    JPanel titleNamePanel, startButtonPanel, loadButtonPanel, imagePanel,introTextPanel;
+    JPanel titleNamePanel, startButtonPanel, loadButtonPanel, imagePanel, introTextPanel;
     JLabel titleNameLabel, imageLabel;
     JButton startButton, loadButton;
     JTextArea introTextArea;
@@ -24,14 +24,15 @@ public class GameScreen extends JPanel implements Runnable{
     private Image playerImage;
     private int x, y;
 
-    private Thread animator;
+//    private Thread animator;
 
     public static void main(String[] args){
         EventQueue.invokeLater(() -> {
             gameScreen = new ThreadAnimation();
-            gameScreen.setVisible(true);
+            gameScreen.setSize(800,600);
+            gameScreen.setVisible(false);
         });
-        new GameScreen();
+//        new GameScreen();
     }
 
     public GameScreen() {
@@ -95,11 +96,13 @@ public class GameScreen extends JPanel implements Runnable{
         imageLabel.setIcon(image);
         imagePanel.add(imageLabel);
 
-        imagePanel.setFocusable(true);
+//        imagePanel.setFocusable(true);
         imagePanel.addKeyListener(sHandler);
-        imagePanel.requestFocus();
+//        imagePanel.requestFocus();
 
+        setFocusable(true);
         addKeyListener(sHandler);
+        requestFocus();
 
         //need to be able to start even if there is a saved file - give warning though
         //also give warning when trying to save over a saved file
@@ -220,7 +223,7 @@ public class GameScreen extends JPanel implements Runnable{
 
     public void addNotify() {
         super.addNotify();
-        animator = new Thread(this);
+        Thread animator = new Thread(this);
         animator.start();
     }
 
@@ -240,7 +243,7 @@ public class GameScreen extends JPanel implements Runnable{
     private void drawBackground(Graphics g) {
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         g.drawImage(resizedImage, 0, 0, this);
-//        Toolkit.getDefaultToolkit().sync();
+        Toolkit.getDefaultToolkit().sync();
     }
 
     private void cycle() {
@@ -293,6 +296,7 @@ public class GameScreen extends JPanel implements Runnable{
                 case "Intro Screen":
                     createQuadScreen();
                     initializePlayer();
+                    gameScreen.setVisible(true);
                     break;
             }
 

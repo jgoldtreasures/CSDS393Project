@@ -9,16 +9,16 @@ public class ThreadAnimation extends JFrame {
 
     private void initUI(){
         add(new GameScreen());
-//        setResizable(false);
+        setResizable(false);
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
-    public static void main(String[] args){
-        EventQueue.invokeLater(() -> {
-            JFrame ex = new ThreadAnimation();
-            ex.setVisible(true);
-        });
-    }
+//
+//    public static void main(String[] args){
+//        EventQueue.invokeLater(() -> {
+//            JFrame ex = new ThreadAnimation();
+//            ex.setVisible(true);
+//        });
+//    }
 
 }
