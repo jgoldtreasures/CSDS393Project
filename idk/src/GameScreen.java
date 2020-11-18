@@ -135,15 +135,14 @@ public class GameScreen {
         introTextPanel.setVisible(false);
 
         vealeButtonPanel = new JPanel();
-        vealeButtonPanel.setBounds(622, 105,10, 5);
+        vealeButtonPanel.setBounds(622, 105,10, 10);
         vealeButton = new JButton("Veale");
         vealeButton.setBackground(Color.darkGray);
         vealeButton.setForeground(Color.white);
         vealeButton.setFont(normalFont);
 
         vealeButton.addActionListener(sHandler);
-
-        imagePanel.add(vealeButton);
+        vealeButtonPanel.add(vealeButton);
 
         con.add(vealeButtonPanel);
         con.add(imagePanel);
