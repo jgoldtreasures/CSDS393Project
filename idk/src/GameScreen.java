@@ -11,15 +11,17 @@ public class GameScreen {
     Container con;
     JPanel titleNamePanel, startButtonPanel, loadButtonPanel, imagePanel,introTextPanel, vealeButtonPanel,
             quadButtonPanel, millisButtonPanel, rockButtonPanel, strosackerButtonPanel, gStartButtonPanel,
-            menuButtonPanel, returnPanel, savePanel, menuPanel, goSouthPanel, goNorthPanel;
+            menuButtonPanel, returnPanel, savePanel, menuPanel, attrButtonPanel, attrPanel, healthPanel, hygienePanel,
+            intelligencePanel, strengthPanel, socialStandingPanel, goSouthPanel, goNorthPanel;
     JLabel titleNameLabel, imageLabel;
     JButton startButton, loadButton, vealeButton, quadButton, millisButton, rockButton, strosackerButton,
-            gStartButton, menuButton, returnButton, saveButton, goSouthButton, goNorthButton;
+            gStartButton, menuButton, returnButton, saveButton, attrButton, goSouthButton, goNorthButton;
 
     JTextArea introTextArea;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 25);
     Font introFont = new Font("Times New Roman", Font.PLAIN, 20);
+    Font medFont = new Font("Times New Roman", Font.PLAIN, 40);
     Font mapFont = new Font("Times New Roman", Font.PLAIN, 10);
     Font mapFont2 = new Font("Times New Roman", Font.PLAIN, 13);
 
@@ -107,6 +109,8 @@ public class GameScreen {
         imagePanel.add(imageLabel);
 
         g = new Game();
+
+        createAttributesScreen();
 
         //need to be able to start even if there is a saved file - give warning though
         //also give warning when trying to save over a saved file
@@ -325,7 +329,7 @@ public class GameScreen {
 
     public void createMenuScreen(){
         imagePanel.setVisible(false);
-        quadButtonPanel.setVisible(false);;
+        quadButtonPanel.setVisible(false);
         menuButtonPanel.setVisible(false);
 
         menuPanel = new JPanel();
@@ -344,8 +348,17 @@ public class GameScreen {
 
         saveButton.addActionListener(sHandler);
 
+        attrButtonPanel = new JPanel();
+        attrButtonPanel.setBounds(250, 350,250, 50);
+        attrButton = new JButton("Attributes");
+        attrButton.setBackground(Color.darkGray);
+        attrButton.setForeground(Color.white);
+        attrButton.setFont(normalFont);
+
+        attrButton.addActionListener(sHandler);
+
         returnPanel = new JPanel();
-        returnPanel.setBounds(300, 350 ,150, 50);
+        returnPanel.setBounds(300, 400 ,150, 50);
         returnButton = new JButton("Return");
         returnButton.setBackground(Color.darkGray);
         returnButton.setForeground(Color.white);
@@ -356,10 +369,85 @@ public class GameScreen {
         menuPanel.add(menuLabel);
         savePanel.add(saveButton);
         returnPanel.add(returnButton);
+        attrButtonPanel.add(attrButton);
 
         con.add(menuPanel);
         con.add(savePanel);
         con.add(returnPanel);
+        con.add(attrButtonPanel);
+
+    }
+
+    public void createAttributesScreen(){
+        //menuButtonPanel.setVisible(true);
+
+        attrPanel = new JPanel();
+        attrPanel.setBounds(250,100,300,50);
+        attrPanel.setBackground(Color.DARK_GRAY);
+        JLabel attrLabel = new JLabel("Player Attributes");
+        attrLabel.setFont(medFont);
+        attrLabel.setForeground(Color.white);
+
+        healthPanel = new JPanel();
+        healthPanel.setBounds(300, 400 ,150, 50);
+        //String health = "Health: " + String.valueOf(g.getPlayer().getAttributeVal("Health"));
+        JLabel healthlabel = new JLabel("Health: 1");
+        healthlabel.setBackground(Color.white);
+        healthlabel.setForeground(Color.darkGray);
+        healthlabel.setFont(normalFont);
+
+        hygienePanel = new JPanel();
+        hygienePanel.setBounds(300, 350 ,150, 50);
+        JLabel hygienelabel = new JLabel("Hygiene: 1");
+        hygienelabel.setBackground(Color.white);
+        hygienelabel.setForeground(Color.darkGray);
+        hygienelabel.setFont(normalFont);
+
+        intelligencePanel = new JPanel();
+        intelligencePanel.setBounds(300, 300 ,150, 50);
+        JLabel intelligencelabel = new JLabel("Intelligence: 1");
+        intelligencelabel.setBackground(Color.white);
+        intelligencelabel.setForeground(Color.darkGray);
+        intelligencelabel.setFont(normalFont);
+
+        strengthPanel = new JPanel();
+        strengthPanel.setBounds(300, 250 ,150, 50);
+        JLabel strengthlabel = new JLabel("Strength: 1");
+        strengthlabel.setBackground(Color.white);
+        strengthlabel.setForeground(Color.darkGray);
+        strengthlabel.setFont(normalFont);
+
+        socialStandingPanel = new JPanel();
+        socialStandingPanel.setBounds(275, 200 ,200, 50);
+        JLabel socialStandinglabel = new JLabel("Social Standing: 1");
+        socialStandinglabel.setBackground(Color.white);
+        socialStandinglabel.setForeground(Color.darkGray);
+        socialStandinglabel.setFont(normalFont);
+
+        attrPanel.add(attrLabel);
+        healthPanel.add(healthlabel);
+        hygienePanel.add(hygienelabel);
+        intelligencePanel.add(intelligencelabel);
+        strengthPanel.add(strengthlabel);
+        socialStandingPanel.add(socialStandinglabel);
+
+        con.add(attrPanel);
+        con.add(healthPanel);
+        con.add(hygienePanel);
+        con.add(intelligencePanel);
+        con.add(strengthPanel);
+        con.add(socialStandingPanel);
+
+        hideAttrButtons();
+    }
+
+    public void hideAttrButtons(){
+        attrPanel.setVisible(false);
+        healthPanel.setVisible(false);
+        hygienePanel.setVisible(false);
+        intelligencePanel.setVisible(false);
+        strengthPanel.setVisible(false);
+        socialStandingPanel.setVisible(false);
     }
 
     public void hideQuadButtons(){
@@ -386,7 +474,7 @@ public class GameScreen {
     public class ScreenHandler implements ActionListener{
         public void actionPerformed(ActionEvent event){
             //Need to add a manner which differentiates between start/load
-            //Can be even more concise
+            //Make the data more concise
             if(event.getSource() == startButton){
                 createIntroScreen();
             }
@@ -407,6 +495,7 @@ public class GameScreen {
             }
             if (event.getSource() == menuButton) {
                 hideQuadButtons();
+                hideAttrButtons();
                 createMenuScreen();
             }
             if (event.getSource() == rockButton) {
@@ -429,10 +518,24 @@ public class GameScreen {
                 menuPanel.setVisible(false);
                 savePanel.setVisible(false);
                 returnPanel.setVisible(false);
+                attrButtonPanel.setVisible(false);
                 createQuadScreen();
             }
             if(event.getSource() == saveButton){
-                
+
+            }
+            if(event.getSource() == attrButton){
+                menuPanel.setVisible(false);
+                attrButtonPanel.setVisible(false);
+                savePanel.setVisible(false);
+                returnPanel.setVisible(false);
+                attrPanel.setVisible(true);
+                healthPanel.setVisible(true);
+                hygienePanel.setVisible(true);
+                intelligencePanel.setVisible(true);
+                strengthPanel.setVisible(true);
+                socialStandingPanel.setVisible(true);
+                menuButtonPanel.setVisible(true);
             }
         }
     }

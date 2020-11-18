@@ -137,4 +137,8 @@ public class Game{
         p = new Player(100,100, new int[] {0,0,0}, new int[] {Health, Hygiene, Intelligence, Strength, SocialStanding});
 
     }
+
+    public Player getPlayer(){
+        return p;
+    }
 }
