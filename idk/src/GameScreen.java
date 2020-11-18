@@ -10,13 +10,15 @@ public class GameScreen {
     JFrame gameScreen;
     Container con;
     JPanel titleNamePanel, startButtonPanel, loadButtonPanel, imagePanel,introTextPanel, vealeButtonPanel,
-            quadButtonPanel, millisButtonPanel, gStartButtonPanel, menuButtonPanel, returnPanel, savePanel, menuPanel;
+            quadButtonPanel, millisButtonPanel, rockButtonPanel, strosackerButtonPanel, gStartButtonPanel,
+            menuButtonPanel, returnPanel, savePanel, menuPanel;
     JLabel titleNameLabel, imageLabel;
-    JButton startButton, loadButton, vealeButton, quadButton, millisButton, gStartButton, menuButton, returnButton, saveButton;
+    JButton startButton, loadButton, vealeButton, quadButton, millisButton, rockButton, strosackerButton, gStartButton, menuButton, returnButton, saveButton;
     JTextArea introTextArea;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 25);
     Font introFont = new Font("Times New Roman", Font.PLAIN, 20);
+    Font mapFont = new Font("Times New Roman", Font.PLAIN, 10);
 
     ImageIcon image;
 
@@ -179,36 +181,62 @@ public class GameScreen {
         menuButton.addActionListener(sHandler);
 
         vealeButtonPanel = new JPanel();
-        vealeButtonPanel.setBounds(622, 100,10, 15);
+        vealeButtonPanel.setBounds(622, 100,30, 25);
         vealeButton = new JButton("Veale");
         vealeButton.setBackground(Color.white);
-        vealeButton.setForeground(Color.white);
-        vealeButton.setFont(normalFont);
+        vealeButton.setForeground(Color.black);
+        vealeButton.setFont(mapFont);
 
         vealeButton.addActionListener(sHandler);
 
         millisButtonPanel = new JPanel();
-        millisButtonPanel.setBounds(282, 230,10, 15);
+        millisButtonPanel.setBounds(282, 230,30, 25);
         millisButton = new JButton("Millis");
         millisButton.setBackground(Color.white);
-        millisButton.setForeground(Color.white);
-        millisButton.setFont(normalFont);
+        millisButton.setForeground(Color.black);
+        millisButton.setFont(mapFont);
 
         millisButton.addActionListener(sHandler);
+
+        //ROCKEFELLER BUTTON
+        rockButtonPanel = new JPanel();
+        rockButtonPanel.setBounds(285, 315,50, 25);
+        rockButton = new JButton("Rockefeller");
+        rockButton.setBackground(Color.white);
+        rockButton.setForeground(Color.BLACK);
+        rockButton.setFont(mapFont);
+
+        rockButton.addActionListener(sHandler);
+
+        //STROSACKER BUTTON
+        strosackerButtonPanel = new JPanel();
+        strosackerButtonPanel.setBounds(325, 285,50, 25);
+        strosackerButton = new JButton("Strosacker");
+        strosackerButton.setBackground(Color.white);
+        strosackerButton.setForeground(Color.BLACK);
+        strosackerButton.setFont(mapFont);
+
+        strosackerButton.addActionListener(sHandler);
 
         menuButtonPanel.add(menuButton);
         vealeButtonPanel.add(vealeButton);
         millisButtonPanel.add(millisButton);
+        rockButtonPanel.add(rockButton);
+        strosackerButtonPanel.add(strosackerButton);
 
         con.add(menuButtonPanel);
         con.add(vealeButtonPanel);
         con.add(millisButtonPanel);
+        con.add(rockButtonPanel);
+        con.add(strosackerButtonPanel);
         con.add(imagePanel);
 
         imagePanel.setVisible(true);
         vealeButtonPanel.setVisible(true);
         millisButtonPanel.setVisible(true);
         menuButtonPanel.setVisible(true);
+        rockButtonPanel.setVisible(true);
+        strosackerButtonPanel.setVisible(true);
 
         //player object/image is implemented and can be moved around
         //if at location to change maps, do so
@@ -234,11 +262,11 @@ public class GameScreen {
     }
 
     public void createVealeScreen(){
-        screenName = "Intro Screen";
-
         imagePanel.setVisible(false);
         vealeButtonPanel.setVisible(false);
         millisButtonPanel.setVisible(false);
+        rockButtonPanel.setVisible(false);
+        strosackerButtonPanel.setVisible(false);
 
         image = new ImageIcon("idk/resources/Veale.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
@@ -253,6 +281,8 @@ public class GameScreen {
         imagePanel.setVisible(false);
         vealeButtonPanel.setVisible(false);
         millisButtonPanel.setVisible(false);
+        rockButtonPanel.setVisible(false);
+        strosackerButtonPanel.setVisible(false);
 
         image = new ImageIcon("idk/resources/Millis.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
@@ -265,10 +295,35 @@ public class GameScreen {
     }
 
     public void createRockefellerScreen(){
+        imagePanel.setVisible(false);
+        vealeButtonPanel.setVisible(false);
+        millisButtonPanel.setVisible(false);
+        rockButtonPanel.setVisible(false);
+        strosackerButtonPanel.setVisible(false);
+
         image = new ImageIcon("idk/resources/Rockefeller.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
+
+        imagePanel.setVisible(true);
+        quadButtonPanel.setVisible(true);
+    }
+
+    public void createStrosackerScreen(){
+        imagePanel.setVisible(false);
+        vealeButtonPanel.setVisible(false);
+        millisButtonPanel.setVisible(false);
+        rockButtonPanel.setVisible(false);
+        strosackerButtonPanel.setVisible(false);
+
+        image = new ImageIcon("idk/resources/strosacker.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+
+        imagePanel.setVisible(true);
+        quadButtonPanel.setVisible(true);
     }
 
     public void createMenuScreen(){
@@ -276,6 +331,8 @@ public class GameScreen {
         quadButtonPanel.setVisible(false);
         vealeButtonPanel.setVisible(false);
         millisButtonPanel.setVisible(false);
+        rockButtonPanel.setVisible(false);
+        strosackerButtonPanel.setVisible(false);
         menuButtonPanel.setVisible(false);
 
         menuPanel = new JPanel();
@@ -346,6 +403,12 @@ public class GameScreen {
             }
             if(event.getSource() == menuButton){
                 createMenuScreen();
+            }
+            if(event.getSource() == rockButton){
+                createRockefellerScreen();
+            }
+            if(event.getSource() == strosackerButton){
+                createStrosackerScreen();
             }
             if(event.getSource() == returnButton){
                 menuPanel.setVisible(false);
