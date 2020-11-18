@@ -9,9 +9,9 @@ public class GameScreen {
 
     JFrame gameScreen;
     Container con;
-    JPanel titleNamePanel, startButtonPanel, loadButtonPanel, imagePanel,introTextPanel, vealeButtonPanel;
+    JPanel titleNamePanel, startButtonPanel, loadButtonPanel, imagePanel,introTextPanel, vealeButtonPanel, quadButtonPanel;
     JLabel titleNameLabel, imageLabel;
-    JButton startButton, loadButton, vealeButton;
+    JButton startButton, loadButton, vealeButton, quadButton;
     JTextArea introTextArea;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 25);
@@ -61,13 +61,25 @@ public class GameScreen {
 
         loadButton.addActionListener(sHandler);
 
+        quadButtonPanel = new JPanel();
+        quadButtonPanel.setBounds(100, 100, 180, 50);
+        quadButton = new JButton("Return to Quad");
+        quadButton.setBackground(Color.darkGray);
+        quadButton.setForeground(Color.white);
+        quadButton.setFont(normalFont);
+        quadButtonPanel.setVisible(false);
+
+        quadButton.addActionListener(sHandler);
+
         titleNamePanel.add(titleNameLabel);
         startButtonPanel.add(startButton);
         loadButtonPanel.add(loadButton);
+        quadButtonPanel.add(quadButton);
 
         con.add(titleNamePanel);
         con.add(startButtonPanel);
         con.add(loadButtonPanel);
+        con.add(quadButtonPanel);
 
         gameScreen.setVisible(true);
 
@@ -133,11 +145,19 @@ public class GameScreen {
 
         startButtonPanel.setVisible(false);
         introTextPanel.setVisible(false);
+        imagePanel.setVisible(false);
+        quadButtonPanel.setVisible(false);
+
+        image = new ImageIcon("idk/resources/CWRUquadDots.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+
+        imageLabel.setIcon(image);
 
         vealeButtonPanel = new JPanel();
-        vealeButtonPanel.setBounds(622, 105,10, 10);
+        vealeButtonPanel.setBounds(622, 100,10, 15);
         vealeButton = new JButton("Veale");
-        vealeButton.setBackground(Color.darkGray);
+        vealeButton.setBackground(Color.white);
         vealeButton.setForeground(Color.white);
         vealeButton.setFont(normalFont);
 
@@ -173,8 +193,12 @@ public class GameScreen {
     }
 
     public void createVealeScreen(){
+        screenName = "Intro Screen";
+
         imagePanel.setVisible(false);
         vealeButtonPanel.setVisible(false);
+
+
 
         image = new ImageIcon("idk/resources/Veale.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
@@ -182,6 +206,7 @@ public class GameScreen {
         imageLabel.setIcon(image);
 
         imagePanel.setVisible(true);
+        quadButtonPanel.setVisible(true);
     }
 
     public void createMillisScreen(){
