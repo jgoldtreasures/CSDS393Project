@@ -9,9 +9,10 @@ public class GameScreen {
 
     JFrame gameScreen;
     Container con;
-    JPanel titleNamePanel, startButtonPanel, loadButtonPanel, imagePanel,introTextPanel, vealeButtonPanel, quadButtonPanel, millisButtonPanel, gStartButtonPanel;
+    JPanel titleNamePanel, startButtonPanel, loadButtonPanel, imagePanel,introTextPanel, vealeButtonPanel,
+            quadButtonPanel, millisButtonPanel, gStartButtonPanel, menuButtonPanel, returnPanel, savePanel, menuPanel;
     JLabel titleNameLabel, imageLabel;
-    JButton startButton, loadButton, vealeButton, quadButton, millisButton, gStartButton;
+    JButton startButton, loadButton, vealeButton, quadButton, millisButton, gStartButton, menuButton, returnButton, saveButton;
     JTextArea introTextArea;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 25);
@@ -20,6 +21,8 @@ public class GameScreen {
     ImageIcon image;
 
     ScreenHandler sHandler = new ScreenHandler();
+
+    Game g;
 
     public static void main(String[] args){
         new GameScreen();
@@ -98,7 +101,7 @@ public class GameScreen {
         imageLabel.setIcon(image);
         imagePanel.add(imageLabel);
 
-        Game g = new Game();
+        g = new Game();
 
         //need to be able to start even if there is a saved file - give warning though
         //also give warning when trying to save over a saved file
@@ -166,6 +169,15 @@ public class GameScreen {
 
         imageLabel.setIcon(image);
 
+        menuButtonPanel = new JPanel();
+        menuButtonPanel.setBounds(100, 50,100, 50);
+        menuButton = new JButton("Menu");
+        menuButton.setBackground(Color.white);
+        menuButton.setForeground(Color.darkGray);
+        menuButton.setFont(normalFont);
+
+        menuButton.addActionListener(sHandler);
+
         vealeButtonPanel = new JPanel();
         vealeButtonPanel.setBounds(622, 100,10, 15);
         vealeButton = new JButton("Veale");
@@ -184,9 +196,11 @@ public class GameScreen {
 
         millisButton.addActionListener(sHandler);
 
+        menuButtonPanel.add(menuButton);
         vealeButtonPanel.add(vealeButton);
         millisButtonPanel.add(millisButton);
 
+        con.add(menuButtonPanel);
         con.add(vealeButtonPanel);
         con.add(millisButtonPanel);
         con.add(imagePanel);
@@ -194,6 +208,7 @@ public class GameScreen {
         imagePanel.setVisible(true);
         vealeButtonPanel.setVisible(true);
         millisButtonPanel.setVisible(true);
+        menuButtonPanel.setVisible(true);
 
         //player object/image is implemented and can be moved around
         //if at location to change maps, do so
@@ -256,6 +271,49 @@ public class GameScreen {
         imageLabel.setIcon(image);
     }
 
+    public void createMenuScreen(){
+        imagePanel.setVisible(false);
+        quadButtonPanel.setVisible(false);
+        vealeButtonPanel.setVisible(false);
+        millisButtonPanel.setVisible(false);
+        menuButtonPanel.setVisible(false);
+
+        menuPanel = new JPanel();
+        menuPanel.setBounds(120,150,550,100);
+        menuPanel.setBackground(Color.DARK_GRAY);
+        JLabel menuLabel = new JLabel("Menu");
+        menuLabel.setFont(titleFont);
+        menuLabel.setForeground(Color.white);
+
+        savePanel = new JPanel();
+        savePanel.setBounds(300, 300 ,150, 50);
+        saveButton = new JButton("Save");
+        saveButton.setBackground(Color.darkGray);
+        saveButton.setForeground(Color.white);
+        saveButton.setFont(normalFont);
+
+        saveButton.addActionListener(sHandler);
+
+        returnPanel = new JPanel();
+        returnPanel.setBounds(300, 350 ,150, 50);
+        returnButton = new JButton("Return");
+        returnButton.setBackground(Color.darkGray);
+        returnButton.setForeground(Color.white);
+        returnButton.setFont(normalFont);
+
+        returnButton.addActionListener(sHandler);
+
+        menuPanel.add(menuLabel);
+        savePanel.add(saveButton);
+        returnPanel.add(returnButton);
+
+        con.add(menuPanel);
+        con.add(savePanel);
+        con.add(returnPanel);
+
+
+    }
+
 
     private Image getScaledImage(Image srcImg, int w, int h){
         BufferedImage resizedImage = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
@@ -286,17 +344,18 @@ public class GameScreen {
             if(event.getSource() == millisButton){
                 createMillisScreen();
             }
-/*            switch (screenName){
-                case "Title Screen":
-                    createIntroScreen();
-                    break;
-                case "Intro Screen":
-                    createQuadScreen();
-                    break;
-                case "Veale":
-                    createVealeScreen();
-                    break;
-            }*/
+            if(event.getSource() == menuButton){
+                createMenuScreen();
+            }
+            if(event.getSource() == returnButton){
+                menuPanel.setVisible(false);
+                savePanel.setVisible(false);
+                returnPanel.setVisible(false);
+                createQuadScreen();
+            }
+            if(event.getSource() == saveButton){
+                
+            }
         }
     }
 }
