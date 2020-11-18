@@ -9,9 +9,9 @@ public class GameScreen {
 
     JFrame gameScreen;
     Container con;
-    JPanel titleNamePanel, startButtonPanel, loadButtonPanel, imagePanel,introTextPanel, vealeButtonPanel, quadButtonPanel;
+    JPanel titleNamePanel, startButtonPanel, loadButtonPanel, imagePanel,introTextPanel, vealeButtonPanel, quadButtonPanel, millisButtonPanel, gStartButtonPanel;
     JLabel titleNameLabel, imageLabel;
-    JButton startButton, loadButton, vealeButton, quadButton;
+    JButton startButton, loadButton, vealeButton, quadButton, millisButton, gStartButton;
     JTextArea introTextArea;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 25);
@@ -111,9 +111,20 @@ public class GameScreen {
     public void createIntroScreen(){
         titleNamePanel.setVisible(false);
         loadButtonPanel.setVisible(false);
+        startButtonPanel.setVisible(false);
+
+        gStartButtonPanel = new JPanel();
+        gStartButtonPanel.setBounds(300, 425 ,150, 50);
+        gStartButton = new JButton("Start");
+        gStartButton.setBackground(Color.darkGray);
+        gStartButton.setForeground(Color.white);
+        gStartButton.setFont(normalFont);
+
+        gStartButton.addActionListener(sHandler);
+        gStartButtonPanel.add(gStartButton);
+        gStartButtonPanel.setVisible(true);
 
         screenName = "Intro Screen";
-        startButtonPanel.setBounds(300, 425, 150,50);
 
         String textIntro ="You are a student at Case Western Reserve University. Your goal is to graduate from the " +
                 "university. There will be both required and optional tasks, but the required tasks will be within " +
@@ -129,6 +140,7 @@ public class GameScreen {
         introTextPanel = new JPanel();
         introTextPanel.setBounds(25,50,725,375);
         con.add(introTextPanel);
+        con.add(gStartButtonPanel);
 
         //find a way to center text
         introTextArea = new JTextArea(textIntro);
@@ -143,10 +155,10 @@ public class GameScreen {
     public void createQuadScreen(){
         screenName = "Veale";
 
-        startButtonPanel.setVisible(false);
         introTextPanel.setVisible(false);
         imagePanel.setVisible(false);
         quadButtonPanel.setVisible(false);
+        gStartButtonPanel.setVisible(false);
 
         image = new ImageIcon("idk/resources/CWRUquadDots.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
@@ -162,12 +174,26 @@ public class GameScreen {
         vealeButton.setFont(normalFont);
 
         vealeButton.addActionListener(sHandler);
+
+        millisButtonPanel = new JPanel();
+        millisButtonPanel.setBounds(282, 230,10, 15);
+        millisButton = new JButton("Millis");
+        millisButton.setBackground(Color.white);
+        millisButton.setForeground(Color.white);
+        millisButton.setFont(normalFont);
+
+        millisButton.addActionListener(sHandler);
+
         vealeButtonPanel.add(vealeButton);
+        millisButtonPanel.add(millisButton);
 
         con.add(vealeButtonPanel);
+        con.add(millisButtonPanel);
         con.add(imagePanel);
+
         imagePanel.setVisible(true);
         vealeButtonPanel.setVisible(true);
+        millisButtonPanel.setVisible(true);
 
         //player object/image is implemented and can be moved around
         //if at location to change maps, do so
@@ -197,8 +223,7 @@ public class GameScreen {
 
         imagePanel.setVisible(false);
         vealeButtonPanel.setVisible(false);
-
-
+        millisButtonPanel.setVisible(false);
 
         image = new ImageIcon("idk/resources/Veale.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
@@ -210,10 +235,17 @@ public class GameScreen {
     }
 
     public void createMillisScreen(){
+        imagePanel.setVisible(false);
+        vealeButtonPanel.setVisible(false);
+        millisButtonPanel.setVisible(false);
+
         image = new ImageIcon("idk/resources/Millis.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
+
+        imagePanel.setVisible(true);
+        quadButtonPanel.setVisible(true);
 
     }
 
@@ -239,7 +271,22 @@ public class GameScreen {
     public class ScreenHandler implements ActionListener{
         public void actionPerformed(ActionEvent event){
             //Need to add a manner which differentiates between start/load
-            switch (screenName){
+            if(event.getSource() == startButton){
+                createIntroScreen();
+            }
+            if(event.getSource() == gStartButton){
+                createQuadScreen();
+            }
+            if(event.getSource() == vealeButton){
+                createVealeScreen();
+            }
+            if(event.getSource() == quadButton){
+                createQuadScreen();
+            }
+            if(event.getSource() == millisButton){
+                createMillisScreen();
+            }
+/*            switch (screenName){
                 case "Title Screen":
                     createIntroScreen();
                     break;
@@ -249,7 +296,7 @@ public class GameScreen {
                 case "Veale":
                     createVealeScreen();
                     break;
-            }
+            }*/
         }
     }
 }
