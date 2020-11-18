@@ -13,7 +13,9 @@ public class GameScreen {
             quadButtonPanel, millisButtonPanel, rockButtonPanel, strosackerButtonPanel, gStartButtonPanel,
             menuButtonPanel, returnPanel, savePanel, menuPanel;
     JLabel titleNameLabel, imageLabel;
-    JButton startButton, loadButton, vealeButton, quadButton, millisButton, rockButton, strosackerButton, gStartButton, menuButton, returnButton, saveButton;
+    JButton startButton, loadButton, vealeButton, quadButton, millisButton, rockButton, strosackerButton,
+            gStartButton, menuButton, returnButton, saveButton;
+
     JTextArea introTextArea;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 25);
@@ -158,8 +160,6 @@ public class GameScreen {
     }
 
     public void createQuadScreen(){
-        screenName = "Veale";
-
         introTextPanel.setVisible(false);
         imagePanel.setVisible(false);
         quadButtonPanel.setVisible(false);
@@ -257,17 +257,7 @@ public class GameScreen {
         imageLabel.setIcon(image);
     }
 
-    public void createBuildingScreen(){
-
-    }
-
     public void createVealeScreen(){
-        imagePanel.setVisible(false);
-        vealeButtonPanel.setVisible(false);
-        millisButtonPanel.setVisible(false);
-        rockButtonPanel.setVisible(false);
-        strosackerButtonPanel.setVisible(false);
-
         image = new ImageIcon("idk/resources/Veale.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
@@ -278,12 +268,6 @@ public class GameScreen {
     }
 
     public void createMillisScreen(){
-        imagePanel.setVisible(false);
-        vealeButtonPanel.setVisible(false);
-        millisButtonPanel.setVisible(false);
-        rockButtonPanel.setVisible(false);
-        strosackerButtonPanel.setVisible(false);
-
         image = new ImageIcon("idk/resources/Millis.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
@@ -295,12 +279,6 @@ public class GameScreen {
     }
 
     public void createRockefellerScreen(){
-        imagePanel.setVisible(false);
-        vealeButtonPanel.setVisible(false);
-        millisButtonPanel.setVisible(false);
-        rockButtonPanel.setVisible(false);
-        strosackerButtonPanel.setVisible(false);
-
         image = new ImageIcon("idk/resources/Rockefeller.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
@@ -311,12 +289,6 @@ public class GameScreen {
     }
 
     public void createStrosackerScreen(){
-        imagePanel.setVisible(false);
-        vealeButtonPanel.setVisible(false);
-        millisButtonPanel.setVisible(false);
-        rockButtonPanel.setVisible(false);
-        strosackerButtonPanel.setVisible(false);
-
         image = new ImageIcon("idk/resources/strosacker.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
@@ -329,10 +301,6 @@ public class GameScreen {
     public void createMenuScreen(){
         imagePanel.setVisible(false);
         quadButtonPanel.setVisible(false);
-        vealeButtonPanel.setVisible(false);
-        millisButtonPanel.setVisible(false);
-        rockButtonPanel.setVisible(false);
-        strosackerButtonPanel.setVisible(false);
         menuButtonPanel.setVisible(false);
 
         menuPanel = new JPanel();
@@ -367,10 +335,15 @@ public class GameScreen {
         con.add(menuPanel);
         con.add(savePanel);
         con.add(returnPanel);
-
-
     }
 
+    public void hideQuadButtons(){
+        imagePanel.setVisible(false);
+        vealeButtonPanel.setVisible(false);
+        millisButtonPanel.setVisible(false);
+        rockButtonPanel.setVisible(false);
+        strosackerButtonPanel.setVisible(false);
+    }
 
     private Image getScaledImage(Image srcImg, int w, int h){
         BufferedImage resizedImage = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
@@ -386,28 +359,35 @@ public class GameScreen {
     public class ScreenHandler implements ActionListener{
         public void actionPerformed(ActionEvent event){
             //Need to add a manner which differentiates between start/load
+            //Make the data more concise
             if(event.getSource() == startButton){
                 createIntroScreen();
             }
             if(event.getSource() == gStartButton){
                 createQuadScreen();
             }
-            if(event.getSource() == vealeButton){
+            if (event.getSource() == vealeButton) {
+                hideQuadButtons();
                 createVealeScreen();
             }
-            if(event.getSource() == quadButton){
+            if (event.getSource() == quadButton) {
+                hideQuadButtons();
                 createQuadScreen();
             }
-            if(event.getSource() == millisButton){
+            if (event.getSource() == millisButton) {
+                hideQuadButtons();
                 createMillisScreen();
             }
-            if(event.getSource() == menuButton){
+            if (event.getSource() == menuButton) {
+                hideQuadButtons();
                 createMenuScreen();
             }
-            if(event.getSource() == rockButton){
+            if (event.getSource() == rockButton) {
+                hideQuadButtons();
                 createRockefellerScreen();
             }
-            if(event.getSource() == strosackerButton){
+            if (event.getSource() == strosackerButton) {
+                hideQuadButtons();
                 createStrosackerScreen();
             }
             if(event.getSource() == returnButton){
