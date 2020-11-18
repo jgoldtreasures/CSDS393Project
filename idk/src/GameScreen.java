@@ -11,16 +11,17 @@ public class GameScreen {
     Container con;
     JPanel titleNamePanel, startButtonPanel, loadButtonPanel, imagePanel,introTextPanel, vealeButtonPanel,
             quadButtonPanel, millisButtonPanel, rockButtonPanel, strosackerButtonPanel, gStartButtonPanel,
-            menuButtonPanel, returnPanel, savePanel, menuPanel;
+            menuButtonPanel, returnPanel, savePanel, menuPanel, goSouthPanel, goNorthPanel;
     JLabel titleNameLabel, imageLabel;
     JButton startButton, loadButton, vealeButton, quadButton, millisButton, rockButton, strosackerButton,
-            gStartButton, menuButton, returnButton, saveButton;
+            gStartButton, menuButton, returnButton, saveButton, goSouthButton, goNorthButton;
 
     JTextArea introTextArea;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 25);
     Font introFont = new Font("Times New Roman", Font.PLAIN, 20);
     Font mapFont = new Font("Times New Roman", Font.PLAIN, 10);
+    Font mapFont2 = new Font("Times New Roman", Font.PLAIN, 13);
 
     ImageIcon image;
 
@@ -171,31 +172,49 @@ public class GameScreen {
 
         imageLabel.setIcon(image);
 
+        //Go to North Side
+        goNorthPanel = new JPanel();
+        goNorthPanel.setBounds(20, 430,50, 35);
+        goNorthButton = new JButton("Northside");
+        goNorthButton.setBackground(Color.black);
+        goNorthButton.setForeground(Color.white);
+        goNorthButton.setFont(mapFont2);
+        goNorthButton.addActionListener(sHandler);
+
+        //Go to South side
+        goSouthPanel = new JPanel();
+        goSouthPanel.setBounds(360, 15,50, 35);
+        goSouthButton = new JButton("Southside");
+        goSouthButton.setBackground(Color.black);
+        goSouthButton.setForeground(Color.white);
+        goSouthButton.setFont(mapFont2);
+        goSouthButton.addActionListener(sHandler);
+
+        //Menu Button
         menuButtonPanel = new JPanel();
         menuButtonPanel.setBounds(100, 50,100, 50);
         menuButton = new JButton("Menu");
         menuButton.setBackground(Color.white);
         menuButton.setForeground(Color.darkGray);
         menuButton.setFont(normalFont);
-
         menuButton.addActionListener(sHandler);
 
+        //Veale Button
         vealeButtonPanel = new JPanel();
         vealeButtonPanel.setBounds(622, 100,30, 25);
         vealeButton = new JButton("Veale");
         vealeButton.setBackground(Color.white);
         vealeButton.setForeground(Color.black);
         vealeButton.setFont(mapFont);
-
         vealeButton.addActionListener(sHandler);
 
+        //Millis-Schmidt Button
         millisButtonPanel = new JPanel();
         millisButtonPanel.setBounds(282, 230,30, 25);
         millisButton = new JButton("Millis");
         millisButton.setBackground(Color.white);
         millisButton.setForeground(Color.black);
         millisButton.setFont(mapFont);
-
         millisButton.addActionListener(sHandler);
 
         //ROCKEFELLER BUTTON
@@ -205,7 +224,6 @@ public class GameScreen {
         rockButton.setBackground(Color.white);
         rockButton.setForeground(Color.BLACK);
         rockButton.setFont(mapFont);
-
         rockButton.addActionListener(sHandler);
 
         //STROSACKER BUTTON
@@ -215,7 +233,6 @@ public class GameScreen {
         strosackerButton.setBackground(Color.white);
         strosackerButton.setForeground(Color.BLACK);
         strosackerButton.setFont(mapFont);
-
         strosackerButton.addActionListener(sHandler);
 
         menuButtonPanel.add(menuButton);
@@ -223,12 +240,16 @@ public class GameScreen {
         millisButtonPanel.add(millisButton);
         rockButtonPanel.add(rockButton);
         strosackerButtonPanel.add(strosackerButton);
+        goSouthPanel.add(goSouthButton);
+        goNorthPanel.add(goNorthButton);
 
         con.add(menuButtonPanel);
         con.add(vealeButtonPanel);
         con.add(millisButtonPanel);
         con.add(rockButtonPanel);
         con.add(strosackerButtonPanel);
+        con.add(goNorthPanel);
+        con.add(goSouthPanel);
         con.add(imagePanel);
 
         imagePanel.setVisible(true);
@@ -237,6 +258,8 @@ public class GameScreen {
         menuButtonPanel.setVisible(true);
         rockButtonPanel.setVisible(true);
         strosackerButtonPanel.setVisible(true);
+        goSouthPanel.setVisible(true);
+        goNorthPanel.setVisible(true);
 
         //player object/image is implemented and can be moved around
         //if at location to change maps, do so
@@ -245,16 +268,18 @@ public class GameScreen {
 
     public void createNorthScreen(){
         image = new ImageIcon("idk/resources/CWRUnorthDots.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        Image resizedImage = getScaledImage(image.getImage(), 800, 400);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
+        imagePanel.setVisible(true);
     }
 
     public void createSouthScreen(){
         image = new ImageIcon("idk/resources/CWRUsouthDots.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        Image resizedImage = getScaledImage(image.getImage(), 650, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
+        imagePanel.setVisible(true);
     }
 
     public void createVealeScreen(){
@@ -300,7 +325,7 @@ public class GameScreen {
 
     public void createMenuScreen(){
         imagePanel.setVisible(false);
-        quadButtonPanel.setVisible(false);
+        quadButtonPanel.setVisible(false);;
         menuButtonPanel.setVisible(false);
 
         menuPanel = new JPanel();
@@ -343,6 +368,8 @@ public class GameScreen {
         millisButtonPanel.setVisible(false);
         rockButtonPanel.setVisible(false);
         strosackerButtonPanel.setVisible(false);
+        goSouthPanel.setVisible(false);
+        goNorthPanel.setVisible(false);
     }
 
     private Image getScaledImage(Image srcImg, int w, int h){
@@ -359,7 +386,7 @@ public class GameScreen {
     public class ScreenHandler implements ActionListener{
         public void actionPerformed(ActionEvent event){
             //Need to add a manner which differentiates between start/load
-            //Make the data more concise
+            //Can be even more concise
             if(event.getSource() == startButton){
                 createIntroScreen();
             }
@@ -389,6 +416,14 @@ public class GameScreen {
             if (event.getSource() == strosackerButton) {
                 hideQuadButtons();
                 createStrosackerScreen();
+            }
+            if (event.getSource() == goNorthButton) {
+                hideQuadButtons();
+                createNorthScreen();
+            }
+            if (event.getSource() == goSouthButton) {
+                hideQuadButtons();
+                createSouthScreen();
             }
             if(event.getSource() == returnButton){
                 menuPanel.setVisible(false);
