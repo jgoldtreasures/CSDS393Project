@@ -1,13 +1,12 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 
-public class GameScreen {
+public class GameScreen extends JPanel implements Runnable{
     public String screenName;
 
-    JFrame gameScreen;
+    static JFrame gameScreen;
     Container con;
     JPanel titleNamePanel, startButtonPanel, loadButtonPanel, imagePanel,introTextPanel;
     JLabel titleNameLabel, imageLabel;
@@ -21,7 +20,17 @@ public class GameScreen {
 
     ScreenHandler sHandler = new ScreenHandler();
 
+    private Player player = new Player(0, 0, new int[]{0}, new int[]{0, 0, 0, 0, 0});
+    private Image playerImage;
+    private int x, y;
+
+    private Thread animator;
+
     public static void main(String[] args){
+        EventQueue.invokeLater(() -> {
+            gameScreen = new ThreadAnimation();
+            gameScreen.setVisible(true);
+        });
         new GameScreen();
     }
 
@@ -86,6 +95,12 @@ public class GameScreen {
         imageLabel.setIcon(image);
         imagePanel.add(imageLabel);
 
+        imagePanel.setFocusable(true);
+        imagePanel.addKeyListener(sHandler);
+        imagePanel.requestFocus();
+
+        addKeyListener(sHandler);
+
         //need to be able to start even if there is a saved file - give warning though
         //also give warning when trying to save over a saved file
         //if we close screen and reload, is the load file still saved?
@@ -132,6 +147,8 @@ public class GameScreen {
 
         con.add(imagePanel);
         imagePanel.setVisible(true);
+
+
 
         //player object/image is implemented and can be moved around
         //if at location to change maps, do so
@@ -180,26 +197,128 @@ public class GameScreen {
 
     private Image getScaledImage(Image srcImg, int w, int h){
         BufferedImage resizedImage = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2 = resizedImage.createGraphics();
+//        Graphics2D g2 = resizedImage.createGraphics();
+//
+//        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+//        g2.drawImage(srcImg, 0, 0, w, h, null);
+//        g2.dispose();
 
-        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        Graphics g2 = resizedImage.createGraphics();
+
         g2.drawImage(srcImg, 0, 0, w, h, null);
         g2.dispose();
 
         return resizedImage;
     }
 
-    public class ScreenHandler implements ActionListener{
+    private void initializePlayer(){
+        ImageIcon imageIconPlayer = new ImageIcon("idk/resources/bit_character2.png");
+        playerImage = getScaledImage(imageIconPlayer.getImage(), 50, 50);
+        System.out.println("HELLO");
+        player = new Player(0, 0, new int[]{0}, new int[]{0, 0, 0, 0, 0});
+    }
+
+    public void addNotify() {
+        super.addNotify();
+        animator = new Thread(this);
+        animator.start();
+    }
+
+    @Override
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        drawBackground(g);
+        drawPlayer(g);
+    }
+
+    private void drawPlayer(Graphics g){
+//        g.drawImage(playerImage, player.getX(), player.getY(), this);
+        g.drawImage(playerImage, x, y, this);
+        Toolkit.getDefaultToolkit().sync();
+    }
+
+    private void drawBackground(Graphics g) {
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        g.drawImage(resizedImage, 0, 0, this);
+//        Toolkit.getDefaultToolkit().sync();
+    }
+
+    private void cycle() {
+        System.out.println(player.getX());
+        x = player.getX();
+        y = player.getY();
+
+    }
+
+    public void run() {
+
+        long beforeTime, timeDiff, sleep;
+
+        beforeTime = System.currentTimeMillis();
+
+        while (true) {
+
+            cycle();
+            repaint();
+
+            timeDiff = System.currentTimeMillis() - beforeTime;
+            sleep = 25 - timeDiff;
+
+            if (sleep < 0) {
+                sleep = 2;
+            }
+
+            try {
+                Thread.sleep(sleep);
+            } catch (InterruptedException e) {
+
+                String msg = String.format("Thread interrupted: %s", e.getMessage());
+
+                JOptionPane.showMessageDialog(this, msg, "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+            beforeTime = System.currentTimeMillis();
+        }
+    }
+
+    public class ScreenHandler implements ActionListener, KeyListener{
         public void actionPerformed(ActionEvent event){
             //Need to add a manner which differentiates between start/load
+//            System.out.println("HELL3O");
             switch (screenName){
                 case "Title Screen":
                     createIntroScreen();
                     break;
                 case "Intro Screen":
                     createQuadScreen();
+                    initializePlayer();
                     break;
             }
+
         }
+
+        public void keyPressed(KeyEvent k) {
+            System.out.println("HELL2O");
+            if (k.getKeyCode() == KeyEvent.VK_LEFT) {
+                player.setX(player.getX() - 5);
+            }
+            if (k.getKeyCode() == KeyEvent.VK_RIGHT) {
+                player.setX(player.getX() + 5);
+            }
+            if (k.getKeyCode() == KeyEvent.VK_UP) {
+                player.setY(player.getY() - 5);
+            }
+            if (k.getKeyCode() == KeyEvent.VK_DOWN) {
+                player.setY(player.getY() + 5);
+            }
+        }
+
+        public void keyTyped(KeyEvent e) {}
+
+        public void keyReleased(KeyEvent e) {}
+
     }
+
+
 }
