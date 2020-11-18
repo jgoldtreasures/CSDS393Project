@@ -9,9 +9,9 @@ public class GameScreen {
 
     JFrame gameScreen;
     Container con;
-    JPanel titleNamePanel, startButtonPanel, loadButtonPanel, imagePanel,introTextPanel;
+    JPanel titleNamePanel, startButtonPanel, loadButtonPanel, imagePanel,introTextPanel, vealeButtonPanel;
     JLabel titleNameLabel, imageLabel;
-    JButton startButton, loadButton;
+    JButton startButton, loadButton, vealeButton;
     JTextArea introTextArea;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 25);
@@ -86,6 +86,8 @@ public class GameScreen {
         imageLabel.setIcon(image);
         imagePanel.add(imageLabel);
 
+        Game g = new Game();
+
         //need to be able to start even if there is a saved file - give warning though
         //also give warning when trying to save over a saved file
         //if we close screen and reload, is the load file still saved?
@@ -127,11 +129,26 @@ public class GameScreen {
     }
 
     public void createQuadScreen(){
+        screenName = "Veale";
+
         startButtonPanel.setVisible(false);
         introTextPanel.setVisible(false);
 
+        vealeButtonPanel = new JPanel();
+        vealeButtonPanel.setBounds(622, 105,10, 5);
+        vealeButton = new JButton("Veale");
+        vealeButton.setBackground(Color.darkGray);
+        vealeButton.setForeground(Color.white);
+        vealeButton.setFont(normalFont);
+
+        vealeButton.addActionListener(sHandler);
+
+        imagePanel.add(vealeButton);
+
+        con.add(vealeButtonPanel);
         con.add(imagePanel);
         imagePanel.setVisible(true);
+        vealeButtonPanel.setVisible(true);
 
         //player object/image is implemented and can be moved around
         //if at location to change maps, do so
@@ -157,10 +174,15 @@ public class GameScreen {
     }
 
     public void createVealeScreen(){
+        imagePanel.setVisible(false);
+        vealeButtonPanel.setVisible(false);
+
         image = new ImageIcon("idk/resources/Veale.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
+
+        imagePanel.setVisible(true);
     }
 
     public void createMillisScreen(){
@@ -168,6 +190,7 @@ public class GameScreen {
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
+
     }
 
     public void createRockefellerScreen(){
@@ -198,6 +221,9 @@ public class GameScreen {
                     break;
                 case "Intro Screen":
                     createQuadScreen();
+                    break;
+                case "Veale":
+                    createVealeScreen();
                     break;
             }
         }
