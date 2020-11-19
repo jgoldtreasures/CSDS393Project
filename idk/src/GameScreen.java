@@ -10,21 +10,16 @@ public class GameScreen {
     JFrame gameScreen;
     Container con;
     JPanel titleNamePanel, startButtonPanel, loadButtonPanel, imagePanel,introTextPanel, vealeButtonPanel,
-            quadButtonPanel, millisButtonPanel, rockButtonPanel, strosackerButtonPanel, gStartButtonPanel,
-            menuButtonPanel, returnPanel, savePanel, menuPanel, attrButtonPanel, attrPanel, healthPanel, hygienePanel,
-            intelligencePanel, strengthPanel, socialStandingPanel, goSouthPanel, goNorthPanel;
+            quadButtonPanel, millisButtonPanel, rockButtonPanel, northButtonPanel, southButtonPanel, gStartButtonPanel, menuButtonPanel, returnPanel, savePanel,
+            menuPanel, attrButtonPanel, attrPanel, healthPanel, hygienePanel, intelligencePanel, strengthPanel, socialStandingPanel;
     JLabel titleNameLabel, imageLabel;
-    JButton startButton, loadButton, vealeButton, quadButton, millisButton, rockButton, strosackerButton,
-            gStartButton, menuButton, returnButton, saveButton, attrButton, goSouthButton, goNorthButton;
-
+    JButton startButton, loadButton, vealeButton, quadButton, millisButton, rockButton, northButton, southButton, gStartButton, menuButton, returnButton, saveButton, attrButton;
     JTextArea introTextArea;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 25);
     Font introFont = new Font("Times New Roman", Font.PLAIN, 20);
     Font medFont = new Font("Times New Roman", Font.PLAIN, 40);
-    Font mapFont = new Font("Times New Roman", Font.PLAIN, 10);
-    Font mapFont2 = new Font("Times New Roman", Font.PLAIN, 13);
-
+    Font mapFont = new Font("Times New Roman", Font.PLAIN, 12);
 
     ImageIcon image;
 
@@ -38,8 +33,25 @@ public class GameScreen {
 
     public GameScreen() {
         //image home screen - intro, save, and load
-        screenName = "Title Screen";
 
+        createTitleScreen();
+        createIntroScreen();
+        createQuadScreen();
+        createMenuScreen();
+
+        g = new Game();
+
+        createAttributesScreen();
+
+        //need to be able to start even if there is a saved file - give warning though
+        //also give warning when trying to save over a saved file
+        //if we close screen and reload, is the load file still saved?
+        //image for each building
+        //Will take a specfic image from a connected folder for the image
+        //will also standardize the format for the buildings
+    }
+
+    public void createTitleScreen(){
         gameScreen = new JFrame();
         gameScreen.setSize(800,600);
         gameScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,25 +84,14 @@ public class GameScreen {
 
         loadButton.addActionListener(sHandler);
 
-        quadButtonPanel = new JPanel();
-        quadButtonPanel.setBounds(100, 100, 180, 50);
-        quadButton = new JButton("Return to Quad");
-        quadButton.setBackground(Color.darkGray);
-        quadButton.setForeground(Color.white);
-        quadButton.setFont(normalFont);
-        quadButtonPanel.setVisible(false);
-
-        quadButton.addActionListener(sHandler);
-
         titleNamePanel.add(titleNameLabel);
         startButtonPanel.add(startButton);
         loadButtonPanel.add(loadButton);
-        quadButtonPanel.add(quadButton);
+
 
         con.add(titleNamePanel);
         con.add(startButtonPanel);
         con.add(loadButtonPanel);
-        con.add(quadButtonPanel);
 
         gameScreen.setVisible(true);
 
@@ -108,23 +109,9 @@ public class GameScreen {
 
         imageLabel.setIcon(image);
         imagePanel.add(imageLabel);
-
-        g = new Game();
-
-        createAttributesScreen();
-
-        //need to be able to start even if there is a saved file - give warning though
-        //also give warning when trying to save over a saved file
-        //if we close screen and reload, is the load file still saved?
-        //image for each building
-        //Will take a specfic image from a connected folder for the image
-        //will also standardize the format for the buildings
     }
 
     public void createIntroScreen(){
-        titleNamePanel.setVisible(false);
-        loadButtonPanel.setVisible(false);
-        startButtonPanel.setVisible(false);
 
         gStartButtonPanel = new JPanel();
         gStartButtonPanel.setBounds(300, 425 ,150, 50);
@@ -135,7 +122,7 @@ public class GameScreen {
 
         gStartButton.addActionListener(sHandler);
         gStartButtonPanel.add(gStartButton);
-        gStartButtonPanel.setVisible(true);
+
 
         screenName = "Intro Screen";
 
@@ -152,8 +139,6 @@ public class GameScreen {
 
         introTextPanel = new JPanel();
         introTextPanel.setBounds(25,50,725,375);
-        con.add(introTextPanel);
-        con.add(gStartButtonPanel);
 
         //find a way to center text
         introTextArea = new JTextArea(textIntro);
@@ -163,110 +148,103 @@ public class GameScreen {
         introTextArea.setWrapStyleWord(true);
 
         introTextPanel.add(introTextArea);
+
+        introTextPanel.setVisible(false);
+        gStartButtonPanel.setVisible(false);
+
+        con.add(introTextPanel);
+        con.add(gStartButtonPanel);
     }
 
     public void createQuadScreen(){
-        screenName = "Veale";
-
-        introTextPanel.setVisible(false);
-        imagePanel.setVisible(false);
-        quadButtonPanel.setVisible(false);
-        gStartButtonPanel.setVisible(false);
-
-        image = new ImageIcon("idk/resources/CWRUquadDots.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-
-        imageLabel.setIcon(image);
-
-        //Go to North Side
-        goNorthPanel = new JPanel();
-        goNorthPanel.setBounds(20, 430,50, 35);
-        goNorthButton = new JButton("Northside");
-        goNorthButton.setBackground(Color.black);
-        goNorthButton.setForeground(Color.white);
-        goNorthButton.setFont(mapFont2);
-        goNorthButton.addActionListener(sHandler);
-
-        //Go to South side
-        goSouthPanel = new JPanel();
-        goSouthPanel.setBounds(360, 15,50, 35);
-        goSouthButton = new JButton("Southside");
-        goSouthButton.setBackground(Color.black);
-        goSouthButton.setForeground(Color.white);
-        goSouthButton.setFont(mapFont2);
-        goSouthButton.addActionListener(sHandler);
-
-        //Menu Button
         menuButtonPanel = new JPanel();
         menuButtonPanel.setBounds(100, 50,100, 50);
         menuButton = new JButton("Menu");
         menuButton.setBackground(Color.white);
         menuButton.setForeground(Color.darkGray);
         menuButton.setFont(normalFont);
+
         menuButton.addActionListener(sHandler);
-
-        //Veale Button
-        vealeButtonPanel = new JPanel();
-        vealeButtonPanel.setBounds(622, 100,10, 15);
-        vealeButton = new JButton("Veale");
-        vealeButton.setBackground(Color.white);
-        vealeButton.setForeground(Color.black);
-        vealeButton.setFont(mapFont);
-        vealeButton.addActionListener(sHandler);
-
-        //Millis-Schmidt Button
-        millisButtonPanel = new JPanel();
-        millisButtonPanel.setBounds(282, 230,10, 15);
-        millisButton = new JButton("Millis");
-        millisButton.setBackground(Color.white);
-        millisButton.setForeground(Color.black);
-        millisButton.setFont(mapFont);
-        millisButton.addActionListener(sHandler);
-
-        //ROCKEFELLER BUTTON
-        rockButtonPanel = new JPanel();
-        rockButtonPanel.setBounds(285, 315,50, 25);
-        rockButton = new JButton("Rockefeller");
-        rockButton.setBackground(Color.white);
-        rockButton.setForeground(Color.BLACK);
-        rockButton.setFont(mapFont);
-        rockButton.addActionListener(sHandler);
-
-        //STROSACKER BUTTON
-        strosackerButtonPanel = new JPanel();
-        strosackerButtonPanel.setBounds(325, 285,50, 25);
-        strosackerButton = new JButton("Strosacker");
-        strosackerButton.setBackground(Color.white);
-        strosackerButton.setForeground(Color.BLACK);
-        strosackerButton.setFont(mapFont);
-        strosackerButton.addActionListener(sHandler);
-
         menuButtonPanel.add(menuButton);
-        vealeButtonPanel.add(vealeButton);
-        millisButtonPanel.add(millisButton);
-        rockButtonPanel.add(rockButton);
-        strosackerButtonPanel.add(strosackerButton);
-        goSouthPanel.add(goSouthButton);
-        goNorthPanel.add(goNorthButton);
-
         con.add(menuButtonPanel);
-        con.add(vealeButtonPanel);
-        con.add(millisButtonPanel);
-        con.add(rockButtonPanel);
-        con.add(strosackerButtonPanel);
-        con.add(goNorthPanel);
-        con.add(goSouthPanel);
-        con.add(imagePanel);
 
-        imagePanel.setVisible(true);
-        vealeButtonPanel.setVisible(true);
-        millisButtonPanel.setVisible(true);
-        menuButtonPanel.setVisible(true);
-        rockButtonPanel.setVisible(true);
-        strosackerButtonPanel.setVisible(true);
-        goSouthPanel.setVisible(true);
-        goNorthPanel.setVisible(true);
+
+        vealeButtonPanel = new JPanel();
+        vealeButtonPanel.setBounds(622, 100,50, 25);
+        vealeButton = new JButton("Veale");
+        vealeButton.setBackground(Color.darkGray);
+        vealeButton.setForeground(Color.white);
+        vealeButton.setFont(mapFont);
+
+        vealeButton.addActionListener(sHandler);
+        vealeButtonPanel.add(vealeButton);
+        con.add(vealeButtonPanel);
+
+
+        millisButtonPanel = new JPanel();
+        millisButtonPanel.setBounds(282, 230,50, 25);
+        millisButton = new JButton("Millis");
+        millisButton.setBackground(Color.darkGray);
+        millisButton.setForeground(Color.white);
+        millisButton.setFont(mapFont);
+
+        millisButton.addActionListener(sHandler);
+        millisButtonPanel.add(millisButton);
+        con.add(millisButtonPanel);
+
+
+        rockButtonPanel = new JPanel();
+        rockButtonPanel.setBounds(287, 320,70, 25);
+        rockButton = new JButton("Rockefeller");
+        rockButton.setBackground(Color.darkGray);
+        rockButton.setForeground(Color.white);
+        rockButton.setFont(mapFont);
+
+        rockButton.addActionListener(sHandler);
+        rockButtonPanel.add(rockButton);
+        con.add(rockButtonPanel);
+
+
+        northButtonPanel = new JPanel();
+        northButtonPanel.setBounds(25, 500,70, 25);
+        northButton = new JButton("Northside");
+        northButton.setBackground(Color.darkGray);
+        northButton.setForeground(Color.white);
+        northButton.setFont(mapFont);
+
+        northButton.addActionListener(sHandler);
+        northButtonPanel.add(northButton);
+        con.add(northButtonPanel);
+
+
+        southButtonPanel = new JPanel();
+        southButtonPanel.setBounds(700, 25,70, 25);
+        southButton = new JButton("Southside");
+        southButton.setBackground(Color.darkGray);
+        southButton.setForeground(Color.white);
+        southButton.setFont(mapFont);
+
+        southButton.addActionListener(sHandler);
+        southButtonPanel.add(southButton);
+        con.add(southButtonPanel);
+
+
+        quadButtonPanel = new JPanel();
+        quadButtonPanel.setBounds(100, 100, 180, 50);
+        quadButton = new JButton("Return to Quad");
+        quadButton.setBackground(Color.white);
+        quadButton.setForeground(Color.darkGray);
+        quadButton.setFont(normalFont);
+        quadButtonPanel.setVisible(false);
+
+        quadButton.addActionListener(sHandler);
+        quadButtonPanel.add(quadButton);
+        con.add(quadButtonPanel);
+
+        con.add(imagePanel);
+        imagePanel.setVisible(false);
+        hideBuildingButtons();
+        menuButtonPanel.setVisible(false);
 
         //player object/image is implemented and can be moved around
         //if at location to change maps, do so
@@ -274,51 +252,51 @@ public class GameScreen {
     }
 
     public void createNorthScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
         image = new ImageIcon("idk/resources/CWRUnorthDots.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 400);
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
-        imagePanel.setVisible(true);
     }
 
     public void createSouthScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
         image = new ImageIcon("idk/resources/CWRUsouthDots.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 650, 600);
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
-        imagePanel.setVisible(true);
-    }
-
-    public void createBuildingScreen(){
-
     }
 
     public void createVealeScreen(){
+        hideBuildingButtons();
+
         image = new ImageIcon("idk/resources/Veale.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
 
-        imagePanel.setVisible(true);
         quadButtonPanel.setVisible(true);
     }
 
     public void createMillisScreen(){
-        imagePanel.setVisible(false);
-        vealeButtonPanel.setVisible(false);
-        millisButtonPanel.setVisible(false);
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
 
         image = new ImageIcon("idk/resources/Millis.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
 
-        imagePanel.setVisible(true);
-        quadButtonPanel.setVisible(true);
-
     }
 
     public void createRockefellerScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
         image = new ImageIcon("idk/resources/Rockefeller.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
@@ -326,12 +304,6 @@ public class GameScreen {
     }
 
     public void createMenuScreen(){
-        imagePanel.setVisible(false);
-        quadButtonPanel.setVisible(false);
-        vealeButtonPanel.setVisible(false);
-        millisButtonPanel.setVisible(false);
-        menuButtonPanel.setVisible(false);
-
         menuPanel = new JPanel();
         menuPanel.setBounds(120,150,550,100);
         menuPanel.setBackground(Color.DARK_GRAY);
@@ -376,11 +348,15 @@ public class GameScreen {
         con.add(returnPanel);
         con.add(attrButtonPanel);
 
+        menuPanel.setVisible(false);
+        savePanel.setVisible(false);
+        returnPanel.setVisible(false);
+        attrButtonPanel.setVisible(false);
+
     }
 
     public void createAttributesScreen(){
         //menuButtonPanel.setVisible(true);
-
         attrPanel = new JPanel();
         attrPanel.setBounds(250,100,300,50);
         attrPanel.setBackground(Color.DARK_GRAY);
@@ -446,14 +422,77 @@ public class GameScreen {
         socialStandingPanel.setVisible(false);
     }
 
-    public void hideQuadButtons(){
+    public void displayIntroScreen(){
+        titleNamePanel.setVisible(false);
+        loadButtonPanel.setVisible(false);
+        startButtonPanel.setVisible(false);
+        introTextPanel.setVisible(true);
+        gStartButtonPanel.setVisible(true);
+    }
+
+    public void displayQuadScreen(){
+        introTextPanel.setVisible(false);
         imagePanel.setVisible(false);
+        quadButtonPanel.setVisible(false);
+        gStartButtonPanel.setVisible(false);
+        menuPanel.setVisible(false);
+        savePanel.setVisible(false);
+        returnPanel.setVisible(false);
+        attrButtonPanel.setVisible(false);
+
+        image = new ImageIcon("idk/resources/CWRUquadDots.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+
+        imageLabel.setIcon(image);
+
+        imagePanel.setVisible(true);
+        vealeButtonPanel.setVisible(true);
+        millisButtonPanel.setVisible(true);
+        rockButtonPanel.setVisible(true);
+        menuButtonPanel.setVisible(true);
+        northButtonPanel.setVisible(true);
+        southButtonPanel.setVisible(true);
+    }
+
+    public void displayMenuScreen(){
+        imagePanel.setVisible(false);
+        quadButtonPanel.setVisible(false);
+        hideBuildingButtons();
+        menuButtonPanel.setVisible(false);
+        attrPanel.setVisible(false);
+        healthPanel.setVisible(false);
+        hygienePanel.setVisible(false);
+        intelligencePanel.setVisible(false);
+        strengthPanel.setVisible(false);
+        socialStandingPanel.setVisible(false);
+
+        menuPanel.setVisible(true);
+        savePanel.setVisible(true);
+        returnPanel.setVisible(true);
+        attrButtonPanel.setVisible(true);
+    }
+
+    public void displayAttrScreen(){
+        menuPanel.setVisible(false);
+        attrButtonPanel.setVisible(false);
+        savePanel.setVisible(false);
+        returnPanel.setVisible(false);
+        attrPanel.setVisible(true);
+        healthPanel.setVisible(true);
+        hygienePanel.setVisible(true);
+        intelligencePanel.setVisible(true);
+        strengthPanel.setVisible(true);
+        socialStandingPanel.setVisible(true);
+        menuButtonPanel.setVisible(true);
+    }
+
+    public void hideBuildingButtons(){
         vealeButtonPanel.setVisible(false);
         millisButtonPanel.setVisible(false);
         rockButtonPanel.setVisible(false);
-        strosackerButtonPanel.setVisible(false);
-        goSouthPanel.setVisible(false);
-        goNorthPanel.setVisible(false);
+        southButtonPanel.setVisible(false);
+        northButtonPanel.setVisible(false);
     }
 
     private Image getScaledImage(Image srcImg, int w, int h){
@@ -471,68 +510,40 @@ public class GameScreen {
         public void actionPerformed(ActionEvent event){
             //Need to add a manner which differentiates between start/load
             if(event.getSource() == startButton){
-                createIntroScreen();
+                displayIntroScreen();
             }
             if(event.getSource() == gStartButton){
-                createQuadScreen();
+                displayQuadScreen();
             }
             if(event.getSource() == vealeButton){
                 createVealeScreen();
             }
             if(event.getSource() == quadButton){
-                createQuadScreen();
+                displayQuadScreen();
             }
             if(event.getSource() == millisButton){
                 createMillisScreen();
             }
-            if(event.getSource() == menuButton) {
-                attrPanel.setVisible(false);
-                healthPanel.setVisible(false);
-                hygienePanel.setVisible(false);
-                intelligencePanel.setVisible(false);
-                strengthPanel.setVisible(false);
-                socialStandingPanel.setVisible(false);
-                createMenuScreen();
-            }
-            if (event.getSource() == rockButton) {
-                hideQuadButtons();
+            if(event.getSource() == rockButton){
                 createRockefellerScreen();
             }
-/*            if (event.getSource() == strosackerButton) {
-                hideQuadButtons();
-                createStrosackerScreen();
-            }*/
-            if (event.getSource() == goNorthButton) {
-                hideQuadButtons();
+            if(event.getSource() == northButton){
                 createNorthScreen();
             }
-            if (event.getSource() == goSouthButton) {
-                hideQuadButtons();
+            if(event.getSource() == southButton){
                 createSouthScreen();
             }
-
+            if(event.getSource() == menuButton) {
+                displayMenuScreen();
+            }
             if(event.getSource() == returnButton){
-                menuPanel.setVisible(false);
-                savePanel.setVisible(false);
-                returnPanel.setVisible(false);
-                attrButtonPanel.setVisible(false);
-                createQuadScreen();
+                displayQuadScreen();
             }
             if(event.getSource() == saveButton){
 
             }
             if(event.getSource() == attrButton){
-                menuPanel.setVisible(false);
-                attrButtonPanel.setVisible(false);
-                savePanel.setVisible(false);
-                returnPanel.setVisible(false);
-                attrPanel.setVisible(true);
-                healthPanel.setVisible(true);
-                hygienePanel.setVisible(true);
-                intelligencePanel.setVisible(true);
-                strengthPanel.setVisible(true);
-                socialStandingPanel.setVisible(true);
-                menuButtonPanel.setVisible(true);
+                displayAttrScreen();
             }
         }
     }
