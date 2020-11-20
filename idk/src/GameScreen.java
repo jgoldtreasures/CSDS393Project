@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 
 public class GameScreen {
@@ -14,11 +15,13 @@ public class GameScreen {
             carltonButtonPanel, crawfordButtonPanel, eldredButtonPanel, elephantButtonPanel, northButtonPanel, southButtonPanel, gStartButtonPanel,
             menuButtonPanel, returnPanel, savePanel, menuPanel, attrButtonPanel, attrPanel, healthPanel, hygienePanel, intelligencePanel,
             strengthPanel, socialStandingPanel, glennanButtonPanel, khsButtonPanel, kslButtonPanel, nordButtonPanel, olinButtonPanel, pblButtonPanel,
-            searsButtonPanel, thwingButtonPanel, tinkButtonPanel, whiteButtonPanel, wickendenButtonPanel, yostButtonPanel, tomlinsonButtonPanel;
-    JLabel titleNameLabel, imageLabel;
+            searsButtonPanel, thwingButtonPanel, tinkButtonPanel, whiteButtonPanel, wickendenButtonPanel, yostButtonPanel, tomlinsonButtonPanel, exerciseButtonPanel,
+            compPanel1, compPanel2, compPanel3, startExButtonPanel;
+    JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel3;
     JButton startButton, loadButton, vealeButton, quadButton, millisButton, strosackerButton, rockButton, northButton, southButton, gStartButton,
             menuButton, returnButton, saveButton, attrButton, awSmithButton, binghamButton, carltonButton, crawfordButton, eldredButton, elephantButton,
-            glennanButton, kslButton, khsButton, nordButton, olinButton, pblButton, searsButton, thwingButton, tinkButton, tomlinsonButton, whiteButton, wickendenButton, yostButton;
+            glennanButton, kslButton, khsButton, nordButton, olinButton, pblButton, searsButton, thwingButton, tinkButton, tomlinsonButton, whiteButton,
+            wickendenButton, yostButton, exerciseButton, startExButton;
     JTextArea introTextArea;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 25);
@@ -45,7 +48,9 @@ public class GameScreen {
         createMenuScreen();
         createNorthScreen();
         createSouthScreen();
+        createCompletionScreen();
         hideBuildingButtons();
+
 
         g = new Game();
 
@@ -514,6 +519,17 @@ public class GameScreen {
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
 
+        exerciseButtonPanel = new JPanel();
+        exerciseButtonPanel.setBounds(80, 150,180, 50);
+        exerciseButton = new JButton("Exercise");
+        exerciseButton.setBackground(Color.white);
+        exerciseButton.setForeground(Color.darkGray);
+        exerciseButton.setFont(normalFont);
+
+        exerciseButton.addActionListener(sHandler);
+        exerciseButtonPanel.add(exerciseButton);
+        con.add(exerciseButtonPanel);
+
         quadButtonPanel.setVisible(true);
     }
 
@@ -542,7 +558,7 @@ public class GameScreen {
         hideBuildingButtons();
         quadButtonPanel.setVisible(true);
 
-        image = new ImageIcon("idk/resources/AWSmith.jpg");
+        image = new ImageIcon("idk/resources/AWSmith.jpeg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
@@ -612,7 +628,7 @@ public class GameScreen {
         hideBuildingButtons();
         quadButtonPanel.setVisible(true);
 
-        image = new ImageIcon("idk/resources/KHS.jpg");
+        image = new ImageIcon("idk/resources/KHS.jpeg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
@@ -802,35 +818,35 @@ public class GameScreen {
         healthPanel = new JPanel();
         healthPanel.setBounds(300, 400 ,150, 50);
         //String health = "Health: " + String.valueOf(g.getPlayer().getAttributeVal("Health"));
-        JLabel healthlabel = new JLabel("Health: 1");
+        healthlabel = new JLabel("Health: 1");
         healthlabel.setBackground(Color.white);
         healthlabel.setForeground(Color.darkGray);
         healthlabel.setFont(normalFont);
 
         hygienePanel = new JPanel();
         hygienePanel.setBounds(300, 350 ,150, 50);
-        JLabel hygienelabel = new JLabel("Hygiene: 1");
+        hygienelabel = new JLabel("Hygiene: 1");
         hygienelabel.setBackground(Color.white);
         hygienelabel.setForeground(Color.darkGray);
         hygienelabel.setFont(normalFont);
 
         intelligencePanel = new JPanel();
         intelligencePanel.setBounds(300, 300 ,150, 50);
-        JLabel intelligencelabel = new JLabel("Intelligence: 1");
+        intelligencelabel = new JLabel("Intelligence: 1");
         intelligencelabel.setBackground(Color.white);
         intelligencelabel.setForeground(Color.darkGray);
         intelligencelabel.setFont(normalFont);
 
         strengthPanel = new JPanel();
         strengthPanel.setBounds(300, 250 ,150, 50);
-        JLabel strengthlabel = new JLabel("Strength: 1");
+        strengthlabel = new JLabel("Strength: 1");
         strengthlabel.setBackground(Color.white);
         strengthlabel.setForeground(Color.darkGray);
         strengthlabel.setFont(normalFont);
 
         socialStandingPanel = new JPanel();
         socialStandingPanel.setBounds(275, 200 ,200, 50);
-        JLabel socialStandinglabel = new JLabel("Social Standing: 1");
+        socialStandinglabel = new JLabel("Social Standing: 1");
         socialStandinglabel.setBackground(Color.white);
         socialStandinglabel.setForeground(Color.darkGray);
         socialStandinglabel.setFont(normalFont);
@@ -874,6 +890,9 @@ public class GameScreen {
         savePanel.setVisible(false);
         returnPanel.setVisible(false);
         attrButtonPanel.setVisible(false);
+        compPanel1.setVisible(false);
+        compPanel2.setVisible(false);
+        compPanel3.setVisible(false);
 
         image = new ImageIcon("idk/resources/CWRUquadDots.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
@@ -971,6 +990,76 @@ public class GameScreen {
         strengthPanel.setVisible(true);
         socialStandingPanel.setVisible(true);
         menuButtonPanel.setVisible(true);
+    }
+
+    public void createExerciseScreen(){
+        exerciseButtonPanel.setVisible(false);
+
+        image = new ImageIcon("idk/resources/gym.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+
+        startExButtonPanel = new JPanel();
+        startExButtonPanel.setBounds(300, 300 ,150, 50);
+        startExButton = new JButton("Start");
+        startExButton.setBackground(Color.darkGray);
+        startExButton.setForeground(Color.white);
+        startExButton.setFont(normalFont);
+
+        startExButton.addActionListener(sHandler);
+        startExButtonPanel.add(startExButton);
+        con.add(startExButtonPanel);
+
+        strengthlabel.setText("Strength: 2");
+    }
+
+    public void createCompletionScreen(){
+        compPanel1 = new JPanel();
+        compPanel1.setBounds(250,150,350,50);
+        compPanel1.setBackground(Color.DARK_GRAY);
+        JLabel compLabel1 = new JLabel("Congratulations!");
+        compLabel1.setFont(medFont);
+        compLabel1.setForeground(Color.white);
+
+        compPanel1.add(compLabel1);
+        con.add(compPanel1);
+
+        compPanel2 = new JPanel();
+        compPanel2.setBounds(235,201,375,50);
+        compPanel2.setBackground(Color.DARK_GRAY);
+        JLabel compLabel2 = new JLabel("You Have Completed:");
+        compLabel2.setFont(medFont);
+        compLabel2.setForeground(Color.white);
+
+        compPanel2.add(compLabel2);
+        con.add(compPanel2);
+
+        compPanel3 = new JPanel();
+        compPanel3.setBounds(250, 275 ,350, 50);
+        compPanel3.setBackground(Color.DARK_GRAY);
+        compLabel3 = new JLabel(" ");
+        compLabel3.setForeground(Color.white);
+        compLabel3.setFont(medFont);
+
+        compPanel3.add(compLabel3);
+        con.add(compPanel3);
+
+        compPanel1.setVisible(false);
+        compPanel2.setVisible(false);
+        compPanel3.setVisible(false);
+    }
+
+    public void displayCompletionScreen(String task) throws InterruptedException {
+        TimeUnit.SECONDS.sleep(5);
+
+        compLabel3.setText(task);
+
+        imagePanel.setVisible(false);
+        startExButtonPanel.setVisible(false);
+        compPanel1.setVisible(true);
+        compPanel2.setVisible(true);
+        compPanel3.setVisible(true);
     }
 
     public void hideBuildingButtons(){
@@ -1110,6 +1199,17 @@ public class GameScreen {
             }
             if(event.getSource() == attrButton){
                 displayAttrScreen();
+            }
+            if(event.getSource() == exerciseButton){
+                createExerciseScreen();
+            }
+            if(event.getSource() == startExButton){
+                try {
+                    displayCompletionScreen("Exercise at Veale");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
             }
         }
     }
