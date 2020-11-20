@@ -10,10 +10,15 @@ public class GameScreen {
     JFrame gameScreen;
     Container con;
     JPanel titleNamePanel, startButtonPanel, loadButtonPanel, imagePanel,introTextPanel, vealeButtonPanel,
-            quadButtonPanel, millisButtonPanel, rockButtonPanel, strosackerButtonPanel, northButtonPanel, southButtonPanel, gStartButtonPanel, menuButtonPanel, returnPanel, savePanel,
-            menuPanel, attrButtonPanel, attrPanel, healthPanel, hygienePanel, intelligencePanel, strengthPanel, socialStandingPanel;
+            quadButtonPanel, millisButtonPanel, rockButtonPanel, strosackerButtonPanel, awSmithButtonPanel, binghamButtonPanel,
+            carltonButtonPanel, crawfordButtonPanel, eldredButtonPanel, elephantButtonPanel, northButtonPanel, southButtonPanel, gStartButtonPanel,
+            menuButtonPanel, returnPanel, savePanel, menuPanel, attrButtonPanel, attrPanel, healthPanel, hygienePanel, intelligencePanel,
+            strengthPanel, socialStandingPanel, glennanButtonPanel, khsButtonPanel, kslButtonPanel, nordButtonPanel, olinButtonPanel, pblButtonPanel,
+            searsButtonPanel, thwingButtonPanel, tinkButtonPanel, whiteButtonPanel, wickendenButtonPanel, yostButtonPanel, tomlinsonButtonPanel;
     JLabel titleNameLabel, imageLabel;
-    JButton startButton, loadButton, vealeButton, quadButton, millisButton, strosackerButton, rockButton, northButton, southButton, gStartButton, menuButton, returnButton, saveButton, attrButton;
+    JButton startButton, loadButton, vealeButton, quadButton, millisButton, strosackerButton, rockButton, northButton, southButton, gStartButton,
+            menuButton, returnButton, saveButton, attrButton, awSmithButton, binghamButton, carltonButton, crawfordButton, eldredButton, elephantButton,
+            glennanButton, kslButton, khsButton, nordButton, olinButton, pblButton, searsButton, thwingButton, tinkButton, tomlinsonButton, whiteButton, wickendenButton, yostButton;
     JTextArea introTextArea;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 25);
@@ -38,6 +43,9 @@ public class GameScreen {
         createIntroScreen();
         createQuadScreen();
         createMenuScreen();
+        createNorthScreen();
+        createSouthScreen();
+        hideBuildingButtons();
 
         g = new Game();
 
@@ -182,7 +190,7 @@ public class GameScreen {
 
 
         millisButtonPanel = new JPanel();
-        millisButtonPanel.setBounds(282, 230,50, 25);
+        millisButtonPanel.setBounds(272, 230,50, 25);
         millisButton = new JButton("Millis");
         millisButton.setBackground(Color.darkGray);
         millisButton.setForeground(Color.white);
@@ -214,6 +222,162 @@ public class GameScreen {
         strosackerButton.addActionListener(sHandler);
         strosackerButtonPanel.add(strosackerButton);
         con.add(strosackerButtonPanel);
+
+
+        awSmithButtonPanel = new JPanel();
+        awSmithButtonPanel.setBounds(367, 230,70, 25);
+        awSmithButton = new JButton("A W Smith");
+        awSmithButton.setBackground(Color.darkGray);
+        awSmithButton.setForeground(Color.white);
+        awSmithButton.setFont(mapFont);
+
+        awSmithButton.addActionListener(sHandler);
+        awSmithButtonPanel.add(awSmithButton);
+        con.add(awSmithButtonPanel);
+
+
+        binghamButtonPanel = new JPanel();
+        binghamButtonPanel.setBounds(452, 220,70, 25);
+        binghamButton = new JButton("Bingham");
+        binghamButton.setBackground(Color.darkGray);
+        binghamButton.setForeground(Color.white);
+        binghamButton.setFont(mapFont);
+
+        binghamButton.addActionListener(sHandler);
+        binghamButtonPanel.add(binghamButton);
+        con.add(binghamButtonPanel);
+
+
+        crawfordButtonPanel = new JPanel();
+        crawfordButtonPanel.setBounds(130, 505,70, 25);
+        crawfordButton = new JButton("Crawford");
+        crawfordButton.setBackground(Color.darkGray);
+        crawfordButton.setForeground(Color.white);
+        crawfordButton.setFont(mapFont);
+
+        crawfordButton.addActionListener(sHandler);
+        crawfordButtonPanel.add(crawfordButton);
+        con.add(crawfordButtonPanel);
+
+
+        eldredButtonPanel = new JPanel();
+        eldredButtonPanel.setBounds(219, 315,65, 25);
+        eldredButton = new JButton("Eldred");
+        eldredButton.setBackground(Color.darkGray);
+        eldredButton.setForeground(Color.white);
+        eldredButton.setFont(mapFont);
+
+        eldredButton.addActionListener(sHandler);
+        eldredButtonPanel.add(eldredButton);
+        con.add(eldredButtonPanel);
+
+
+        glennanButtonPanel = new JPanel();
+        glennanButtonPanel.setBounds(572, 260,70, 25);
+        glennanButton = new JButton("Glennan");
+        glennanButton.setBackground(Color.darkGray);
+        glennanButton.setForeground(Color.white);
+        glennanButton.setFont(mapFont);
+
+        glennanButton.addActionListener(sHandler);
+        glennanButtonPanel.add(glennanButton);
+        con.add(glennanButtonPanel);
+
+
+        khsButtonPanel = new JPanel();
+        khsButtonPanel.setBounds(319, 210,50, 25);
+        khsButton = new JButton("KHS");
+        khsButton.setBackground(Color.darkGray);
+        khsButton.setForeground(Color.white);
+        khsButton.setFont(mapFont);
+
+        khsButton.addActionListener(sHandler);
+        khsButtonPanel.add(khsButton);
+        con.add(khsButtonPanel);
+
+
+        nordButtonPanel = new JPanel();
+        nordButtonPanel.setBounds(422, 347,50, 25);
+        nordButton = new JButton("Nord");
+        nordButton.setBackground(Color.darkGray);
+        nordButton.setForeground(Color.white);
+        nordButton.setFont(mapFont);
+
+        nordButton.addActionListener(sHandler);
+        nordButtonPanel.add(nordButton);
+        con.add(nordButtonPanel);
+
+
+        olinButtonPanel = new JPanel();
+        olinButtonPanel.setBounds(502, 313,50, 25);
+        olinButton = new JButton("Olin");
+        olinButton.setBackground(Color.darkGray);
+        olinButton.setForeground(Color.white);
+        olinButton.setFont(mapFont);
+
+        olinButton.addActionListener(sHandler);
+        olinButtonPanel.add(olinButton);
+        con.add(olinButtonPanel);
+
+
+        searsButtonPanel = new JPanel();
+        searsButtonPanel.setBounds(442, 320,50, 25);
+        searsButton = new JButton("Sears");
+        searsButton.setBackground(Color.darkGray);
+        searsButton.setForeground(Color.white);
+        searsButton.setFont(mapFont);
+
+        searsButton.addActionListener(sHandler);
+        searsButtonPanel.add(searsButton);
+        con.add(searsButtonPanel);
+
+
+        tomlinsonButtonPanel = new JPanel();
+        tomlinsonButtonPanel.setBounds(242, 485,70, 25);
+        tomlinsonButton = new JButton("Tomlinson");
+        tomlinsonButton.setBackground(Color.darkGray);
+        tomlinsonButton.setForeground(Color.white);
+        tomlinsonButton.setFont(mapFont);
+
+        tomlinsonButton.addActionListener(sHandler);
+        tomlinsonButtonPanel.add(tomlinsonButton);
+        con.add(tomlinsonButtonPanel);
+
+
+        whiteButtonPanel = new JPanel();
+        whiteButtonPanel.setBounds(517, 287,50, 25);
+        whiteButton = new JButton("White");
+        whiteButton.setBackground(Color.darkGray);
+        whiteButton.setForeground(Color.white);
+        whiteButton.setFont(mapFont);
+
+        whiteButton.addActionListener(sHandler);
+        whiteButtonPanel.add(whiteButton);
+        con.add(whiteButtonPanel);
+
+
+        wickendenButtonPanel = new JPanel();
+        wickendenButtonPanel.setBounds(342, 385,70, 25);
+        wickendenButton = new JButton("Wickenden");
+        wickendenButton.setBackground(Color.darkGray);
+        wickendenButton.setForeground(Color.white);
+        wickendenButton.setFont(mapFont);
+
+        wickendenButton.addActionListener(sHandler);
+        wickendenButtonPanel.add(wickendenButton);
+        con.add(wickendenButtonPanel);
+
+
+        yostButtonPanel = new JPanel();
+        yostButtonPanel.setBounds(287, 440,50, 25);
+        yostButton = new JButton("Yost");
+        yostButton.setBackground(Color.darkGray);
+        yostButton.setForeground(Color.white);
+        yostButton.setFont(mapFont);
+
+        yostButton.addActionListener(sHandler);
+        yostButtonPanel.add(yostButton);
+        con.add(yostButtonPanel);
 
 
         northButtonPanel = new JPanel();
@@ -254,7 +418,7 @@ public class GameScreen {
 
         con.add(imagePanel);
         imagePanel.setVisible(false);
-        hideBuildingButtons();
+
         menuButtonPanel.setVisible(false);
 
         //player object/image is implemented and can be moved around
@@ -263,23 +427,83 @@ public class GameScreen {
     }
 
     public void createNorthScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
+        thwingButtonPanel = new JPanel();
+        thwingButtonPanel.setBounds(327, 280,70, 25);
+        thwingButton = new JButton("Thwing");
+        thwingButton.setBackground(Color.darkGray);
+        thwingButton.setForeground(Color.white);
+        thwingButton.setFont(mapFont);
 
-        image = new ImageIcon("idk/resources/CWRUnorthDots.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
+        thwingButton.addActionListener(sHandler);
+        thwingButtonPanel.add(thwingButton);
+        con.add(thwingButtonPanel);
+
+
+        tinkButtonPanel = new JPanel();
+        tinkButtonPanel.setBounds(327, 280,70, 25);
+        tinkButton = new JButton("TVU");
+        tinkButton.setBackground(Color.darkGray);
+        tinkButton.setForeground(Color.white);
+        tinkButton.setFont(mapFont);
+
+        tinkButton.addActionListener(sHandler);
+        tinkButtonPanel.add(tinkButton);
+        con.add(tinkButtonPanel);
+
+        pblButtonPanel = new JPanel();
+        pblButtonPanel.setBounds(327, 280,70, 25);
+        pblButton = new JButton("PBL");
+        pblButton.setBackground(Color.darkGray);
+        pblButton.setForeground(Color.white);
+        pblButton.setFont(mapFont);
+
+        pblButton.addActionListener(sHandler);
+        pblButtonPanel.add(pblButton);
+        con.add(pblButtonPanel);
+
+
+        kslButtonPanel = new JPanel();
+        kslButtonPanel.setBounds(327, 280,70, 25);
+        kslButton = new JButton("KSL");
+        kslButton.setBackground(Color.darkGray);
+        kslButton.setForeground(Color.white);
+        kslButton.setFont(mapFont);
+
+        kslButton.addActionListener(sHandler);
+        kslButtonPanel.add(kslButton);
+        con.add(kslButtonPanel);
+
+
+        imagePanel.setVisible(false);
+
     }
 
     public void createSouthScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
+        carltonButtonPanel = new JPanel();
+        carltonButtonPanel.setBounds(327, 280,70, 25);
+        carltonButton = new JButton("Carlton");
+        carltonButton.setBackground(Color.darkGray);
+        carltonButton.setForeground(Color.white);
+        carltonButton.setFont(mapFont);
 
-        image = new ImageIcon("idk/resources/CWRUsouthDots.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
+        carltonButton.addActionListener(sHandler);
+        carltonButtonPanel.add(carltonButton);
+        con.add(carltonButtonPanel);
+
+
+        elephantButtonPanel = new JPanel();
+        elephantButtonPanel.setBounds(327, 280,70, 25);
+        elephantButton = new JButton("Elephant Stairs");
+        elephantButton.setBackground(Color.darkGray);
+        elephantButton.setForeground(Color.white);
+        elephantButton.setFont(mapFont);
+
+        elephantButton.addActionListener(sHandler);
+        elephantButtonPanel.add(elephantButton);
+        con.add(elephantButtonPanel);
+
+        hideBuildingButtons();
+        imagePanel.setVisible(false);
     }
 
     public void createVealeScreen(){
@@ -309,6 +533,196 @@ public class GameScreen {
         quadButtonPanel.setVisible(true);
 
         image = new ImageIcon("idk/resources/Rockefeller.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createAWSmithScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/AWSmith.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createBinghamScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/Bingham.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createCarltonScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/Carlton.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createCrawfordScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/Crawford.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createEldredScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/eldred.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createElephantScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/elephant.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createGlennanScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/glennan.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createKHSScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/KHS.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createKSLScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/ksl.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createNordScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/Nord.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createOlinScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/Olin.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createPBLScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/PBL.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createSearsScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/Sears.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createThwingScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/thwing.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createTinkScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/tink.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createTomlinsonScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/tomlinson.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createWhiteScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/white.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createWickendenScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/Wickenden.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createYostScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/yost.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
@@ -475,6 +889,56 @@ public class GameScreen {
         menuButtonPanel.setVisible(true);
         northButtonPanel.setVisible(true);
         southButtonPanel.setVisible(true);
+        awSmithButtonPanel.setVisible(true);
+        binghamButtonPanel.setVisible(true);
+        carltonButtonPanel.setVisible(true);
+        crawfordButtonPanel.setVisible(true);
+        eldredButtonPanel.setVisible(true);
+        elephantButtonPanel.setVisible(true);
+        glennanButtonPanel.setVisible(true);
+        khsButtonPanel.setVisible(true);
+        kslButtonPanel.setVisible(true);
+        nordButtonPanel.setVisible(true);
+        olinButtonPanel.setVisible(true);
+        pblButtonPanel.setVisible(true);
+        searsButtonPanel.setVisible(true);
+        thwingButtonPanel.setVisible(true);
+        tinkButtonPanel.setVisible(true);
+        tomlinsonButtonPanel.setVisible(true);
+        whiteButtonPanel.setVisible(true);
+        wickendenButtonPanel.setVisible(true);
+        yostButtonPanel.setVisible(true);
+    }
+
+    public void displayNorthScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/CWRUnorthDots.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+
+
+        tinkButtonPanel.setVisible(true);
+        thwingButtonPanel.setVisible(true);
+        kslButtonPanel.setVisible(true);
+        pblButtonPanel.setVisible(true);
+        imagePanel.setVisible(true);
+    }
+
+    public void displaySouthScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/CWRUsouthDots.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+
+        carltonButtonPanel.setVisible(true);
+        elephantButtonPanel.setVisible(true);
+        imagePanel.setVisible(true);
     }
 
     public void displayMenuScreen(){
@@ -516,6 +980,25 @@ public class GameScreen {
         southButtonPanel.setVisible(false);
         northButtonPanel.setVisible(false);
         strosackerButtonPanel.setVisible(false);
+        awSmithButtonPanel.setVisible(false);
+        binghamButtonPanel.setVisible(false);
+        carltonButtonPanel.setVisible(false);
+        crawfordButtonPanel.setVisible(false);
+        eldredButtonPanel.setVisible(false);
+        elephantButtonPanel.setVisible(false);
+        glennanButtonPanel.setVisible(false);
+        khsButtonPanel.setVisible(false);
+        kslButtonPanel.setVisible(false);
+        nordButtonPanel.setVisible(false);
+        olinButtonPanel.setVisible(false);
+        pblButtonPanel.setVisible(false);
+        searsButtonPanel.setVisible(false);
+        thwingButtonPanel.setVisible(false);
+        tinkButtonPanel.setVisible(false);
+        tomlinsonButtonPanel.setVisible(false);
+        whiteButtonPanel.setVisible(false);
+        wickendenButtonPanel.setVisible(false);
+        yostButtonPanel.setVisible(false);
     }
 
     private Image getScaledImage(Image srcImg, int w, int h){
@@ -553,11 +1036,68 @@ public class GameScreen {
             if(event.getSource() == strosackerButton){
                 createStrosackerScreen();
             }
+            if(event.getSource() == awSmithButton){
+                createAWSmithScreen();
+            }
+            if(event.getSource() == binghamButton){
+                createBinghamScreen();
+            }
+            if(event.getSource() == carltonButton){
+                createCarltonScreen();
+            }
+            if(event.getSource() == crawfordButton){
+                createCrawfordScreen();
+            }
+            if(event.getSource() == eldredButton){
+                createEldredScreen();
+            }
+            if(event.getSource() == elephantButton){
+                createElephantScreen();
+            }
+            if(event.getSource() == glennanButton){
+                createGlennanScreen();
+            }
+            if(event.getSource() == khsButton){
+                createKHSScreen();
+            }
+            if(event.getSource() == kslButton){
+                createKSLScreen();
+            }
+            if(event.getSource() == nordButton){
+                createNordScreen();
+            }
+            if(event.getSource() == olinButton){
+                createOlinScreen();
+            }
+            if(event.getSource() == pblButton){
+                createPBLScreen();
+            }
+            if(event.getSource() == searsButton){
+                createSearsScreen();
+            }
+            if(event.getSource() == thwingButton){
+                createThwingScreen();
+            }
+            if(event.getSource() == tinkButton){
+                createTinkScreen();
+            }
+            if(event.getSource() == tomlinsonButton){
+                createTomlinsonScreen();
+            }
+            if(event.getSource() == whiteButton){
+                createWhiteScreen();
+            }
+            if(event.getSource() == wickendenButton){
+                createWickendenScreen();
+            }
+            if(event.getSource() == yostButton){
+                createYostScreen();
+            }
             if(event.getSource() == northButton){
-                createNorthScreen();
+                displayNorthScreen();
             }
             if(event.getSource() == southButton){
-                createSouthScreen();
+                displaySouthScreen();
             }
             if(event.getSource() == menuButton) {
                 displayMenuScreen();
