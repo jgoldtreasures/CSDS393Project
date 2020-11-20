@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 
 public class GameScreen {
-    public String screenName;
+    public String screenName, taskName, reward;
 
     JFrame gameScreen;
     Container con;
@@ -16,12 +16,12 @@ public class GameScreen {
             menuButtonPanel, returnPanel, savePanel, menuPanel, attrButtonPanel, attrPanel, healthPanel, hygienePanel, intelligencePanel,
             strengthPanel, socialStandingPanel, glennanButtonPanel, khsButtonPanel, kslButtonPanel, nordButtonPanel, olinButtonPanel, pblButtonPanel,
             searsButtonPanel, thwingButtonPanel, tinkButtonPanel, whiteButtonPanel, wickendenButtonPanel, yostButtonPanel, tomlinsonButtonPanel, exerciseButtonPanel,
-            compPanel1, compPanel2, compPanel3, startExButtonPanel;
-    JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel3;
+            compPanel1, compPanel2, compPanel3, compPanel4, startExButtonPanel, lectureButtonPanel;
+    JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel3, compLabel4;
     JButton startButton, loadButton, vealeButton, quadButton, millisButton, strosackerButton, rockButton, northButton, southButton, gStartButton,
             menuButton, returnButton, saveButton, attrButton, awSmithButton, binghamButton, carltonButton, crawfordButton, eldredButton, elephantButton,
             glennanButton, kslButton, khsButton, nordButton, olinButton, pblButton, searsButton, thwingButton, tinkButton, tomlinsonButton, whiteButton,
-            wickendenButton, yostButton, exerciseButton, startExButton;
+            wickendenButton, yostButton, exerciseButton, startExButton, lectureButton;
     JTextArea introTextArea;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 25);
@@ -514,14 +514,9 @@ public class GameScreen {
     public void createVealeScreen(){
         hideBuildingButtons();
 
-        image = new ImageIcon("idk/resources/Veale.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-
         exerciseButtonPanel = new JPanel();
-        exerciseButtonPanel.setBounds(80, 150,180, 50);
-        exerciseButton = new JButton("Exercise");
+        exerciseButtonPanel.setBounds(100, 150,180, 50);
+        exerciseButton = new JButton("Exercise at Veale");
         exerciseButton.setBackground(Color.white);
         exerciseButton.setForeground(Color.darkGray);
         exerciseButton.setFont(normalFont);
@@ -529,6 +524,11 @@ public class GameScreen {
         exerciseButton.addActionListener(sHandler);
         exerciseButtonPanel.add(exerciseButton);
         con.add(exerciseButtonPanel);
+
+        image = new ImageIcon("idk/resources/Veale.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
 
         quadButtonPanel.setVisible(true);
     }
@@ -548,10 +548,23 @@ public class GameScreen {
         hideBuildingButtons();
         quadButtonPanel.setVisible(true);
 
+        lectureButtonPanel = new JPanel();
+        lectureButtonPanel.setBounds(100, 150,180, 50);
+        lectureButton = new JButton("Attend Lecture");
+        lectureButton.setBackground(Color.white);
+        lectureButton.setForeground(Color.darkGray);
+        lectureButton.setFont(normalFont);
+
+        lectureButton.addActionListener(sHandler);
+        lectureButtonPanel.add(lectureButton);
+        con.add(lectureButtonPanel);
+
         image = new ImageIcon("idk/resources/Rockefeller.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
+
+        lectureButtonPanel.setVisible(false);
     }
 
     public void createAWSmithScreen(){
@@ -893,6 +906,7 @@ public class GameScreen {
         compPanel1.setVisible(false);
         compPanel2.setVisible(false);
         compPanel3.setVisible(false);
+        compPanel4.setVisible(false);
 
         image = new ImageIcon("idk/resources/CWRUquadDots.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
@@ -971,6 +985,12 @@ public class GameScreen {
         intelligencePanel.setVisible(false);
         strengthPanel.setVisible(false);
         socialStandingPanel.setVisible(false);
+        compPanel1.setVisible(false);
+        compPanel2.setVisible(false);
+        compPanel3.setVisible(false);
+        compPanel4.setVisible(false);
+        //lectureButtonPanel.setVisible(false);
+        //exerciseButtonPanel.setVisible(false);
 
         menuPanel.setVisible(true);
         savePanel.setVisible(true);
@@ -1012,6 +1032,32 @@ public class GameScreen {
         con.add(startExButtonPanel);
 
         strengthlabel.setText("Strength: 2");
+        reward = "Strength increased by 1";
+        taskName = "Exercise at Veale";
+    }
+
+    public void createLectureScreen(){
+        lectureButtonPanel.setVisible(false);
+
+        image = new ImageIcon("idk/lecture/lecture.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+
+        startExButtonPanel = new JPanel();
+        startExButtonPanel.setBounds(300, 300 ,150, 50);
+        startExButton = new JButton("Start");
+        startExButton.setBackground(Color.darkGray);
+        startExButton.setForeground(Color.white);
+        startExButton.setFont(normalFont);
+
+        startExButton.addActionListener(sHandler);
+        startExButtonPanel.add(startExButton);
+        con.add(startExButtonPanel);
+
+        intelligencelabel.setText("Intelligence: 2");
+        reward = "Intelligence increased by 1";
+        taskName = "Attend Lecture";
     }
 
     public void createCompletionScreen(){
@@ -1036,7 +1082,7 @@ public class GameScreen {
         con.add(compPanel2);
 
         compPanel3 = new JPanel();
-        compPanel3.setBounds(250, 275 ,350, 50);
+        compPanel3.setBounds(250, 275,350, 50);
         compPanel3.setBackground(Color.DARK_GRAY);
         compLabel3 = new JLabel(" ");
         compLabel3.setForeground(Color.white);
@@ -1045,21 +1091,34 @@ public class GameScreen {
         compPanel3.add(compLabel3);
         con.add(compPanel3);
 
+        compPanel4 = new JPanel();
+        compPanel4.setBounds(240, 400 ,400, 50);
+        compPanel4.setBackground(Color.DARK_GRAY);
+        compLabel4 = new JLabel(" ");
+        compLabel4.setForeground(Color.white);
+        compLabel4.setFont(medFont);
+
+        compPanel4.add(compLabel4);
+        con.add(compPanel4);
+
         compPanel1.setVisible(false);
         compPanel2.setVisible(false);
         compPanel3.setVisible(false);
+        compPanel4.setVisible(false);
     }
 
-    public void displayCompletionScreen(String task) throws InterruptedException {
+    public void displayCompletionScreen() throws InterruptedException {
         TimeUnit.SECONDS.sleep(5);
 
-        compLabel3.setText(task);
+        compLabel3.setText(taskName);
+        compLabel4.setText(reward);
 
         imagePanel.setVisible(false);
         startExButtonPanel.setVisible(false);
         compPanel1.setVisible(true);
         compPanel2.setVisible(true);
         compPanel3.setVisible(true);
+        compPanel4.setVisible(true);
     }
 
     public void hideBuildingButtons(){
@@ -1203,9 +1262,12 @@ public class GameScreen {
             if(event.getSource() == exerciseButton){
                 createExerciseScreen();
             }
+            if(event.getSource() == lectureButton){
+                createLectureScreen();
+            }
             if(event.getSource() == startExButton){
                 try {
-                    displayCompletionScreen("Exercise at Veale");
+                    displayCompletionScreen();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
