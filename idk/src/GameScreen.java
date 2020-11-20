@@ -10,10 +10,10 @@ public class GameScreen {
     JFrame gameScreen;
     Container con;
     JPanel titleNamePanel, startButtonPanel, loadButtonPanel, imagePanel,introTextPanel, vealeButtonPanel,
-            quadButtonPanel, millisButtonPanel, rockButtonPanel, northButtonPanel, southButtonPanel, gStartButtonPanel, menuButtonPanel, returnPanel, savePanel,
+            quadButtonPanel, millisButtonPanel, rockButtonPanel, strosackerButtonPanel, northButtonPanel, southButtonPanel, gStartButtonPanel, menuButtonPanel, returnPanel, savePanel,
             menuPanel, attrButtonPanel, attrPanel, healthPanel, hygienePanel, intelligencePanel, strengthPanel, socialStandingPanel;
     JLabel titleNameLabel, imageLabel;
-    JButton startButton, loadButton, vealeButton, quadButton, millisButton, rockButton, northButton, southButton, gStartButton, menuButton, returnButton, saveButton, attrButton;
+    JButton startButton, loadButton, vealeButton, quadButton, millisButton, strosackerButton, rockButton, northButton, southButton, gStartButton, menuButton, returnButton, saveButton, attrButton;
     JTextArea introTextArea;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 25);
@@ -204,6 +204,17 @@ public class GameScreen {
         rockButtonPanel.add(rockButton);
         con.add(rockButtonPanel);
 
+        strosackerButtonPanel = new JPanel();
+        strosackerButtonPanel.setBounds(327, 280,70, 25);
+        strosackerButton = new JButton("Strosacker");
+        strosackerButton.setBackground(Color.darkGray);
+        strosackerButton.setForeground(Color.white);
+        strosackerButton.setFont(mapFont);
+
+        strosackerButton.addActionListener(sHandler);
+        strosackerButtonPanel.add(strosackerButton);
+        con.add(strosackerButtonPanel);
+
 
         northButtonPanel = new JPanel();
         northButtonPanel.setBounds(25, 500,70, 25);
@@ -298,6 +309,16 @@ public class GameScreen {
         quadButtonPanel.setVisible(true);
 
         image = new ImageIcon("idk/resources/Rockefeller.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createStrosackerScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/Strosacker.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
@@ -450,6 +471,7 @@ public class GameScreen {
         vealeButtonPanel.setVisible(true);
         millisButtonPanel.setVisible(true);
         rockButtonPanel.setVisible(true);
+        strosackerButtonPanel.setVisible(true);
         menuButtonPanel.setVisible(true);
         northButtonPanel.setVisible(true);
         southButtonPanel.setVisible(true);
@@ -493,6 +515,7 @@ public class GameScreen {
         rockButtonPanel.setVisible(false);
         southButtonPanel.setVisible(false);
         northButtonPanel.setVisible(false);
+        strosackerButtonPanel.setVisible(false);
     }
 
     private Image getScaledImage(Image srcImg, int w, int h){
@@ -526,6 +549,9 @@ public class GameScreen {
             }
             if(event.getSource() == rockButton){
                 createRockefellerScreen();
+            }
+            if(event.getSource() == strosackerButton){
+                createStrosackerScreen();
             }
             if(event.getSource() == northButton){
                 createNorthScreen();
