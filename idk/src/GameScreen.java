@@ -16,12 +16,12 @@ public class GameScreen {
             menuButtonPanel, returnPanel, savePanel, menuPanel, attrButtonPanel, attrPanel, healthPanel, hygienePanel, intelligencePanel,
             strengthPanel, socialStandingPanel, glennanButtonPanel, khsButtonPanel, kslButtonPanel, nordButtonPanel, olinButtonPanel, pblButtonPanel,
             searsButtonPanel, thwingButtonPanel, tinkButtonPanel, whiteButtonPanel, wickendenButtonPanel, yostButtonPanel, tomlinsonButtonPanel, exerciseButtonPanel,
-            compPanel1, compPanel2, compPanel3, compPanel4, startExButtonPanel, lectureButtonPanel;
+            compPanel1, compPanel2, compPanel3, compPanel4, startExButtonPanel, lectureButtonPanel, moveToQuadButtonPanel;
     JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel3, compLabel4;
     JButton startButton, loadButton, vealeButton, quadButton, millisButton, strosackerButton, rockButton, northButton, southButton, gStartButton,
             menuButton, returnButton, saveButton, attrButton, awSmithButton, binghamButton, carltonButton, crawfordButton, eldredButton, elephantButton,
             glennanButton, kslButton, khsButton, nordButton, olinButton, pblButton, searsButton, thwingButton, tinkButton, tomlinsonButton, whiteButton,
-            wickendenButton, yostButton, exerciseButton, startExButton, lectureButton;
+            wickendenButton, yostButton, exerciseButton, startExButton, lectureButton, moveToQuadButton;
     JTextArea introTextArea;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 25);
@@ -44,10 +44,8 @@ public class GameScreen {
 
         createTitleScreen();
         createIntroScreen();
-        createQuadScreen();
+        buttonInitializer();
         createMenuScreen();
-        createNorthScreen();
-        createSouthScreen();
         createCompletionScreen();
         hideBuildingButtons();
 
@@ -169,7 +167,8 @@ public class GameScreen {
         con.add(gStartButtonPanel);
     }
 
-    public void createQuadScreen(){
+    public void buttonInitializer(){
+        //Menu Button
         menuButtonPanel = new JPanel();
         menuButtonPanel.setBounds(100, 50,100, 50);
         menuButton = new JButton("Menu");
@@ -181,9 +180,9 @@ public class GameScreen {
         menuButtonPanel.add(menuButton);
         con.add(menuButtonPanel);
 
-
+        //Veale Button
         vealeButtonPanel = new JPanel();
-        vealeButtonPanel.setBounds(622, 100,50, 25);
+        vealeButtonPanel.setBounds(615, 100,50, 25);
         vealeButton = new JButton("Veale");
         vealeButton.setBackground(Color.darkGray);
         vealeButton.setForeground(Color.white);
@@ -193,7 +192,7 @@ public class GameScreen {
         vealeButtonPanel.add(vealeButton);
         con.add(vealeButtonPanel);
 
-
+        //Millis Button
         millisButtonPanel = new JPanel();
         millisButtonPanel.setBounds(272, 230,50, 25);
         millisButton = new JButton("Millis");
@@ -205,7 +204,7 @@ public class GameScreen {
         millisButtonPanel.add(millisButton);
         con.add(millisButtonPanel);
 
-
+        //Rockefeller Button
         rockButtonPanel = new JPanel();
         rockButtonPanel.setBounds(287, 320,70, 25);
         rockButton = new JButton("Rockefeller");
@@ -217,6 +216,7 @@ public class GameScreen {
         rockButtonPanel.add(rockButton);
         con.add(rockButtonPanel);
 
+        //Strosacker Button
         strosackerButtonPanel = new JPanel();
         strosackerButtonPanel.setBounds(327, 280,70, 25);
         strosackerButton = new JButton("Strosacker");
@@ -228,7 +228,7 @@ public class GameScreen {
         strosackerButtonPanel.add(strosackerButton);
         con.add(strosackerButtonPanel);
 
-
+        //AW Smith Button
         awSmithButtonPanel = new JPanel();
         awSmithButtonPanel.setBounds(367, 230,70, 25);
         awSmithButton = new JButton("A W Smith");
@@ -240,7 +240,7 @@ public class GameScreen {
         awSmithButtonPanel.add(awSmithButton);
         con.add(awSmithButtonPanel);
 
-
+        //Bingham Button
         binghamButtonPanel = new JPanel();
         binghamButtonPanel.setBounds(452, 220,70, 25);
         binghamButton = new JButton("Bingham");
@@ -252,7 +252,7 @@ public class GameScreen {
         binghamButtonPanel.add(binghamButton);
         con.add(binghamButtonPanel);
 
-
+        //Crawford Button
         crawfordButtonPanel = new JPanel();
         crawfordButtonPanel.setBounds(130, 505,70, 25);
         crawfordButton = new JButton("Crawford");
@@ -264,7 +264,7 @@ public class GameScreen {
         crawfordButtonPanel.add(crawfordButton);
         con.add(crawfordButtonPanel);
 
-
+        //Eldred Button
         eldredButtonPanel = new JPanel();
         eldredButtonPanel.setBounds(219, 315,65, 25);
         eldredButton = new JButton("Eldred");
@@ -276,7 +276,7 @@ public class GameScreen {
         eldredButtonPanel.add(eldredButton);
         con.add(eldredButtonPanel);
 
-
+        //Glennan Button
         glennanButtonPanel = new JPanel();
         glennanButtonPanel.setBounds(572, 260,70, 25);
         glennanButton = new JButton("Glennan");
@@ -288,7 +288,7 @@ public class GameScreen {
         glennanButtonPanel.add(glennanButton);
         con.add(glennanButtonPanel);
 
-
+        //Virus Button
         khsButtonPanel = new JPanel();
         khsButtonPanel.setBounds(319, 210,50, 25);
         khsButton = new JButton("KHS");
@@ -300,7 +300,7 @@ public class GameScreen {
         khsButtonPanel.add(khsButton);
         con.add(khsButtonPanel);
 
-
+        //Nord Button
         nordButtonPanel = new JPanel();
         nordButtonPanel.setBounds(422, 347,50, 25);
         nordButton = new JButton("Nord");
@@ -312,7 +312,7 @@ public class GameScreen {
         nordButtonPanel.add(nordButton);
         con.add(nordButtonPanel);
 
-
+        //Olin Button
         olinButtonPanel = new JPanel();
         olinButtonPanel.setBounds(502, 313,50, 25);
         olinButton = new JButton("Olin");
@@ -324,7 +324,7 @@ public class GameScreen {
         olinButtonPanel.add(olinButton);
         con.add(olinButtonPanel);
 
-
+        //Sears Button
         searsButtonPanel = new JPanel();
         searsButtonPanel.setBounds(442, 320,50, 25);
         searsButton = new JButton("Sears");
@@ -336,7 +336,7 @@ public class GameScreen {
         searsButtonPanel.add(searsButton);
         con.add(searsButtonPanel);
 
-
+        //Tomlinson Button
         tomlinsonButtonPanel = new JPanel();
         tomlinsonButtonPanel.setBounds(242, 485,70, 25);
         tomlinsonButton = new JButton("Tomlinson");
@@ -348,7 +348,7 @@ public class GameScreen {
         tomlinsonButtonPanel.add(tomlinsonButton);
         con.add(tomlinsonButtonPanel);
 
-
+        //White Button
         whiteButtonPanel = new JPanel();
         whiteButtonPanel.setBounds(517, 287,50, 25);
         whiteButton = new JButton("White");
@@ -360,7 +360,7 @@ public class GameScreen {
         whiteButtonPanel.add(whiteButton);
         con.add(whiteButtonPanel);
 
-
+        //Wickenden Button
         wickendenButtonPanel = new JPanel();
         wickendenButtonPanel.setBounds(342, 385,70, 25);
         wickendenButton = new JButton("Wickenden");
@@ -372,7 +372,7 @@ public class GameScreen {
         wickendenButtonPanel.add(wickendenButton);
         con.add(wickendenButtonPanel);
 
-
+        //Yost Button
         yostButtonPanel = new JPanel();
         yostButtonPanel.setBounds(287, 440,50, 25);
         yostButton = new JButton("Yost");
@@ -384,9 +384,81 @@ public class GameScreen {
         yostButtonPanel.add(yostButton);
         con.add(yostButtonPanel);
 
+        //Thwing
+        thwingButtonPanel = new JPanel();
+        thwingButtonPanel.setBounds(605, 315,60, 25);
+        thwingButton = new JButton("Thwing");
+        thwingButton.setBackground(Color.darkGray);
+        thwingButton.setForeground(Color.white);
+        thwingButton.setFont(mapFont);
 
+        thwingButton.addActionListener(sHandler);
+        thwingButtonPanel.add(thwingButton);
+        con.add(thwingButtonPanel);
+
+        //Tink
+        tinkButtonPanel = new JPanel();
+        tinkButtonPanel.setBounds(540, 355,55, 25);
+        tinkButton = new JButton("TVU");
+        tinkButton.setBackground(Color.darkGray);
+        tinkButton.setForeground(Color.white);
+        tinkButton.setFont(mapFont);
+
+        tinkButton.addActionListener(sHandler);
+        tinkButtonPanel.add(tinkButton);
+        con.add(tinkButtonPanel);
+
+        //PBL
+        pblButtonPanel = new JPanel();
+        pblButtonPanel.setBounds(395, 290,55, 25);
+        pblButton = new JButton("PBL");
+        pblButton.setBackground(Color.darkGray);
+        pblButton.setForeground(Color.white);
+        pblButton.setFont(mapFont);
+
+        pblButton.addActionListener(sHandler);
+        pblButtonPanel.add(pblButton);
+        con.add(pblButtonPanel);
+
+        //KSL
+        kslButtonPanel = new JPanel();
+        kslButtonPanel.setBounds(615, 430,55, 25);
+        kslButton = new JButton("KSL");
+        kslButton.setBackground(Color.darkGray);
+        kslButton.setForeground(Color.white);
+        kslButton.setFont(mapFont);
+
+        kslButton.addActionListener(sHandler);
+        kslButtonPanel.add(kslButton);
+        con.add(kslButtonPanel);
+
+        //Carlton Commons
+        carltonButtonPanel = new JPanel();
+        carltonButtonPanel.setBounds(575, 405,60, 25);
+        carltonButton = new JButton("Carlton");
+        carltonButton.setBackground(Color.darkGray);
+        carltonButton.setForeground(Color.white);
+        carltonButton.setFont(mapFont);
+
+        carltonButton.addActionListener(sHandler);
+        carltonButtonPanel.add(carltonButton);
+        con.add(carltonButtonPanel);
+
+        //Elephant Stairs
+        elephantButtonPanel = new JPanel();
+        elephantButtonPanel.setBounds(455, 435,70, 25);
+        elephantButton = new JButton("Elephant Stairs");
+        elephantButton.setBackground(Color.darkGray);
+        elephantButton.setForeground(Color.white);
+        elephantButton.setFont(mapFont);
+
+        elephantButton.addActionListener(sHandler);
+        elephantButtonPanel.add(elephantButton);
+        con.add(elephantButtonPanel);
+
+        //Go to northside button
         northButtonPanel = new JPanel();
-        northButtonPanel.setBounds(25, 500,70, 25);
+        northButtonPanel.setBounds(25, 425,70, 25);
         northButton = new JButton("Northside");
         northButton.setBackground(Color.darkGray);
         northButton.setForeground(Color.white);
@@ -396,9 +468,9 @@ public class GameScreen {
         northButtonPanel.add(northButton);
         con.add(northButtonPanel);
 
-
+        //Go to southside button
         southButtonPanel = new JPanel();
-        southButtonPanel.setBounds(700, 25,70, 25);
+        southButtonPanel.setBounds(375, 25,70, 25);
         southButton = new JButton("Southside");
         southButton.setBackground(Color.darkGray);
         southButton.setForeground(Color.white);
@@ -408,7 +480,7 @@ public class GameScreen {
         southButtonPanel.add(southButton);
         con.add(southButtonPanel);
 
-
+        //Return to quad (from a building)
         quadButtonPanel = new JPanel();
         quadButtonPanel.setBounds(100, 100, 180, 50);
         quadButton = new JButton("Return to Quad");
@@ -421,6 +493,18 @@ public class GameScreen {
         quadButtonPanel.add(quadButton);
         con.add(quadButtonPanel);
 
+        //North or South to quad
+        moveToQuadButtonPanel = new JPanel();
+        moveToQuadButtonPanel.setBounds(650,355,55,25);
+        moveToQuadButton = new JButton("Quad");
+        moveToQuadButton.setBackground(Color.darkGray);
+        moveToQuadButton.setForeground(Color.white);
+        moveToQuadButton.setFont(mapFont);
+
+        moveToQuadButton.addActionListener(sHandler);
+        moveToQuadButtonPanel.add(moveToQuadButton);
+        con.add(moveToQuadButtonPanel);
+
         con.add(imagePanel);
         imagePanel.setVisible(false);
 
@@ -429,86 +513,6 @@ public class GameScreen {
         //player object/image is implemented and can be moved around
         //if at location to change maps, do so
         //if building thing
-    }
-
-    public void createNorthScreen(){
-        thwingButtonPanel = new JPanel();
-        thwingButtonPanel.setBounds(327, 280,70, 25);
-        thwingButton = new JButton("Thwing");
-        thwingButton.setBackground(Color.darkGray);
-        thwingButton.setForeground(Color.white);
-        thwingButton.setFont(mapFont);
-
-        thwingButton.addActionListener(sHandler);
-        thwingButtonPanel.add(thwingButton);
-        con.add(thwingButtonPanel);
-
-
-        tinkButtonPanel = new JPanel();
-        tinkButtonPanel.setBounds(327, 280,70, 25);
-        tinkButton = new JButton("TVU");
-        tinkButton.setBackground(Color.darkGray);
-        tinkButton.setForeground(Color.white);
-        tinkButton.setFont(mapFont);
-
-        tinkButton.addActionListener(sHandler);
-        tinkButtonPanel.add(tinkButton);
-        con.add(tinkButtonPanel);
-
-        pblButtonPanel = new JPanel();
-        pblButtonPanel.setBounds(327, 280,70, 25);
-        pblButton = new JButton("PBL");
-        pblButton.setBackground(Color.darkGray);
-        pblButton.setForeground(Color.white);
-        pblButton.setFont(mapFont);
-
-        pblButton.addActionListener(sHandler);
-        pblButtonPanel.add(pblButton);
-        con.add(pblButtonPanel);
-
-
-        kslButtonPanel = new JPanel();
-        kslButtonPanel.setBounds(327, 280,70, 25);
-        kslButton = new JButton("KSL");
-        kslButton.setBackground(Color.darkGray);
-        kslButton.setForeground(Color.white);
-        kslButton.setFont(mapFont);
-
-        kslButton.addActionListener(sHandler);
-        kslButtonPanel.add(kslButton);
-        con.add(kslButtonPanel);
-
-
-        imagePanel.setVisible(false);
-
-    }
-
-    public void createSouthScreen(){
-        carltonButtonPanel = new JPanel();
-        carltonButtonPanel.setBounds(327, 280,70, 25);
-        carltonButton = new JButton("Carlton");
-        carltonButton.setBackground(Color.darkGray);
-        carltonButton.setForeground(Color.white);
-        carltonButton.setFont(mapFont);
-
-        carltonButton.addActionListener(sHandler);
-        carltonButtonPanel.add(carltonButton);
-        con.add(carltonButtonPanel);
-
-
-        elephantButtonPanel = new JPanel();
-        elephantButtonPanel.setBounds(327, 280,70, 25);
-        elephantButton = new JButton("Elephant Stairs");
-        elephantButton.setBackground(Color.darkGray);
-        elephantButton.setForeground(Color.white);
-        elephantButton.setFont(mapFont);
-
-        elephantButton.addActionListener(sHandler);
-        elephantButtonPanel.add(elephantButton);
-        con.add(elephantButtonPanel);
-
-        hideBuildingButtons();
-        imagePanel.setVisible(false);
     }
 
     public void createVealeScreen(){
@@ -907,6 +911,7 @@ public class GameScreen {
         compPanel2.setVisible(false);
         compPanel3.setVisible(false);
         compPanel4.setVisible(false);
+        hideBuildingButtons();
 
         image = new ImageIcon("idk/resources/CWRUquadDots.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
@@ -924,19 +929,13 @@ public class GameScreen {
         southButtonPanel.setVisible(true);
         awSmithButtonPanel.setVisible(true);
         binghamButtonPanel.setVisible(true);
-        carltonButtonPanel.setVisible(true);
         crawfordButtonPanel.setVisible(true);
         eldredButtonPanel.setVisible(true);
-        elephantButtonPanel.setVisible(true);
         glennanButtonPanel.setVisible(true);
         khsButtonPanel.setVisible(true);
-        kslButtonPanel.setVisible(true);
         nordButtonPanel.setVisible(true);
         olinButtonPanel.setVisible(true);
-        pblButtonPanel.setVisible(true);
         searsButtonPanel.setVisible(true);
-        thwingButtonPanel.setVisible(true);
-        tinkButtonPanel.setVisible(true);
         tomlinsonButtonPanel.setVisible(true);
         whiteButtonPanel.setVisible(true);
         wickendenButtonPanel.setVisible(true);
@@ -945,32 +944,36 @@ public class GameScreen {
 
     public void displayNorthScreen(){
         hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
+
+        imagePanel.setBounds(-10,45, 800,600);
+        moveToQuadButtonPanel.setBounds(700,355,55,25);
 
         image = new ImageIcon("idk/resources/CWRUnorthDots.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        Image resizedImage = getScaledImage(image.getImage(), 800, 450);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
-
 
         tinkButtonPanel.setVisible(true);
         thwingButtonPanel.setVisible(true);
         kslButtonPanel.setVisible(true);
         pblButtonPanel.setVisible(true);
+        moveToQuadButtonPanel.setVisible(true);
         imagePanel.setVisible(true);
     }
 
     public void displaySouthScreen(){
         hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
+
+        moveToQuadButtonPanel.setBounds(350,530,55,25);
 
         image = new ImageIcon("idk/resources/CWRUsouthDots.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        Image resizedImage = getScaledImage(image.getImage(), 518, 585);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
 
         carltonButtonPanel.setVisible(true);
         elephantButtonPanel.setVisible(true);
+        moveToQuadButtonPanel.setVisible(true);
         imagePanel.setVisible(true);
     }
 
@@ -1125,6 +1128,7 @@ public class GameScreen {
         vealeButtonPanel.setVisible(false);
         millisButtonPanel.setVisible(false);
         rockButtonPanel.setVisible(false);
+        moveToQuadButtonPanel.setVisible(false);
         southButtonPanel.setVisible(false);
         northButtonPanel.setVisible(false);
         strosackerButtonPanel.setVisible(false);
@@ -1163,6 +1167,7 @@ public class GameScreen {
     public class ScreenHandler implements ActionListener{
         public void actionPerformed(ActionEvent event){
             //Need to add a manner which differentiates between start/load
+            imagePanel.setBounds(-10,-10,800,600);
             if(event.getSource() == startButton){
                 displayIntroScreen();
             }
@@ -1172,7 +1177,7 @@ public class GameScreen {
             if(event.getSource() == vealeButton){
                 createVealeScreen();
             }
-            if(event.getSource() == quadButton){
+            if(event.getSource() == quadButton || event.getSource()==moveToQuadButton){
                 displayQuadScreen();
             }
             if(event.getSource() == millisButton){
