@@ -16,12 +16,15 @@ public class GameScreen {
             menuButtonPanel, returnPanel, savePanel, menuPanel, attrButtonPanel, attrPanel, healthPanel, hygienePanel, intelligencePanel,
             strengthPanel, socialStandingPanel, glennanButtonPanel, khsButtonPanel, kslButtonPanel, nordButtonPanel, olinButtonPanel, pblButtonPanel,
             searsButtonPanel, thwingButtonPanel, tinkButtonPanel, whiteButtonPanel, wickendenButtonPanel, yostButtonPanel, tomlinsonButtonPanel, exerciseButtonPanel,
-            compPanel1, compPanel2, compPanel3, compPanel4, startExButtonPanel, lectureButtonPanel, moveToQuadButtonPanel;
+            compPanel1, compPanel2, compPanel3, compPanel4, startExButtonPanel, lectureButtonPanel,
+            moveToQuadButtonPanel, denButtonPanel, freshDormsButtonPanel, sophDormsButtonPanel,
+            upperDormsButtonPanel, leutnerButtonPanel;
     JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel3, compLabel4;
     JButton startButton, loadButton, vealeButton, quadButton, millisButton, strosackerButton, rockButton, northButton, southButton, gStartButton,
             menuButton, returnButton, saveButton, attrButton, awSmithButton, binghamButton, carltonButton, crawfordButton, eldredButton, elephantButton,
             glennanButton, kslButton, khsButton, nordButton, olinButton, pblButton, searsButton, thwingButton, tinkButton, tomlinsonButton, whiteButton,
-            wickendenButton, yostButton, exerciseButton, startExButton, lectureButton, moveToQuadButton;
+            wickendenButton, yostButton, exerciseButton, startExButton, lectureButton, moveToQuadButton, denButton,
+            freshDormsButton, sophDormsButton, upperDormsButton, leutnerButton;
     JTextArea introTextArea;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 25);
@@ -31,7 +34,10 @@ public class GameScreen {
 
     ImageIcon image;
 
+    //sHandler is for changing the window screen from one map/building to another
+    //tHandler is for changing screens when a task is completed
     ScreenHandler sHandler = new ScreenHandler();
+    ScreenHandler tHandler = new ScreenHandler();
 
     Game g;
 
@@ -61,7 +67,7 @@ public class GameScreen {
         //Will take a specfic image from a connected folder for the image
         //will also standardize the format for the buildings
     }
-
+    //Creates and displays the game homescreen
     public void createTitleScreen(){
         gameScreen = new JFrame();
         gameScreen.setSize(800,600);
@@ -121,7 +127,7 @@ public class GameScreen {
         imageLabel.setIcon(image);
         imagePanel.add(imageLabel);
     }
-
+    //Creates and displays the Introduction
     public void createIntroScreen(){
 
         gStartButtonPanel = new JPanel();
@@ -167,6 +173,9 @@ public class GameScreen {
         con.add(gStartButtonPanel);
     }
 
+    //Following 4 methods initialize Buttons, the 1st method calls the following three methods
+    //They were separated by location/purpose to make code more readable
+    //this method initalizes the quad buttons and the menu buttons
     public void buttonInitializer(){
         //Menu Button
         menuButtonPanel = new JPanel();
@@ -384,102 +393,6 @@ public class GameScreen {
         yostButtonPanel.add(yostButton);
         con.add(yostButtonPanel);
 
-        //Thwing
-        thwingButtonPanel = new JPanel();
-        thwingButtonPanel.setBounds(605, 315,60, 25);
-        thwingButton = new JButton("Thwing");
-        thwingButton.setBackground(Color.darkGray);
-        thwingButton.setForeground(Color.white);
-        thwingButton.setFont(mapFont);
-
-        thwingButton.addActionListener(sHandler);
-        thwingButtonPanel.add(thwingButton);
-        con.add(thwingButtonPanel);
-
-        //Tink
-        tinkButtonPanel = new JPanel();
-        tinkButtonPanel.setBounds(540, 355,55, 25);
-        tinkButton = new JButton("TVU");
-        tinkButton.setBackground(Color.darkGray);
-        tinkButton.setForeground(Color.white);
-        tinkButton.setFont(mapFont);
-
-        tinkButton.addActionListener(sHandler);
-        tinkButtonPanel.add(tinkButton);
-        con.add(tinkButtonPanel);
-
-        //PBL
-        pblButtonPanel = new JPanel();
-        pblButtonPanel.setBounds(395, 290,55, 25);
-        pblButton = new JButton("PBL");
-        pblButton.setBackground(Color.darkGray);
-        pblButton.setForeground(Color.white);
-        pblButton.setFont(mapFont);
-
-        pblButton.addActionListener(sHandler);
-        pblButtonPanel.add(pblButton);
-        con.add(pblButtonPanel);
-
-        //KSL
-        kslButtonPanel = new JPanel();
-        kslButtonPanel.setBounds(615, 430,55, 25);
-        kslButton = new JButton("KSL");
-        kslButton.setBackground(Color.darkGray);
-        kslButton.setForeground(Color.white);
-        kslButton.setFont(mapFont);
-
-        kslButton.addActionListener(sHandler);
-        kslButtonPanel.add(kslButton);
-        con.add(kslButtonPanel);
-
-        //Carlton Commons
-        carltonButtonPanel = new JPanel();
-        carltonButtonPanel.setBounds(575, 405,60, 25);
-        carltonButton = new JButton("Carlton");
-        carltonButton.setBackground(Color.darkGray);
-        carltonButton.setForeground(Color.white);
-        carltonButton.setFont(mapFont);
-
-        carltonButton.addActionListener(sHandler);
-        carltonButtonPanel.add(carltonButton);
-        con.add(carltonButtonPanel);
-
-        //Elephant Stairs
-        elephantButtonPanel = new JPanel();
-        elephantButtonPanel.setBounds(455, 435,70, 25);
-        elephantButton = new JButton("Elephant Stairs");
-        elephantButton.setBackground(Color.darkGray);
-        elephantButton.setForeground(Color.white);
-        elephantButton.setFont(mapFont);
-
-        elephantButton.addActionListener(sHandler);
-        elephantButtonPanel.add(elephantButton);
-        con.add(elephantButtonPanel);
-
-        //Go to northside button
-        northButtonPanel = new JPanel();
-        northButtonPanel.setBounds(25, 425,70, 25);
-        northButton = new JButton("Northside");
-        northButton.setBackground(Color.darkGray);
-        northButton.setForeground(Color.white);
-        northButton.setFont(mapFont);
-
-        northButton.addActionListener(sHandler);
-        northButtonPanel.add(northButton);
-        con.add(northButtonPanel);
-
-        //Go to southside button
-        southButtonPanel = new JPanel();
-        southButtonPanel.setBounds(375, 25,70, 25);
-        southButton = new JButton("Southside");
-        southButton.setBackground(Color.darkGray);
-        southButton.setForeground(Color.white);
-        southButton.setFont(mapFont);
-
-        southButton.addActionListener(sHandler);
-        southButtonPanel.add(southButton);
-        con.add(southButtonPanel);
-
         //Return to quad (from a building)
         quadButtonPanel = new JPanel();
         quadButtonPanel.setBounds(100, 100, 180, 50);
@@ -505,19 +418,166 @@ public class GameScreen {
         moveToQuadButtonPanel.add(moveToQuadButton);
         con.add(moveToQuadButtonPanel);
 
+        initializeTaskButtons();
+        northButtonsInit();
+        southButtonsInit();
+
         con.add(imagePanel);
         imagePanel.setVisible(false);
 
         menuButtonPanel.setVisible(false);
-
-        //player object/image is implemented and can be moved around
-        //if at location to change maps, do so
-        //if building thing
     }
+    //initalizes buttons on northside
+    public void northButtonsInit(){
+        //Go to northside button
+        northButtonPanel = new JPanel();
+        northButtonPanel.setBounds(25, 425,70, 25);
+        northButton = new JButton("Northside");
+        northButton.setBackground(Color.darkGray);
+        northButton.setForeground(Color.white);
+        northButton.setFont(mapFont);
 
-    public void createVealeScreen(){
-        hideBuildingButtons();
+        northButton.addActionListener(sHandler);
+        northButtonPanel.add(northButton);
+        con.add(northButtonPanel);
 
+        //Denny's
+        denButtonPanel = new JPanel();
+        denButtonPanel.setBounds(455, 435,60, 25);
+        denButton = new JButton("Den");
+        denButton.setBackground(Color.darkGray);
+        denButton.setForeground(Color.white);
+        denButton.setFont(mapFont);
+
+        denButton.addActionListener(sHandler);
+        denButtonPanel.add(denButton);
+        con.add(denButtonPanel);
+
+        //Freshman Dorms
+        freshDormsButtonPanel = new JPanel();
+        freshDormsButtonPanel.setBounds(75, 75,120, 25);
+        freshDormsButton = new JButton("Freshman Dorms");
+        freshDormsButton.setBackground(Color.darkGray);
+        freshDormsButton.setForeground(Color.white);
+        freshDormsButton.setFont(mapFont);
+
+        freshDormsButton.addActionListener(sHandler);
+        freshDormsButtonPanel.add(freshDormsButton);
+        con.add(freshDormsButtonPanel);
+
+        //Leutner
+        leutnerButtonPanel = new JPanel();
+        leutnerButtonPanel.setBounds(25, 25,65, 25);
+        leutnerButton = new JButton("Leutner");
+        leutnerButton.setBackground(Color.darkGray);
+        leutnerButton.setForeground(Color.white);
+        leutnerButton.setFont(mapFont);
+
+        leutnerButton.addActionListener(sHandler);
+        leutnerButtonPanel.add(leutnerButton);
+        con.add(leutnerButtonPanel);
+
+        //PBL
+        pblButtonPanel = new JPanel();
+        pblButtonPanel.setBounds(395, 290,55, 25);
+        pblButton = new JButton("PBL");
+        pblButton.setBackground(Color.darkGray);
+        pblButton.setForeground(Color.white);
+        pblButton.setFont(mapFont);
+
+        pblButton.addActionListener(sHandler);
+        pblButtonPanel.add(pblButton);
+        con.add(pblButtonPanel);
+
+        //Thwing
+        thwingButtonPanel = new JPanel();
+        thwingButtonPanel.setBounds(605, 315,60, 25);
+        thwingButton = new JButton("Thwing");
+        thwingButton.setBackground(Color.darkGray);
+        thwingButton.setForeground(Color.white);
+        thwingButton.setFont(mapFont);
+
+        thwingButton.addActionListener(sHandler);
+        thwingButtonPanel.add(thwingButton);
+        con.add(thwingButtonPanel);
+
+        //Tink
+        tinkButtonPanel = new JPanel();
+        tinkButtonPanel.setBounds(540, 355,55, 25);
+        tinkButton = new JButton("TVU");
+        tinkButton.setBackground(Color.darkGray);
+        tinkButton.setForeground(Color.white);
+        tinkButton.setFont(mapFont);
+
+        tinkButton.addActionListener(sHandler);
+        tinkButtonPanel.add(tinkButton);
+        con.add(tinkButtonPanel);
+
+        //KSL
+        kslButtonPanel = new JPanel();
+        kslButtonPanel.setBounds(615, 430,55, 25);
+        kslButton = new JButton("KSL");
+        kslButton.setBackground(Color.darkGray);
+        kslButton.setForeground(Color.white);
+        kslButton.setFont(mapFont);
+
+        kslButton.addActionListener(sHandler);
+        kslButtonPanel.add(kslButton);
+        con.add(kslButtonPanel);
+    }
+    //initalizes buttons on southside
+    public void southButtonsInit(){
+        //Go to southside button
+        southButtonPanel = new JPanel();
+        southButtonPanel.setBounds(375, 25,70, 25);
+        southButton = new JButton("Southside");
+        southButton.setBackground(Color.darkGray);
+        southButton.setForeground(Color.white);
+        southButton.setFont(mapFont);
+
+        southButton.addActionListener(sHandler);
+        southButtonPanel.add(southButton);
+        con.add(southButtonPanel);
+
+        //Carlton Commons
+        carltonButtonPanel = new JPanel();
+        carltonButtonPanel.setBounds(575, 405,60, 25);
+        carltonButton = new JButton("Carlton");
+        carltonButton.setBackground(Color.darkGray);
+        carltonButton.setForeground(Color.white);
+        carltonButton.setFont(mapFont);
+
+        carltonButton.addActionListener(sHandler);
+        carltonButtonPanel.add(carltonButton);
+        con.add(carltonButtonPanel);
+
+        //Elephant Stairs
+        elephantButtonPanel = new JPanel();
+        elephantButtonPanel.setBounds(455, 435,70, 25);
+        elephantButton = new JButton("Elephant Stairs");
+        elephantButton.setBackground(Color.darkGray);
+        elephantButton.setForeground(Color.white);
+        elephantButton.setFont(mapFont);
+
+        elephantButton.addActionListener(sHandler);
+        elephantButtonPanel.add(elephantButton);
+        con.add(elephantButtonPanel);
+
+        //Sophomore Button
+        sophDormsButtonPanel = new JPanel();
+        sophDormsButtonPanel.setBounds(395, 290,120, 25);
+        sophDormsButton = new JButton("Sophomore Dorms");
+        sophDormsButton.setBackground(Color.darkGray);
+        sophDormsButton.setForeground(Color.white);
+        sophDormsButton.setFont(mapFont);
+
+        sophDormsButton.addActionListener(sHandler);
+        sophDormsButtonPanel.add(sophDormsButton);
+        con.add(sophDormsButtonPanel);
+    }
+    //initalizes buttons relating to tasks
+    public void initializeTaskButtons(){
+        //Exercise Task Room Change
         exerciseButtonPanel = new JPanel();
         exerciseButtonPanel.setBounds(100, 150,180, 50);
         exerciseButton = new JButton("Exercise at Veale");
@@ -529,48 +589,20 @@ public class GameScreen {
         exerciseButtonPanel.add(exerciseButton);
         con.add(exerciseButtonPanel);
 
-        image = new ImageIcon("idk/resources/Veale.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
+        //Start Exercise Task
+        startExButtonPanel = new JPanel();
+        startExButtonPanel.setBounds(300, 300 ,150, 50);
+        startExButton = new JButton("Start");
+        startExButton.setBackground(Color.darkGray);
+        startExButton.setForeground(Color.white);
+        startExButton.setFont(normalFont);
 
-        quadButtonPanel.setVisible(true);
+        startExButton.addActionListener(sHandler);
+        startExButtonPanel.add(startExButton);
+        con.add(startExButtonPanel);
     }
 
-    public void createMillisScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/Millis.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-
-    }
-
-    public void createRockefellerScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        lectureButtonPanel = new JPanel();
-        lectureButtonPanel.setBounds(100, 150,180, 50);
-        lectureButton = new JButton("Attend Lecture");
-        lectureButton.setBackground(Color.white);
-        lectureButton.setForeground(Color.darkGray);
-        lectureButton.setFont(normalFont);
-
-        lectureButton.addActionListener(sHandler);
-        lectureButtonPanel.add(lectureButton);
-        con.add(lectureButtonPanel);
-
-        image = new ImageIcon("idk/resources/Rockefeller.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-
-        lectureButtonPanel.setVisible(false);
-    }
-
+    //Following methods are for creating the individual building screens
     public void createAWSmithScreen(){
         hideBuildingButtons();
         quadButtonPanel.setVisible(true);
@@ -611,6 +643,16 @@ public class GameScreen {
         imageLabel.setIcon(image);
     }
 
+    public void createDenScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/dennys.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
     public void createEldredScreen(){
         hideBuildingButtons();
         quadButtonPanel.setVisible(true);
@@ -626,6 +668,16 @@ public class GameScreen {
         quadButtonPanel.setVisible(true);
 
         image = new ImageIcon("idk/resources/elephant.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createFreshmanDormsScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/freshDorms.jfif");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
@@ -661,6 +713,27 @@ public class GameScreen {
         imageLabel.setIcon(image);
     }
 
+    public void createLeutnerScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/leutner.jfif");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createMillisScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/Millis.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+
+    }
+
     public void createNordScreen(){
         hideBuildingButtons();
         quadButtonPanel.setVisible(true);
@@ -691,11 +764,54 @@ public class GameScreen {
         imageLabel.setIcon(image);
     }
 
+    public void createRockefellerScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        lectureButtonPanel = new JPanel();
+        lectureButtonPanel.setBounds(100, 150,180, 50);
+        lectureButton = new JButton("Attend Lecture");
+        lectureButton.setBackground(Color.white);
+        lectureButton.setForeground(Color.darkGray);
+        lectureButton.setFont(normalFont);
+
+        lectureButton.addActionListener(sHandler);
+        lectureButtonPanel.add(lectureButton);
+        con.add(lectureButtonPanel);
+
+        image = new ImageIcon("idk/resources/Rockefeller.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+
+        lectureButtonPanel.setVisible(false);
+    }
+
     public void createSearsScreen(){
         hideBuildingButtons();
         quadButtonPanel.setVisible(true);
 
         image = new ImageIcon("idk/resources/Sears.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createSophDorms(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/southDorms.jfif");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+    }
+
+    public void createStrosackerScreen(){
+        hideBuildingButtons();
+        quadButtonPanel.setVisible(true);
+
+        image = new ImageIcon("idk/resources/Strosacker.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
@@ -731,6 +847,18 @@ public class GameScreen {
         imageLabel.setIcon(image);
     }
 
+    public void createVealeScreen(){
+        hideBuildingButtons();
+
+        image = new ImageIcon("idk/resources/Veale.jpg");
+        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
+        image.setImage(resizedImage);
+        imageLabel.setIcon(image);
+
+        quadButtonPanel.setVisible(true);
+        exerciseButtonPanel.setVisible(true);
+    }
+
     public void createWhiteScreen(){
         hideBuildingButtons();
         quadButtonPanel.setVisible(true);
@@ -761,16 +889,7 @@ public class GameScreen {
         imageLabel.setIcon(image);
     }
 
-    public void createStrosackerScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/Strosacker.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
+    //creates the menu screen
     public void createMenuScreen(){
         menuPanel = new JPanel();
         menuPanel.setBounds(120,150,550,100);
@@ -898,6 +1017,7 @@ public class GameScreen {
         gStartButtonPanel.setVisible(true);
     }
 
+    //following methods respectively display the quad, northside, southside, menu, and attribute windows
     public void displayQuadScreen(){
         introTextPanel.setVisible(false);
         imagePanel.setVisible(false);
@@ -953,6 +1073,9 @@ public class GameScreen {
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
 
+        denButtonPanel.setVisible(true);
+        freshDormsButtonPanel.setVisible(true);
+        leutnerButtonPanel.setVisible(true);
         tinkButtonPanel.setVisible(true);
         thwingButtonPanel.setVisible(true);
         kslButtonPanel.setVisible(true);
@@ -971,6 +1094,7 @@ public class GameScreen {
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
 
+        sophDormsButtonPanel.setVisible(true);
         carltonButtonPanel.setVisible(true);
         elephantButtonPanel.setVisible(true);
         moveToQuadButtonPanel.setVisible(true);
@@ -1015,24 +1139,19 @@ public class GameScreen {
         menuButtonPanel.setVisible(true);
     }
 
+    //task related screens
     public void createExerciseScreen(){
+        //I want to either move screen initializations to a new class to call
+        //I want to give tasks and building buttons different handlers. They'll do the same thing but it'll be easier
+        // to look at
+        //I want a separate taskButtonHide method
         exerciseButtonPanel.setVisible(false);
+        startExButtonPanel.setVisible(true);
 
         image = new ImageIcon("idk/resources/gym.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
-
-        startExButtonPanel = new JPanel();
-        startExButtonPanel.setBounds(300, 300 ,150, 50);
-        startExButton = new JButton("Start");
-        startExButton.setBackground(Color.darkGray);
-        startExButton.setForeground(Color.white);
-        startExButton.setFont(normalFont);
-
-        startExButton.addActionListener(sHandler);
-        startExButtonPanel.add(startExButton);
-        con.add(startExButtonPanel);
 
         strengthlabel.setText("Strength: 2");
         reward = "Strength increased by 1";
@@ -1063,9 +1182,10 @@ public class GameScreen {
         taskName = "Attend Lecture";
     }
 
+    //creates a screen when a task is completed
     public void createCompletionScreen(){
         compPanel1 = new JPanel();
-        compPanel1.setBounds(250,150,350,50);
+        compPanel1.setBounds(245,150,350,50);
         compPanel1.setBackground(Color.DARK_GRAY);
         JLabel compLabel1 = new JLabel("Congratulations!");
         compLabel1.setFont(medFont);
@@ -1075,7 +1195,7 @@ public class GameScreen {
         con.add(compPanel1);
 
         compPanel2 = new JPanel();
-        compPanel2.setBounds(235,201,375,50);
+        compPanel2.setBounds(230,201,375,50);
         compPanel2.setBackground(Color.DARK_GRAY);
         JLabel compLabel2 = new JLabel("You Have Completed:");
         compLabel2.setFont(medFont);
@@ -1085,7 +1205,7 @@ public class GameScreen {
         con.add(compPanel2);
 
         compPanel3 = new JPanel();
-        compPanel3.setBounds(250, 275,350, 50);
+        compPanel3.setBounds(245, 275,350, 50);
         compPanel3.setBackground(Color.DARK_GRAY);
         compLabel3 = new JLabel(" ");
         compLabel3.setForeground(Color.white);
@@ -1095,7 +1215,7 @@ public class GameScreen {
         con.add(compPanel3);
 
         compPanel4 = new JPanel();
-        compPanel4.setBounds(240, 400 ,400, 50);
+        compPanel4.setBounds(235, 400 ,400, 50);
         compPanel4.setBackground(Color.DARK_GRAY);
         compLabel4 = new JLabel(" ");
         compLabel4.setForeground(Color.white);
@@ -1111,7 +1231,7 @@ public class GameScreen {
     }
 
     public void displayCompletionScreen() throws InterruptedException {
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(1);
 
         compLabel3.setText(taskName);
         compLabel4.setText(reward);
@@ -1124,35 +1244,43 @@ public class GameScreen {
         compPanel4.setVisible(true);
     }
 
+    //hides all building and task buttons
     public void hideBuildingButtons(){
-        vealeButtonPanel.setVisible(false);
-        millisButtonPanel.setVisible(false);
-        rockButtonPanel.setVisible(false);
         moveToQuadButtonPanel.setVisible(false);
         southButtonPanel.setVisible(false);
         northButtonPanel.setVisible(false);
-        strosackerButtonPanel.setVisible(false);
         awSmithButtonPanel.setVisible(false);
         binghamButtonPanel.setVisible(false);
         carltonButtonPanel.setVisible(false);
         crawfordButtonPanel.setVisible(false);
+        denButtonPanel.setVisible(false);
         eldredButtonPanel.setVisible(false);
         elephantButtonPanel.setVisible(false);
+        freshDormsButtonPanel.setVisible(false);
         glennanButtonPanel.setVisible(false);
         khsButtonPanel.setVisible(false);
         kslButtonPanel.setVisible(false);
+        leutnerButtonPanel.setVisible(false);
+        millisButtonPanel.setVisible(false);
         nordButtonPanel.setVisible(false);
         olinButtonPanel.setVisible(false);
         pblButtonPanel.setVisible(false);
+        rockButtonPanel.setVisible(false);
         searsButtonPanel.setVisible(false);
+        sophDormsButtonPanel.setVisible(false);
+        strosackerButtonPanel.setVisible(false);
         thwingButtonPanel.setVisible(false);
         tinkButtonPanel.setVisible(false);
         tomlinsonButtonPanel.setVisible(false);
+        vealeButtonPanel.setVisible(false);
         whiteButtonPanel.setVisible(false);
         wickendenButtonPanel.setVisible(false);
         yostButtonPanel.setVisible(false);
+        startExButtonPanel.setVisible(false);
+        exerciseButtonPanel.setVisible(false);
     }
 
+    //Scales an image to be a specific height and width
     private Image getScaledImage(Image srcImg, int w, int h){
         BufferedImage resizedImage = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = resizedImage.createGraphics();
@@ -1163,114 +1291,136 @@ public class GameScreen {
 
         return resizedImage;
     }
+    //checks whether a list of buttons contains a specific button
+    public boolean containsButton(JButton[] buttonList, Object objectName){
+        boolean isContained = false;
+        //add conditional about whether object is a button
+        if(objectName instanceof JButton) {
+            for (int i = 0; i < buttonList.length; i++) {
+                if (buttonList[i].equals(objectName)) {
+                    isContained = true;
+                    break;
+                }
+            }
+        }
+        return isContained;
+    }
 
     public class ScreenHandler implements ActionListener{
         public void actionPerformed(ActionEvent event){
             //Need to add a manner which differentiates between start/load
             imagePanel.setBounds(-10,-10,800,600);
-            if(event.getSource() == startButton){
+            if(event.getSource() == startButton){ //Display the introduction
                 displayIntroScreen();
             }
-            if(event.getSource() == gStartButton){
+            //Move to quad from intro screen, building, map, or menu
+            JButton[] quadButtonList = {gStartButton,quadButton,moveToQuadButton,returnButton};
+            if(containsButton(quadButtonList, event.getSource())){
                 displayQuadScreen();
             }
-            if(event.getSource() == vealeButton){
+            if(event.getSource() == vealeButton){ //Go to Veale Gymnasium
                 createVealeScreen();
             }
-            if(event.getSource() == quadButton || event.getSource()==moveToQuadButton){
-                displayQuadScreen();
-            }
-            if(event.getSource() == millisButton){
+            if(event.getSource() == millisButton){ //Move to Millis Schmidt
                 createMillisScreen();
             }
-            if(event.getSource() == rockButton){
+            if(event.getSource() == rockButton){ //Move to Rockefeller
                 createRockefellerScreen();
             }
-            if(event.getSource() == strosackerButton){
+            if(event.getSource() == strosackerButton){ //Enter Strosacker
                 createStrosackerScreen();
             }
-            if(event.getSource() == awSmithButton){
+            if(event.getSource() == awSmithButton){ //Enter AW Smith
                 createAWSmithScreen();
             }
-            if(event.getSource() == binghamButton){
+            if(event.getSource() == binghamButton){ // Enter Bingham
                 createBinghamScreen();
             }
-            if(event.getSource() == carltonButton){
+            if(event.getSource() == carltonButton){ // Enter Carlton Commons
                 createCarltonScreen();
             }
-            if(event.getSource() == crawfordButton){
+            if(event.getSource() == crawfordButton){ //Enter Crawford
                 createCrawfordScreen();
             }
-            if(event.getSource() == eldredButton){
+            if(event.getSource() == denButton){ //The Den
+                createDenScreen();
+            }
+            if(event.getSource() == eldredButton){ //Enter Eldred
                 createEldredScreen();
             }
-            if(event.getSource() == elephantButton){
+            if(event.getSource() == elephantButton){ //Elephant Stairs
                 createElephantScreen();
             }
-            if(event.getSource() == glennanButton){
+            if(event.getSource() == freshDormsButton){ //Freshman Dorms
+                createFreshmanDormsScreen();
+            }
+            if(event.getSource() == glennanButton){ //Enter Glennan
                 createGlennanScreen();
             }
-            if(event.getSource() == khsButton){
+            if(event.getSource() == khsButton){//Enter Kent Hale Smith, the Virus
                 createKHSScreen();
             }
-            if(event.getSource() == kslButton){
+            if(event.getSource() == kslButton){//Enter KSL
                 createKSLScreen();
             }
-            if(event.getSource() == nordButton){
+            if(event.getSource() == leutnerButton){ //Leutner
+                createLeutnerScreen();
+            }
+            if(event.getSource() == nordButton){//Enter Nord
                 createNordScreen();
             }
-            if(event.getSource() == olinButton){
+            if(event.getSource() == olinButton){ //Enter Olin
                 createOlinScreen();
             }
-            if(event.getSource() == pblButton){
+            if(event.getSource() == pblButton){ //Enter PBL
                 createPBLScreen();
             }
-            if(event.getSource() == searsButton){
+            if(event.getSource() == searsButton){ //Enter Sears
                 createSearsScreen();
             }
-            if(event.getSource() == thwingButton){
+            if(event.getSource() == sophDormsButton){ //Sophomore Dorms
+                createSophDorms();
+            }
+            if(event.getSource() == thwingButton){ //Enter Thwing
                 createThwingScreen();
             }
-            if(event.getSource() == tinkButton){
+            if(event.getSource() == tinkButton){ //Enter Tink
                 createTinkScreen();
             }
-            if(event.getSource() == tomlinsonButton){
+            if(event.getSource() == tomlinsonButton){ //Enter Tomlinson
                 createTomlinsonScreen();
             }
-            if(event.getSource() == whiteButton){
+            if(event.getSource() == whiteButton){ //enter White
                 createWhiteScreen();
             }
-            if(event.getSource() == wickendenButton){
+            if(event.getSource() == wickendenButton){ //Enter Wickenden
                 createWickendenScreen();
             }
-            if(event.getSource() == yostButton){
+            if(event.getSource() == yostButton){ //Enter Yost
                 createYostScreen();
             }
-            if(event.getSource() == northButton){
+            if(event.getSource() == northButton){ //go to northside
                 displayNorthScreen();
             }
-            if(event.getSource() == southButton){
+            if(event.getSource() == southButton){ //go to southside
                 displaySouthScreen();
             }
-            if(event.getSource() == menuButton) {
+            if(event.getSource() == menuButton) { //open menu
                 displayMenuScreen();
-            }
-            if(event.getSource() == returnButton){
-                displayQuadScreen();
             }
             if(event.getSource() == saveButton){
 
             }
-            if(event.getSource() == attrButton){
+            if(event.getSource() == attrButton){ //show attributes
                 displayAttrScreen();
             }
-            if(event.getSource() == exerciseButton){
+            if(event.getSource() == exerciseButton){//enter gym
                 createExerciseScreen();
             }
-            if(event.getSource() == lectureButton){
+            if(event.getSource() == lectureButton){//enter lecture
                 createLectureScreen();
             }
-            if(event.getSource() == startExButton){
+            if(event.getSource() == startExButton){//when player exercises, show the task completion screen
                 try {
                     displayCompletionScreen();
                 } catch (InterruptedException e) {
