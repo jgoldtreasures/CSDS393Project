@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 
 public class GameScreen {
-    public String screenName, taskName, reward;
+    public String screenName, taskName, reward, buildingName;
 
     JFrame gameScreen;
     Container con;
