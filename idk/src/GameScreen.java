@@ -20,14 +20,15 @@ public class GameScreen {
             searsButtonPanel, thwingButtonPanel, tinkButtonPanel, whiteButtonPanel, wickendenButtonPanel, yostButtonPanel, tomlinsonButtonPanel, exerciseButtonPanel,
             compPanel1, compPanel2, compPanel3, compPanel4, startExButtonPanel, lectureButtonPanel,
             moveToQuadButtonPanel, denButtonPanel, freshDormsButtonPanel,
-            sophDormsButtonPanel, leutnerButtonPanel, taskPanel;
+            sophDormsButtonPanel, leutnerButtonPanel, taskPanel, buildingTextPanel;
     JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel3, compLabel4;
     JButton startButton, loadButton, vealeButton, quadButton, millisButton, strosackerButton, rockButton, northButton, southButton, gStartButton,
             menuButton, returnButton, saveButton, attrButton, awSmithButton, binghamButton, carltonButton, crawfordButton, eldredButton, elephantButton,
             glennanButton, kslButton, khsButton, nordButton, olinButton, pblButton, searsButton, thwingButton, tinkButton, tomlinsonButton, whiteButton,
             wickendenButton, yostButton, exerciseButton, startExButton, lectureButton, moveToQuadButton, denButton,
             freshDormsButton, sophDormsButton, upperDormsButton, leutnerButton;
-    JTextArea introTextArea;
+    JTextArea introTextArea, buildingTextArea;
+    JTextPane buildingTextPane;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 25);
     Font introFont = new Font("Times New Roman", Font.PLAIN, 20);
@@ -35,14 +36,15 @@ public class GameScreen {
     Font mapFont = new Font("Times New Roman", Font.PLAIN, 12);
 
     ImageIcon image;
+    ScreenDescriptions roomTextDesc = new ScreenDescriptions(buildingName);
 
     //sHandler is for changing the window screen from one map/building to another
     ScreenHandler sHandler = new ScreenHandler();
 
     Game g;
 
-    List<String> buildingNames = Arrays.asList("Smith", "Bingham", "Carlton", "Crawford", "Dennys","Eldred", "Elephant", "Freshman Dorms", "Glennan", "KHS", "KSL",
-            "Leutner", "Millis", "Nord", "Olin", "PBL", "Rockefeller", "Sears",
+    List<String> buildingNames = Arrays.asList("Bingham", "Carlton", "Crawford","Dennys","Eldred", "Elephant", "Freshman Dorms", "Glennan", "KHS", "KSL",
+            "Leutner", "Millis", "Nord", "Olin", "PBL", "Rockefeller", "Sears", "Smith",
             "Sophomore Dorms", "Strosacker", "Thwing", "Tink", "Tomlinson", "Veale",
             "White", "Wickenden","Yost");
 
@@ -132,7 +134,8 @@ public class GameScreen {
         imageLabel.setIcon(image);
         imagePanel.add(imageLabel);
     }
-    //Creates and displays the Introduction
+
+    //Creates the Introduction Page, and initializes the room description box
     public void createIntroScreen(){
 
         gStartButtonPanel = new JPanel();
@@ -162,7 +165,7 @@ public class GameScreen {
         introTextPanel = new JPanel();
         introTextPanel.setBounds(25,50,725,375);
 
-        //find a way to center text
+        //Creates introduction text box
         introTextArea = new JTextArea(textIntro);
         introTextArea.setBounds(25,25,725,375);
         introTextArea.setFont(introFont);
@@ -171,9 +174,26 @@ public class GameScreen {
 
         introTextPanel.add(introTextArea);
 
+        //Creates building description box
+        buildingTextPanel = new JPanel();
+        buildingName = "";
+        buildingTextPanel.setBounds(25,440,725,100);
+
+        String roomTextDesc = new ScreenDescriptions(buildingName).returnDesc();
+
+        buildingTextArea = new JTextArea(roomTextDesc);
+        buildingTextArea.setBounds(25,440,725,100);
+        buildingTextArea.setFont(introFont);
+        buildingTextArea.setLineWrap(true);
+        buildingTextArea.setWrapStyleWord(true);
+
+        buildingTextPanel.add(buildingTextArea);
+
         introTextPanel.setVisible(false);
         gStartButtonPanel.setVisible(false);
+        buildingTextPanel.setVisible(false);
 
+        con.add(buildingTextPanel);
         con.add(introTextPanel);
         con.add(gStartButtonPanel);
     }
@@ -245,7 +265,7 @@ public class GameScreen {
         //AW Smith Button
         awSmithButtonPanel = new JPanel();
         awSmithButtonPanel.setBounds(367, 230,70, 25);
-        awSmithButton = new JButton("A W Smith");
+        awSmithButton = new JButton("AW Smith");
         awSmithButton.setBackground(Color.darkGray);
         awSmithButton.setForeground(Color.white);
         awSmithButton.setFont(mapFont);
@@ -621,14 +641,19 @@ public class GameScreen {
 
     //Following method creates the general building screen
     public void createBuildingScreen(){
-        buildingName = "";
         hideBuildingButtons();
         quadButtonPanel.setVisible(true);
+        String roomTextDesc = new ScreenDescriptions(buildingName).returnDesc();
+
+        buildingTextArea.setText(roomTextDesc);
+        buildingTextPanel.setVisible(true);
 
         image = new ImageIcon(buildingImage);
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
+
+        buildingName = "";
     }
 
     //Following methods are for creating the individual building screens
@@ -637,7 +662,7 @@ public class GameScreen {
         hideBuildingButtons();
         quadButtonPanel.setVisible(true);
 
-        image = new ImageIcon("idk/resources/AWSmith.jpeg");
+        image = new ImageIcon("idk/resources/smith.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
@@ -1055,6 +1080,8 @@ public class GameScreen {
     //following methods respectively display the quad, northside, southside, menu, and attribute windows
     public void displayQuadScreen(){
         introTextPanel.setVisible(false);
+        buildingTextPanel.setVisible(false);
+
         imagePanel.setVisible(false);
         quadButtonPanel.setVisible(false);
         gStartButtonPanel.setVisible(false);
@@ -1099,6 +1126,7 @@ public class GameScreen {
 
     public void displayNorthScreen(){
         hideBuildingButtons();
+        buildingTextPanel.setVisible(false);
 
         imagePanel.setBounds(-10,45, 800,600);
         moveToQuadButtonPanel.setBounds(700,355,55,25);
@@ -1121,6 +1149,7 @@ public class GameScreen {
 
     public void displaySouthScreen(){
         hideBuildingButtons();
+        buildingTextPanel.setVisible(false);
 
         moveToQuadButtonPanel.setBounds(350,530,55,25);
 
@@ -1139,6 +1168,7 @@ public class GameScreen {
     public void displayMenuScreen(){
         imagePanel.setVisible(false);
         quadButtonPanel.setVisible(false);
+        buildingTextPanel.setVisible(false);
         hideBuildingButtons();
         hideTaskButtons();
         menuButtonPanel.setVisible(false);
@@ -1354,7 +1384,7 @@ public class GameScreen {
             }
             if(event.getSource() == awSmithButton){ //Enter AW Smith
                 buildingName = "Smith";
-                buildingImage = "idk/resources/AWSmith.jpeg";
+                buildingImage = "idk/resources/smith.jpg";
                 //createAWSmithScreen();
             }
             if(event.getSource() == binghamButton){ // Enter Bingham
@@ -1383,7 +1413,7 @@ public class GameScreen {
                 //createEldredScreen();
             }
             if(event.getSource() == elephantButton){ //Elephant Stairs
-                buildingName = "elephant";
+                buildingName = "Elephant";
                 buildingImage = "idk/resources/elephant.jpg";
                 //createElephantScreen();
             }
@@ -1414,7 +1444,7 @@ public class GameScreen {
             }
             if(event.getSource() == millisButton){ //Move to Millis Schmidt
                 buildingName = "Millis";
-                buildingImage = "idk/resources/milis.jpg";
+                buildingImage = "idk/resources/millis.jpg";
                 //createMillisScreen();
             }
             if(event.getSource() == nordButton){//Enter Nord
