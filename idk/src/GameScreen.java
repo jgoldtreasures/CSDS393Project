@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -972,10 +973,10 @@ public class GameScreen {
 
 
         taskButtonPanel = new JPanel();
-        taskButtonPanel.setBounds(100, 50,100, 50);
+        taskButtonPanel.setBounds(275, 300,200, 50);
         taskButton = new JButton("Task List");
-        taskButton.setBackground(Color.white);
-        taskButton.setForeground(Color.darkGray);
+        taskButton.setBackground(Color.darkGray);
+        taskButton.setForeground(Color.white);
         taskButton.setFont(normalFont);
 
         taskButton.addActionListener(sHandler);
@@ -983,7 +984,7 @@ public class GameScreen {
         con.add(taskButtonPanel);
 
         savePanel = new JPanel();
-        savePanel.setBounds(300, 300 ,150, 50);
+        savePanel.setBounds(300, 250 ,150, 50);
         saveButton = new JButton("Save");
         saveButton.setBackground(Color.darkGray);
         saveButton.setForeground(Color.white);
@@ -1018,11 +1019,13 @@ public class GameScreen {
         con.add(savePanel);
         con.add(returnPanel);
         con.add(attrButtonPanel);
+        con.add(taskButtonPanel);
 
         menuPanel.setVisible(false);
         savePanel.setVisible(false);
         returnPanel.setVisible(false);
         attrButtonPanel.setVisible(false);
+        taskButtonPanel.setVisible(false);
 
     }
 
@@ -1113,6 +1116,7 @@ public class GameScreen {
         savePanel.setVisible(false);
         returnPanel.setVisible(false);
         attrButtonPanel.setVisible(false);
+        taskButtonPanel.setVisible(false);
         compPanel1.setVisible(false);
         compPanel2.setVisible(false);
         compPanel3.setVisible(false);
@@ -1211,6 +1215,7 @@ public class GameScreen {
         savePanel.setVisible(true);
         returnPanel.setVisible(true);
         attrButtonPanel.setVisible(true);
+        taskButtonPanel.setVisible(true);
     }
 
     public void displayAttrScreen(){
@@ -1218,6 +1223,7 @@ public class GameScreen {
         attrButtonPanel.setVisible(false);
         savePanel.setVisible(false);
         returnPanel.setVisible(false);
+        taskButtonPanel.setVisible(false);
         attrPanel.setVisible(true);
         healthPanel.setVisible(true);
         hygienePanel.setVisible(true);
@@ -1568,6 +1574,9 @@ public class GameScreen {
             }
             if(event.getSource() == attrButton){ //show attributes
                 displayAttrScreen();
+            }
+            if(event.getSource() == taskButton){ //show attributes
+                createTaskScreen();
             }
             if(event.getSource() == exerciseButton){//enter gym
                 createExerciseScreen();
