@@ -11,6 +11,7 @@ public class Game{
     private Level Sophomore;
     private Level Junior;
     private Level Senior;
+    private Level current;
 
     public Game(){
         //Building b needs to be changed
@@ -33,6 +34,7 @@ public class Game{
         Senior.addTask("Take Gym", "Go to the Veale Gym and take one of the available gym classes", 2, new int[]{0,0,1,1,0,0});
         Senior.addTask("Complete Capstone", "Go to you major's specific buildings and complete your major's specific objectives to graduate!", 6, new int[]{2,2,2,2,2});
 
+        current = Freshman;
     }
     public Level getFreshman(){return Freshman;}
 
@@ -141,4 +143,6 @@ public class Game{
     public Player getPlayer(){
         return p;
     }
+
+    public Level getCurrent(){return current;}
 }

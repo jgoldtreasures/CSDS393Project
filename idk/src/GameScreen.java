@@ -21,8 +21,8 @@ public class GameScreen {
             searsButtonPanel, thwingButtonPanel, tinkButtonPanel, whiteButtonPanel, wickendenButtonPanel, yostButtonPanel, tomlinsonButtonPanel, exerciseButtonPanel,
             compPanel1, compPanel2, compPanel3, compPanel4, startExButtonPanel, lectureButtonPanel,
             moveToQuadButtonPanel, denButtonPanel, freshDormsButtonPanel,
-            sophDormsButtonPanel, leutnerButtonPanel, taskPanel, taskButtonPanel, buildingTextPanel, actionButtonPanel;
-    JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel3, compLabel4;
+            sophDormsButtonPanel, leutnerButtonPanel, taskPanel, taskButtonPanel, buildingTextPanel, actionButtonPanel, task1Panel, task2Panel;
+    JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel3, compLabel4, task1Label, task2Label;
     JButton startButton, loadButton, vealeButton, quadButton, millisButton, strosackerButton, rockButton, northButton, southButton, gStartButton,
             menuButton, returnButton, saveButton, attrButton, awSmithButton, binghamButton, carltonButton, crawfordButton, eldredButton, elephantButton,
             glennanButton, kslButton, khsButton, nordButton, olinButton, pblButton, searsButton, thwingButton, tinkButton, tomlinsonButton, whiteButton,
@@ -950,16 +950,46 @@ public class GameScreen {
     //creates task screen
     public void createTaskScreen(){
         taskPanel = new JPanel();
-        taskPanel.setBounds(250,100,300,50);
+        taskPanel.setBounds(250,100,350,100);
         taskPanel.setBackground(Color.DARK_GRAY);
-        JLabel taskLabel = new JLabel("Tasks");
-        taskLabel.setFont(medFont);
+        JLabel taskLabel = new JLabel("Task List");
+        taskLabel.setFont(titleFont);
         taskLabel.setForeground(Color.white);
 
-        g.getFreshman().getTasks();
-        g.getSophomore().getTasks();
-        g.getJunior().getTasks();
-        g.getSenior().getTasks();
+        taskPanel.add(taskLabel);
+
+        task1Panel = new JPanel();
+        task1Panel.setBounds(300, 200 ,250, 50);
+        //String task1 = "task1: " + String.valueOf(g.getPlayer().getAttributeVal("task1"));
+        task1Label = new JLabel("");
+        task1Label.setBackground(Color.white);
+        task1Label.setForeground(Color.darkGray);
+        task1Label.setFont(normalFont);
+
+        task1Panel.add(task1Label);
+
+        task2Panel = new JPanel();
+        task2Panel.setBounds(300, 250 ,250, 50);
+        //String task2 = "task2: " + String.valueOf(g.getPlayer().getAttributeVal("task2"));
+        task2Label = new JLabel("");
+        task2Label.setBackground(Color.white);
+        task2Label.setForeground(Color.darkGray);
+        task2Label.setFont(normalFont);
+
+        task2Panel.add(task2Label);
+
+        ArrayList<Task> tasks = g.getCurrent().getTasks();
+
+        task1Label.setText(tasks.get(0).getName());
+        task2Label.setText(tasks.get(1).getName());
+
+        con.add(taskPanel);
+        con.add(task1Panel);
+        con.add(task2Panel);
+
+        taskPanel.setVisible(false);
+        task1Panel.setVisible(false);
+        task2Panel.setVisible(false);
     }
 
     //creates the menu screen
@@ -1230,6 +1260,18 @@ public class GameScreen {
         intelligencePanel.setVisible(true);
         strengthPanel.setVisible(true);
         socialStandingPanel.setVisible(true);
+        menuButtonPanel.setVisible(true);
+    }
+
+    public void displayTaskScreen(){
+        menuPanel.setVisible(false);
+        attrButtonPanel.setVisible(false);
+        savePanel.setVisible(false);
+        returnPanel.setVisible(false);
+        taskButtonPanel.setVisible(false);
+        taskPanel.setVisible(true);
+        task1Panel.setVisible(true);
+        task2Panel.setVisible(true);
         menuButtonPanel.setVisible(true);
     }
 
@@ -1577,6 +1619,7 @@ public class GameScreen {
             }
             if(event.getSource() == taskButton){ //show attributes
                 createTaskScreen();
+                displayTaskScreen();
             }
             if(event.getSource() == exerciseButton){//enter gym
                 createExerciseScreen();
