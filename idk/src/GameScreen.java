@@ -1284,14 +1284,10 @@ public class GameScreen {
         actionButtonPanel.setVisible(false);
         startExButtonPanel.setVisible(true);
 
-        imagePanel.setVisible(false);
-
         image = new ImageIcon("idk/resources/gym.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
-
-        imagePanel.setVisible(true);
 
         strengthlabel.setText("Strength: 2");
         reward = "Strength increased by 1";
@@ -1458,6 +1454,7 @@ public class GameScreen {
             //Move to quad from intro screen, building, map, or menu
             JButton[] quadButtonList = {gStartButton,quadButton,moveToQuadButton,returnButton};
             if(containsButton(quadButtonList, event.getSource())){
+                buildingName = "quad";
                 displayQuadScreen();
             }
             if(event.getSource() == awSmithButton){ //Enter AW Smith
@@ -1609,6 +1606,7 @@ public class GameScreen {
                 displaySouthScreen();
             }
             if(event.getSource() == menuButton) { //open menu
+                buildingName = "menu";
                 displayMenuScreen();
             }
             if(event.getSource() == saveButton){
@@ -1622,9 +1620,11 @@ public class GameScreen {
                 displayTaskScreen();
             }
             if(event.getSource() == exerciseButton){//enter gym
+                buildingName = "exercise";
                 createExerciseScreen();
             }
             if(event.getSource() == lectureButton){//enter lecture
+                buildingName = "lecture";
                 createLectureScreen();
             }
             if(event.getSource() == startExButton){//when player exercises, show the task completion screen
