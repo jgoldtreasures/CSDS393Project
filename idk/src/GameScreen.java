@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -20,13 +21,13 @@ public class GameScreen {
             searsButtonPanel, thwingButtonPanel, tinkButtonPanel, whiteButtonPanel, wickendenButtonPanel, yostButtonPanel, tomlinsonButtonPanel, exerciseButtonPanel,
             compPanel1, compPanel2, compPanel3, compPanel4, startExButtonPanel, lectureButtonPanel,
             moveToQuadButtonPanel, denButtonPanel, freshDormsButtonPanel,
-            sophDormsButtonPanel, leutnerButtonPanel, taskPanel, buildingTextPanel;
+            sophDormsButtonPanel, leutnerButtonPanel, taskPanel, taskButtonPanel, buildingTextPanel, actionButtonPanel;
     JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel3, compLabel4;
     JButton startButton, loadButton, vealeButton, quadButton, millisButton, strosackerButton, rockButton, northButton, southButton, gStartButton,
             menuButton, returnButton, saveButton, attrButton, awSmithButton, binghamButton, carltonButton, crawfordButton, eldredButton, elephantButton,
             glennanButton, kslButton, khsButton, nordButton, olinButton, pblButton, searsButton, thwingButton, tinkButton, tomlinsonButton, whiteButton,
-            wickendenButton, yostButton, exerciseButton, startExButton, lectureButton, moveToQuadButton, denButton,
-            freshDormsButton, sophDormsButton, upperDormsButton, leutnerButton;
+            wickendenButton, yostButton, exerciseButton, startExButton, lectureButton, moveToQuadButton, denButton, taskButton,
+            freshDormsButton, sophDormsButton, upperDormsButton, leutnerButton, actionButton;
     JTextArea introTextArea, buildingTextArea;
     JTextPane buildingTextPane;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
@@ -602,6 +603,17 @@ public class GameScreen {
     }
     //initalizes buttons relating to tasks
     public void initializeTaskButtons(){
+        actionButtonPanel = new JPanel();
+        actionButtonPanel.setBounds(100, 150,180, 50);
+        actionButton = new JButton("");
+        actionButton.setBackground(Color.white);
+        actionButton.setForeground(Color.darkGray);
+        actionButton.setFont(normalFont);
+
+        actionButton.addActionListener(sHandler);
+        actionButtonPanel.add(actionButton);
+        con.add(actionButtonPanel);
+
         //Exercise Task Room Change
         exerciseButtonPanel = new JPanel();
         exerciseButtonPanel.setBounds(100, 150,180, 50);
@@ -647,13 +659,14 @@ public class GameScreen {
 
         buildingTextArea.setText(roomTextDesc);
         buildingTextPanel.setVisible(true);
+        actionButtonPanel.setVisible(true);
 
         image = new ImageIcon(buildingImage);
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
 
-        buildingName = "";
+        //buildingName = "";
     }
 
     //Following methods are for creating the individual building screens
@@ -958,8 +971,20 @@ public class GameScreen {
         menuLabel.setFont(titleFont);
         menuLabel.setForeground(Color.white);
 
+
+        taskButtonPanel = new JPanel();
+        taskButtonPanel.setBounds(275, 300,200, 50);
+        taskButton = new JButton("Task List");
+        taskButton.setBackground(Color.darkGray);
+        taskButton.setForeground(Color.white);
+        taskButton.setFont(normalFont);
+
+        taskButton.addActionListener(sHandler);
+        taskButtonPanel.add(taskButton);
+        con.add(taskButtonPanel);
+
         savePanel = new JPanel();
-        savePanel.setBounds(300, 300 ,150, 50);
+        savePanel.setBounds(300, 250 ,150, 50);
         saveButton = new JButton("Save");
         saveButton.setBackground(Color.darkGray);
         saveButton.setForeground(Color.white);
@@ -994,11 +1019,13 @@ public class GameScreen {
         con.add(savePanel);
         con.add(returnPanel);
         con.add(attrButtonPanel);
+        con.add(taskButtonPanel);
 
         menuPanel.setVisible(false);
         savePanel.setVisible(false);
         returnPanel.setVisible(false);
         attrButtonPanel.setVisible(false);
+        taskButtonPanel.setVisible(false);
 
     }
 
@@ -1089,6 +1116,7 @@ public class GameScreen {
         savePanel.setVisible(false);
         returnPanel.setVisible(false);
         attrButtonPanel.setVisible(false);
+        taskButtonPanel.setVisible(false);
         compPanel1.setVisible(false);
         compPanel2.setVisible(false);
         compPanel3.setVisible(false);
@@ -1187,6 +1215,7 @@ public class GameScreen {
         savePanel.setVisible(true);
         returnPanel.setVisible(true);
         attrButtonPanel.setVisible(true);
+        taskButtonPanel.setVisible(true);
     }
 
     public void displayAttrScreen(){
@@ -1194,6 +1223,7 @@ public class GameScreen {
         attrButtonPanel.setVisible(false);
         savePanel.setVisible(false);
         returnPanel.setVisible(false);
+        taskButtonPanel.setVisible(false);
         attrPanel.setVisible(true);
         healthPanel.setVisible(true);
         hygienePanel.setVisible(true);
@@ -1209,13 +1239,17 @@ public class GameScreen {
         //I want to give tasks and building buttons different handlers. They'll do the same thing but it'll be easier
         // to look at
         //I want a separate taskButtonHide method
-        exerciseButtonPanel.setVisible(false);
+        actionButtonPanel.setVisible(false);
         startExButtonPanel.setVisible(true);
+
+        imagePanel.setVisible(false);
 
         image = new ImageIcon("idk/resources/gym.jpg");
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
+
+        imagePanel.setVisible(true);
 
         strengthlabel.setText("Strength: 2");
         reward = "Strength increased by 1";
@@ -1335,6 +1369,7 @@ public class GameScreen {
         exerciseButtonPanel.setVisible(false);
         startExButtonPanel.setVisible(false);
         exerciseButtonPanel.setVisible(false);
+        actionButtonPanel.setVisible(false);
     }
 
     public void hideTaskButtons(){
@@ -1342,6 +1377,7 @@ public class GameScreen {
         exerciseButtonPanel.setVisible(false);
         startExButtonPanel.setVisible(false);
         exerciseButtonPanel.setVisible(false);
+        actionButtonPanel.setVisible(false);
     }
 
     //Scales an image to be a specific height and width
@@ -1480,6 +1516,7 @@ public class GameScreen {
             if(event.getSource() == strosackerButton){ //Enter Strosacker
                 buildingName = "Strosacker";
                 buildingImage = "idk/resources/Strosacker.jpg";
+                actionButton.setText("Attend Lecture");
                 //createStrosackerScreen();
             }
             if(event.getSource() == thwingButton){ //Enter Thwing
@@ -1500,6 +1537,7 @@ public class GameScreen {
             if(event.getSource() == vealeButton){ //Go to Veale Gymnasium
                 buildingName = "Veale";
                 buildingImage = "idk/resources/Veale.jpg";
+                actionButton.setText("Exercise at Veale");
                 //createVealeScreen();
             }
             if(event.getSource() == whiteButton){ //enter White
@@ -1517,6 +1555,11 @@ public class GameScreen {
                 buildingImage = "idk/resources/yost.jpg";
                 //createYostScreen();
             }
+            if(event.getSource() == actionButton){
+                if(buildingName == "Veale"){
+                    createExerciseScreen();
+                }
+            }
             if(event.getSource() == northButton){ //go to northside
                 displayNorthScreen();
             }
@@ -1531,6 +1574,9 @@ public class GameScreen {
             }
             if(event.getSource() == attrButton){ //show attributes
                 displayAttrScreen();
+            }
+            if(event.getSource() == taskButton){ //show attributes
+                createTaskScreen();
             }
             if(event.getSource() == exerciseButton){//enter gym
                 createExerciseScreen();
