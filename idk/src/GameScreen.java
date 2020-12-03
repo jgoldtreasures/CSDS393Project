@@ -49,6 +49,8 @@ public class GameScreen {
             "Sophomore Dorms", "Strosacker", "Thwing", "Tink", "Tomlinson", "Veale",
             "White", "Wickenden","Yost");
 
+    List<String> taskNames = Arrays.asList("Exercise", "Lecture");
+
     public static void main(String[] args){
         new GameScreen();
     }
@@ -62,6 +64,7 @@ public class GameScreen {
         createMenuScreen();
         createCompletionScreen();
         hideBuildingButtons();
+
 
 
         g = new Game();
@@ -978,11 +981,6 @@ public class GameScreen {
 
         task2Panel.add(task2Label);
 
-        ArrayList<Task> tasks = g.getCurrent().getTasks();
-
-        task1Label.setText(tasks.get(0).getName());
-        task2Label.setText(tasks.get(1).getName());
-
         con.add(taskPanel);
         con.add(task1Panel);
         con.add(task2Panel);
@@ -1056,7 +1054,6 @@ public class GameScreen {
         returnPanel.setVisible(false);
         attrButtonPanel.setVisible(false);
         taskButtonPanel.setVisible(false);
-
     }
 
     public void createAttributesScreen(){
@@ -1224,6 +1221,7 @@ public class GameScreen {
     }
 
     public void displayMenuScreen(){
+        createTaskScreen();
         imagePanel.setVisible(false);
         quadButtonPanel.setVisible(false);
         buildingTextPanel.setVisible(false);
@@ -1240,6 +1238,9 @@ public class GameScreen {
         compPanel2.setVisible(false);
         compPanel3.setVisible(false);
         compPanel4.setVisible(false);
+        taskPanel.setVisible(false);
+        task1Panel.setVisible(false);
+        task2Panel.setVisible(false);
 
         menuPanel.setVisible(true);
         savePanel.setVisible(true);
@@ -1264,6 +1265,10 @@ public class GameScreen {
     }
 
     public void displayTaskScreen(){
+        ArrayList<Task> tasks = g.getCurrent().getTasks();
+
+        task1Label.setText(tasks.get(0).getName());
+        task2Label.setText(tasks.get(1).getName());
         menuPanel.setVisible(false);
         attrButtonPanel.setVisible(false);
         savePanel.setVisible(false);
@@ -1616,18 +1621,17 @@ public class GameScreen {
                 displayAttrScreen();
             }
             if(event.getSource() == taskButton){ //show attributes
-                createTaskScreen();
                 displayTaskScreen();
             }
             if(event.getSource() == exerciseButton){//enter gym
-                buildingName = "exercise";
+                buildingName = "Exercise";
                 createExerciseScreen();
             }
             if(event.getSource() == lectureButton){//enter lecture
-                buildingName = "lecture";
+                buildingName = "Lecture";
                 createLectureScreen();
             }
-            if(event.getSource() == startExButton){//when player exercises, show the task completion screen
+            if(taskNames.contains(buildingName)){//when player exercises, show the task completion screen
                 try {
                     displayCompletionScreen();
                 } catch (InterruptedException e) {
