@@ -1661,7 +1661,6 @@ public class GameScreen {
             JButton[] menuButtonList = {menuButton, attrButton, taskButton, returnButton, saveButton};
             if(!(containsButton(menuButtonList, event.getSource()))){
                 d.useHours(1);
-                System.out.println(d.getHour());
                 timeLabel.setText("Time: " + String.valueOf(d.getHour()));
             }
         }

@@ -3,7 +3,7 @@ public class Day{
     private String DOW;
 
     public Day(String dow){
-        hour = 0;
+        hour = -1;
         DOW = dow;
     }
 
