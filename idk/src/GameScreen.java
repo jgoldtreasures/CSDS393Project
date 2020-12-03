@@ -21,8 +21,8 @@ public class GameScreen {
             searsButtonPanel, thwingButtonPanel, tinkButtonPanel, whiteButtonPanel, wickendenButtonPanel, yostButtonPanel, tomlinsonButtonPanel, exerciseButtonPanel,
             compPanel1, compPanel2, compPanel3, compPanel4, startExButtonPanel, lectureButtonPanel,
             moveToQuadButtonPanel, denButtonPanel, freshDormsButtonPanel,
-            sophDormsButtonPanel, leutnerButtonPanel, taskPanel, taskButtonPanel, buildingTextPanel, actionButtonPanel, task1Panel, task2Panel;
-    JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel3, compLabel4, task1Label, task2Label;
+            sophDormsButtonPanel, leutnerButtonPanel, taskPanel, taskButtonPanel, buildingTextPanel, actionButtonPanel, task1Panel, task2Panel, timePanel;
+    JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel3, compLabel4, task1Label, task2Label, timeLabel;
     JButton startButton, loadButton, vealeButton, quadButton, millisButton, strosackerButton, rockButton, northButton, southButton, gStartButton,
             menuButton, returnButton, saveButton, attrButton, awSmithButton, binghamButton, carltonButton, crawfordButton, eldredButton, elephantButton,
             glennanButton, kslButton, khsButton, nordButton, olinButton, pblButton, searsButton, thwingButton, tinkButton, tomlinsonButton, whiteButton,
@@ -35,6 +35,7 @@ public class GameScreen {
     Font introFont = new Font("Times New Roman", Font.PLAIN, 20);
     Font medFont = new Font("Times New Roman", Font.PLAIN, 40);
     Font mapFont = new Font("Times New Roman", Font.PLAIN, 12);
+    int time = 10;
 
     ImageIcon image;
     ScreenDescriptions roomTextDesc = new ScreenDescriptions(buildingName);
@@ -178,6 +179,15 @@ public class GameScreen {
 
         introTextPanel.add(introTextArea);
 
+        timePanel = new JPanel();
+        timePanel.setBounds(600,25,150,35);
+        timeLabel = new JLabel("Time Left: " + String.valueOf(time));
+        timeLabel.setBackground(Color.white);
+        timeLabel.setForeground(Color.darkGray);
+        timeLabel.setFont(normalFont);
+
+        timePanel.add(timeLabel);
+
         //Creates building description box
         buildingTextPanel = new JPanel();
         buildingName = "";
@@ -196,10 +206,12 @@ public class GameScreen {
         introTextPanel.setVisible(false);
         gStartButtonPanel.setVisible(false);
         buildingTextPanel.setVisible(false);
+        timePanel.setVisible(false);
 
         con.add(buildingTextPanel);
         con.add(introTextPanel);
         con.add(gStartButtonPanel);
+        con.add(timePanel);
     }
 
     //Following 4 methods initialize Buttons, the 1st method calls the following three methods
@@ -1177,6 +1189,7 @@ public class GameScreen {
         whiteButtonPanel.setVisible(true);
         wickendenButtonPanel.setVisible(true);
         yostButtonPanel.setVisible(true);
+        timePanel.setVisible(true);
     }
 
     public void displayNorthScreen(){
@@ -1423,6 +1436,11 @@ public class GameScreen {
         actionButtonPanel.setVisible(false);
     }
 
+    public void timePass(){
+        time--;
+        timeLabel.setText(("Time Left: " + String.valueOf(time)));
+    }
+
     //Scales an image to be a specific height and width
     private Image getScaledImage(Image srcImg, int w, int h){
         BufferedImage resizedImage = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
@@ -1631,7 +1649,7 @@ public class GameScreen {
                 buildingName = "Lecture";
                 createLectureScreen();
             }
-            if(taskNames.contains(buildingName)){//when player exercises, show the task completion screen
+            if(taskNames.contains(buildingName)){//when player completes a task, show the task completion screen
                 try {
                     displayCompletionScreen();
                 } catch (InterruptedException e) {
@@ -1641,6 +1659,11 @@ public class GameScreen {
 
             if(buildingNames.contains(buildingName)){
                 createBuildingScreen();
+            }
+
+            JButton[] menuButtonList = {menuButton, attrButton, taskButton, returnButton, saveButton};
+            if(!(containsButton(menuButtonList, event.getSource()))){
+                timePass();
             }
         }
     }
