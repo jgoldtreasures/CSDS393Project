@@ -35,7 +35,7 @@ public class GameScreen {
     Font introFont = new Font("Times New Roman", Font.PLAIN, 20);
     Font medFont = new Font("Times New Roman", Font.PLAIN, 40);
     Font mapFont = new Font("Times New Roman", Font.PLAIN, 12);
-    int time = 10;
+    Day d;
 
     ImageIcon image;
     ScreenDescriptions roomTextDesc = new ScreenDescriptions(buildingName);
@@ -58,6 +58,8 @@ public class GameScreen {
 
     public GameScreen() {
         //image home screen - intro, save, and load
+
+        d = new Day("Monday");
 
         createTitleScreen();
         createIntroScreen();
@@ -181,7 +183,7 @@ public class GameScreen {
 
         timePanel = new JPanel();
         timePanel.setBounds(600,25,150,35);
-        timeLabel = new JLabel("Time Left: " + String.valueOf(time));
+        timeLabel = new JLabel("Time: " + String.valueOf(d.getHour()));
         timeLabel.setBackground(Color.white);
         timeLabel.setForeground(Color.darkGray);
         timeLabel.setFont(normalFont);
@@ -1436,11 +1438,6 @@ public class GameScreen {
         actionButtonPanel.setVisible(false);
     }
 
-    public void timePass(){
-        time--;
-        timeLabel.setText(("Time Left: " + String.valueOf(time)));
-    }
-
     //Scales an image to be a specific height and width
     private Image getScaledImage(Image srcImg, int w, int h){
         BufferedImage resizedImage = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
@@ -1663,7 +1660,9 @@ public class GameScreen {
 
             JButton[] menuButtonList = {menuButton, attrButton, taskButton, returnButton, saveButton};
             if(!(containsButton(menuButtonList, event.getSource()))){
-                timePass();
+                d.useHours(1);
+                System.out.println(d.getHour());
+                timeLabel.setText("Time: " + String.valueOf(d.getHour()));
             }
         }
     }

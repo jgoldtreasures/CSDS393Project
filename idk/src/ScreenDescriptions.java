@@ -30,11 +30,16 @@ public class ScreenDescriptions{
                 description = "";
                 break;
             case ("Freshman Dorms"):
-                description = "";
+                description = "Includes buildings such as Taplin, Taft, Smith, " +
+                            "Raymond, Sherman, Tyler, Norton, Storrs, Pierce, " +
+                            "Hitchock, Cutler, Clark Tower, and Cutter";
                 break;
             case ("Glennan"): //electrical, computer and systems engineering, csds,
                 // meche and aerospace,
-                description = "";
+                description = "This building has the main offices of the electrical, " +
+                        "computer and systems engineering, computer and data science, " +
+                        "mechanical engineering, and aerospace engineering departments," +
+                        "as well as some classrooms and labs.";
                 break;
             case ("KSL"):
                 description = "This is the main library on CWRU's campus. This location" +
