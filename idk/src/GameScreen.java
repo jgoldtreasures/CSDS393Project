@@ -505,6 +505,8 @@ public class GameScreen {
         con.add(imagePanel);
         imagePanel.setVisible(false);
 
+
+
         menuButtonPanel.setVisible(false);
     }
     //initalizes buttons on northside
@@ -666,6 +668,8 @@ public class GameScreen {
         sophDormsButton.addActionListener(sHandler);
         sophDormsButtonPanel.add(sophDormsButton);
         con.add(sophDormsButtonPanel);
+
+
     }
     //initalizes buttons relating to tasks
     public void initializeTaskButtons(){
@@ -1054,7 +1058,6 @@ public class GameScreen {
 
     //tasks such as choose major, choose roommate, etc.
     public void createChoiceTaskScreen(){
-        hideEverything();
         actionButtonPanel.setVisible(false);
         imagePanel.setVisible(false);
 
