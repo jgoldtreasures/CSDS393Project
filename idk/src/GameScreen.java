@@ -58,8 +58,12 @@ public class GameScreen {
     List<String> mapNames = Arrays.asList("Quad", "Northside", "Southside");
     List<String> taskNames = Arrays.asList("Exercise", "Lecture");
 
+    int[] visited = new int[27];
+
+
     public static void main(String[] args){
         new GameScreen();
+
     }
 
     public GameScreen() {
@@ -1281,6 +1285,15 @@ public class GameScreen {
 
     }
 
+    public boolean campusTour(){
+        for(int i = 0; i < 27; i++){
+            if(visited[i] == 0){
+                return false;
+            }
+        }
+        return true;
+    }
+
     //creates a screen when a task is completed
     public void createCompletionScreen(){
         compPanel1 = new JPanel();
@@ -1331,6 +1344,10 @@ public class GameScreen {
 
     public void displayCompletionScreen() throws InterruptedException {
         TimeUnit.SECONDS.sleep(1/2);
+
+        hideEverything();
+
+
 
         compLabel3.setText(taskName);
         compLabel4.setText(reward);
@@ -1554,132 +1571,149 @@ public class GameScreen {
             if(event.getSource() == awSmithButton){ //Enter AW Smith
                 buildingName = "Smith";
                 buildingImage = "idk/resources/smith.jpg";
+                visited[0]++;
             }
             if(event.getSource() == binghamButton){ // Enter Bingham
                 buildingName = "Bingham";
                 buildingImage = "idk/resources/bingham.jpg";
+                visited[1]++;
             }
             if(event.getSource() == carltonButton){ // Enter Carlton Commons
                 buildingName = "Carlton";
                 buildingImage = "idk/resources/carlton.jpg";
                 actionButton.setText("Eat");
-                //createCarltonScreen();
+                visited[2]++;
             }
             if(event.getSource() == crawfordButton){ //Enter Crawford
                 buildingName = "Crawford";
                 buildingImage = "idk/resources/Crawford.jpg";
+                visited[3]++;
             }
             if(event.getSource() == denButton){ //The Den
                 buildingName = "Dennys";
                 buildingImage = "idk/resources/dennys.jpg";
                 actionButton.setText("Eat");
-                //createDenScreen();
+                visited[4]++;
             }
             if(event.getSource() == eldredButton){ //Enter Eldred
                 buildingName = "Eldred";
                 buildingImage = "idk/resources/eldred.jpg";
                 actionButton.setText("Practice acting");
-                //createEldredScreen();
+                visited[5]++;
             }
             if(event.getSource() == elephantButton){ //Elephant Stairs
                 buildingName = "Elephant";
                 buildingImage = "idk/resources/elephant.jpg";
                 actionButton.setText("Walk up steps");
-                //createElephantScreen();
+                visited[6]++;
             }
             if(event.getSource() == freshDormsButton){ //Freshman Dorms
                 buildingName = "Freshman Dorms";
                 buildingImage = "idk/resources/freshDorms.jfif";
                 actionButton.setText("Choose Roommate");
-                //createFreshmanDormsScreen();
+                visited[7]++;
             }
             if(event.getSource() == glennanButton){ //Enter Glennan
                 buildingName = "Glennan";
                 buildingImage = "idk/resources/glennan.jpg";
+                visited[8]++;
             }
             if(event.getSource() == khsButton){//Enter Kent Hale Smith, the Virus
                 buildingName = "KHS";
                 buildingImage = "idk/resources/KHS.jpeg";
+                visited[9]++;
             }
             if(event.getSource() == kslButton){//Enter KSL
                 buildingName = "KSL";
                 buildingImage = "idk/resources/KSL.jpg";
                 actionButton.setText("Study");
-                //createKSLScreen();
+                visited[10]++;
             }
             if(event.getSource() == leutnerButton){ //Leutner
                 buildingName = "Leutner";
                 buildingImage = "idk/resources/leutner.jfif";
                 actionButton.setText("Eat");
-                //createLeutnerScreen();
+                visited[11]++;
             }
             if(event.getSource() == millisButton){ //Move to Millis Schmidt
                 buildingName = "Millis";
                 buildingImage = "idk/resources/millis.jpg";
+                visited[12]++;
             }
             if(event.getSource() == nordButton){//Enter Nord
                 buildingName = "Nord";
                 buildingImage = "idk/resources/nord.jpg";
                 actionButton.setText("Choose Major");
-                //createNordScreen();
+                visited[13]++;
             }
             if(event.getSource() == olinButton){ //Enter Olin
                 buildingName = "Olin";
                 buildingImage = "idk/resources/olin.jpg";
+                visited[14]++;
             }
             if(event.getSource() == pblButton){ //Enter PBL
                 buildingName = "PBL";
                 buildingImage = "idk/resources/PBL.jpg";
                 actionButton.setText("Study");
-                //createPBLScreen();
+                visited[15]++;
             }
             if(event.getSource() == rockButton){ //Move to Rockefeller
                 buildingName = "Rockefeller";
                 buildingImage = "idk/resources/Rockefeller.jpg";
+                visited[16]++;
             }
             if(event.getSource() == searsButton){ //Enter Sears
                 buildingName = "Sears";
                 buildingImage = "idk/resources/Sears.jpg";
+                visited[17]++;
             }
             if(event.getSource() == sophDormsButton){ //Sophomore Dorms
                 buildingName = "Sophomore Dorms";
                 buildingImage = "idk/resources/southDorms.jfif";
+                visited[18]++;
             }
             if(event.getSource() == strosackerButton){ //Enter Strosacker
                 buildingName = "Strosacker";
                 buildingImage = "idk/resources/Strosacker.jpg";
                 actionButton.setText("Attend Lecture");
+                visited[19]++;
             }
             if(event.getSource() == thwingButton){ //Enter Thwing
                 buildingName = "Thwing";
                 buildingImage = "idk/resources/thwing.jpg";
+                visited[20]++;
             }
             if(event.getSource() == tinkButton){ //Enter Tink
                 buildingName = "Tink";
                 buildingImage = "idk/resources/tink.jpg";
                 actionButton.setText("Join Club");
-                //createTinkScreen();
+                visited[21]++;
             }
             if(event.getSource() == tomlinsonButton){ //Enter Tomlinson
                 buildingName = "Tomlinson";
                 buildingImage = "idk/resources/tomlinson.jpg";
+                visited[22]++;
             }
             if(event.getSource() == vealeButton){ //Go to Veale Gymnasium
                 buildingName = "Veale";
                 buildingImage = "idk/resources/Veale.jpg";
                 actionButton.setText("Exercise at Veale");
+                visited[23]++;
             }
             if(event.getSource() == whiteButton){ //enter White
                 buildingName = "White";
                 buildingImage = "idk/resources/white.jpg";
+                visited[24]++;
             }
             if(event.getSource() == wickendenButton){ //Enter Wickenden
                 buildingName = "Wickenden";
                 buildingImage = "idk/resources/Wickenden.jpg";
+                visited[25]++;
             }
             if(event.getSource() == yostButton){ //Enter Yost
                 buildingName = "Yost";
                 buildingImage = "idk/resources/yost.jpg";
+                visited[26]++;
             }
             if(event.getSource() == actionButton){
                 buildingTextPanel.setVisible(false);
@@ -1710,7 +1744,7 @@ public class GameScreen {
                 }
             }
             if(event.getSource() == ltextButton){
-                if(buildingName == "Roommate"){
+                if(buildingName == "Choose Roommate"){
                     g.getPlayer().setAttributeVal("Strength", g.getPlayer().getAttributeVal("Strength") + 1);
                     reward = "Strength increased by 1";
                 }
@@ -1751,6 +1785,9 @@ public class GameScreen {
                     e.printStackTrace();
                 }
             }
+
+
+            System.out.println(Arrays.toString(visited));
             if(event.getSource() == menuButton) { //open menu
                 buildingName = "Menu";
                 displayMenuScreen();
@@ -1788,6 +1825,18 @@ public class GameScreen {
                 if(event.getSource() != gStartButton) {
                     d.useHours(1);
                     timeLabel.setText("Time: " + String.valueOf(d.getHour()));
+                }
+            }
+
+            if(campusTour()){
+                System.out.println(5);
+                try {
+                    taskName = "Campus Tour";
+                    reward = "Good Job!";
+                    g.getCurrent().getTasks().get(0).setFinish();
+                    displayCompletionScreen();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
 

@@ -3,6 +3,7 @@ public class Task {
     private int[] rewards;
     private String name;
     private String instructions;
+    private boolean finish;
 
     public Task(String name, String instructions, int numActions, int[] rewards){
         this.name = name;
@@ -19,12 +20,11 @@ public class Task {
     }
 
     public boolean isFinished(){
-        for(int i = 0; i < actions.length; i++){
-            if(actions[i] == false){
-                return false;
-            }
-        }
-        return true;
+        return finish;
+    }
+
+    public void setFinish(){
+        finish  = true;
     }
 
     public int[] getRewards(){
