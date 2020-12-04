@@ -1240,6 +1240,30 @@ public class GameScreen {
             rtext2Label.setText("increases intelligence");
         }
 
+        else if(buildingName == "Major"){
+            limage = new ImageIcon("idk/resources/major1.jpg");
+            Image resizedImage = getScaledImage(limage.getImage(), 200, 200);
+            limage.setImage(resizedImage);
+            limageLabel.setIcon(limage);
+
+            cimage = new ImageIcon("idk/resources/major2.jpg");
+            resizedImage = getScaledImage(cimage.getImage(), 200, 200);
+            cimage.setImage(resizedImage);
+            cimageLabel.setIcon(cimage);
+
+            rimage = new ImageIcon("idk/resources/major3.jpg");
+            resizedImage = getScaledImage(rimage.getImage(), 200, 200);
+            rimage.setImage(resizedImage);
+            rimageLabel.setIcon(rimage);
+
+            ltextLabel.setText("Major 1");
+            ctextLabel.setText("Major 2");
+            rtextLabel.setText("Major 3");
+
+            ltext2Label.setText("Computer Science");
+            ctext2Label.setText("Pre Med");
+            rtext2Label.setText("Economics");
+        }
 
 
         limagePanel.setVisible(true);
@@ -1672,6 +1696,11 @@ public class GameScreen {
                     taskName = "Choose Roommate";
                     displayChoiceTaskScreen();
                 }
+                if(previousScreenName == "Nord"){
+                    buildingName = "Major";
+                    taskName = "Choose Major";
+                    displayChoiceTaskScreen();
+                }
             }
             if(event.getSource() == startExButton){
                 try {
@@ -1681,27 +1710,42 @@ public class GameScreen {
                 }
             }
             if(event.getSource() == ltextButton){
-                try {
+                if(buildingName == "Roommate"){
                     g.getPlayer().setAttributeVal("Strength", g.getPlayer().getAttributeVal("Strength") + 1);
                     reward = "Strength increased by 1";
+                }
+                else if(taskName == "Choose Major"){
+                    reward = "Chosen Computer Science Major";
+                }
+                try {
                     displayCompletionScreen();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
             if(event.getSource() == ctextButton){
-                try {
+                if(taskName == "Choose Roommate"){
                     g.getPlayer().setAttributeVal("SocialStanding", g.getPlayer().getAttributeVal("SocialStanding") + 1);
                     reward = "Social Standing increased by 1";
+                }
+                else if(taskName == "Choose Major"){
+                    reward = "Chosen Pre Med Major";
+                }
+                try {
                     displayCompletionScreen();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
             if(event.getSource() == rtextButton){
-                try {
+                if(taskName == "Choose Roommate"){
                     g.getPlayer().setAttributeVal("Intelligence", g.getPlayer().getAttributeVal("Intelligence") + 1);
                     reward = "Intelligence increased by 1";
+                }
+                else if(taskName == "Choose Major"){
+                    reward = "Chosen Economics Major";
+                }
+                try {
                     displayCompletionScreen();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
