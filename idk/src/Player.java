@@ -8,11 +8,10 @@ public class Player {
 
     public String[] attributeTitles = {"Health", "Hygiene", "Intelligence", "Strength", "SocialStanding"};
 
-    public Player(int xPos, int yPos,int[] status, int[] attArr){
+    public Player(int xPos, int yPos){
         this.xPos = xPos;
         this.yPos = yPos;
-        this.status = status;
-        this.attArr = attArr;
+        this.attArr = new int[]{1,1,1,1,1};
     }
 
     public int getX(){
@@ -31,6 +30,11 @@ public class Player {
     public int getAttributeVal(String attName){
         int indexInAtt = Arrays.asList(attributeTitles).indexOf(attName);
         return attArr[indexInAtt];
+    }
+
+    public void setAttributeVal(String attName, int attVal){
+        int indexInAtt = Arrays.asList(attributeTitles).indexOf(attName);
+        attArr[indexInAtt] = attVal;
     }
 
     public int[] getAttributes(){

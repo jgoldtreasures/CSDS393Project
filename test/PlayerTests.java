@@ -7,7 +7,7 @@ public class PlayerTests {
     int yVal = 50;
     int[] state = {0,0,0};
     int[] attValues = {0,0,0,0,0};
-    public Player p1 = new Player(xVal, yVal, state, attValues);
+    public Player p1 = new Player(xVal, yVal);
 
     @Test
     public void getPosTests(){

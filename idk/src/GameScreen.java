@@ -1266,6 +1266,12 @@ public class GameScreen {
     }
 
     public void displayAttrScreen(){
+        healthlabel.setText("Health: " + String.valueOf(g.getPlayer().getAttributeVal("Health")));
+        strengthlabel.setText("Strength: " + String.valueOf(g.getPlayer().getAttributeVal("Strength")));
+        hygienelabel.setText("Hygiene: " + String.valueOf(g.getPlayer().getAttributeVal("Hygiene")));
+        intelligencelabel.setText("Intelligence: " + String.valueOf(g.getPlayer().getAttributeVal("Intelligence")));
+        socialStandinglabel.setText("Social Standing: " + String.valueOf(g.getPlayer().getAttributeVal("SocialStanding")));
+
         menuPanel.setVisible(false);
         attrButtonPanel.setVisible(false);
         savePanel.setVisible(false);
@@ -1311,13 +1317,13 @@ public class GameScreen {
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
 
-        strengthlabel.setText("Strength: 2");
+        g.getPlayer().setAttributeVal("Strength", g.getPlayer().getAttributeVal("Strength") + 1);
         reward = "Strength increased by 1";
         taskName = "Exercise at Veale";
     }
 
     public void createLectureScreen(){
-        lectureButtonPanel.setVisible(false);
+        actionButtonPanel.setVisible(false);
         startExButtonPanel.setVisible(true);
 
         image = new ImageIcon("idk/resources/lecture.jpg");
@@ -1629,6 +1635,10 @@ public class GameScreen {
                 if(buildingName == "Veale"){
                     buildingName = "Exercise";
                     createExerciseScreen();
+                }
+                if(buildingName == "Strosacker"){
+                    buildingName = "Lecture";
+                    createLectureScreen();
                 }
             }
             if(event.getSource() == northButton){ //go to northside
