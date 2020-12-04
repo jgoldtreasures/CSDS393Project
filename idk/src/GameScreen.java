@@ -10,13 +10,12 @@ import javax.swing.*;
 
 public class GameScreen {
     public String screenName, taskName, reward, buildingName, buildingImage,
-            lastMapName, lastMapImage, previousScreenName, previousScreenImage;
+            previousScreenName, previousScreenImage;
 
     JFrame gameScreen;
     Container con;
     JPanel titleNamePanel, startButtonPanel, loadButtonPanel, imagePanel,introTextPanel, vealeButtonPanel,
-            mapButtonPanel, millisButtonPanel, rockButtonPanel, strosackerButtonPanel,
-            awSmithButtonPanel, binghamButtonPanel,
+            quadButtonPanel, millisButtonPanel, rockButtonPanel, strosackerButtonPanel, awSmithButtonPanel, binghamButtonPanel,
             carltonButtonPanel, crawfordButtonPanel, eldredButtonPanel, elephantButtonPanel, northButtonPanel, southButtonPanel, gStartButtonPanel,
             menuButtonPanel, returnPanel, savePanel, menuPanel, attrButtonPanel, attrPanel, healthPanel, hygienePanel, intelligencePanel,
             strengthPanel, socialStandingPanel, glennanButtonPanel, khsButtonPanel, kslButtonPanel, nordButtonPanel, olinButtonPanel, pblButtonPanel,
@@ -27,8 +26,7 @@ public class GameScreen {
             cimagePanel, rimagePanel, ltextPanel, ctextPanel, rtextPanel, ltextButtonPanel, ctextButtonPanel, rtextButtonPanel, continueButtonPanel;
     JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel1, compLabel2, compLabel3, compLabel4, task1Label,
             task2Label, timeLabel, limageLabel, cimageLabel, rimageLabel, ltextLabel, ctextLabel, rtextLabel;
-    JButton startButton, loadButton, vealeButton, mapButton, millisButton,
-            strosackerButton, rockButton, northButton, southButton, gStartButton,
+    JButton startButton, loadButton, vealeButton, quadButton, millisButton, strosackerButton, rockButton, northButton, southButton, gStartButton,
             menuButton, returnButton, saveButton, attrButton, awSmithButton, binghamButton, carltonButton, crawfordButton, eldredButton, elephantButton,
             glennanButton, kslButton, khsButton, nordButton, olinButton, pblButton, searsButton, thwingButton, tinkButton, tomlinsonButton, whiteButton,
             wickendenButton, yostButton, exerciseButton, startExButton, lectureButton, moveToQuadButton, denButton, taskButton,
@@ -456,19 +454,19 @@ public class GameScreen {
         yostButtonPanel.add(yostButton);
         con.add(yostButtonPanel);
 
-        //Return to map (from a building)
-        mapButtonPanel = new JPanel();
-        mapButtonPanel.setVisible(false);
-        mapButtonPanel.setBounds(100, 100, 180, 50);
-        mapButton = new JButton("Return to Map");
-        mapButton.setBackground(Color.white);
-        mapButton.setForeground(Color.darkGray);
-        mapButton.setFont(normalFont);
-        mapButtonPanel.setVisible(false);
+        //Return to quad (from a building)
+        quadButtonPanel = new JPanel();
+        quadButtonPanel.setVisible(false);
+        quadButtonPanel.setBounds(100, 100, 180, 50);
+        quadButton = new JButton("Return to Quad");
+        quadButton.setBackground(Color.white);
+        quadButton.setForeground(Color.darkGray);
+        quadButton.setFont(normalFont);
+        quadButtonPanel.setVisible(false);
 
-        mapButton.addActionListener(sHandler);
-        mapButtonPanel.add(mapButton);
-        con.add(mapButtonPanel);
+        quadButton.addActionListener(sHandler);
+        quadButtonPanel.add(quadButton);
+        con.add(quadButtonPanel);
 
         //North or South to quad
         moveToQuadButtonPanel = new JPanel();
@@ -730,7 +728,7 @@ public class GameScreen {
     //Following method creates the general building screen
     public void displayBuildingScreen(){
         hideEverything();
-        mapButtonPanel.setVisible(true);
+        quadButtonPanel.setVisible(true);
         menuButtonPanel.setVisible(true);
         String roomTextDesc = new ScreenDescriptions(buildingName).returnDesc();
 
@@ -972,7 +970,24 @@ public class GameScreen {
 
     public void displayMenuScreen(){
         imagePanel.setVisible(false);
-        hideEverything();
+        quadButtonPanel.setVisible(false);
+        buildingTextPanel.setVisible(false);
+        hideBuildingButtons();
+        hideTaskButtons();
+        menuButtonPanel.setVisible(false);
+        attrPanel.setVisible(false);
+        healthPanel.setVisible(false);
+        hygienePanel.setVisible(false);
+        intelligencePanel.setVisible(false);
+        strengthPanel.setVisible(false);
+        socialStandingPanel.setVisible(false);
+        compPanel1.setVisible(false);
+        compPanel2.setVisible(false);
+        compPanel3.setVisible(false);
+        compPanel4.setVisible(false);
+        taskPanel.setVisible(false);
+        task1Panel.setVisible(false);
+        task2Panel.setVisible(false);
 
         menuPanel.setVisible(true);
         savePanel.setVisible(true);
@@ -981,8 +996,6 @@ public class GameScreen {
         taskButtonPanel.setVisible(true);
     }
 
-    //While in the menu, clicking on the attribute button will display this screen
-    //This screen will list the players current attributes
     public void displayAttrScreen(){
         healthlabel.setText("Health: " + String.valueOf(g.getPlayer().getAttributeVal("Health")));
         strengthlabel.setText("Strength: " + String.valueOf(g.getPlayer().getAttributeVal("Strength")));
@@ -1004,8 +1017,6 @@ public class GameScreen {
         menuButtonPanel.setVisible(true);
     }
 
-    //While in the menu, clicking on the task button will display this screen
-    //This screen will list the current tasks
     public void displayTaskScreen(){
         ArrayList<Task> tasks = g.getCurrent().getTasks();
 
@@ -1023,8 +1034,7 @@ public class GameScreen {
         menuButtonPanel.setVisible(true);
     }
 
-    //This will change the room to display task rooms like the "Exercise" or "Lecture"
-    // rooms
+    //
     public void displayCurrentTaskScreen(){
         //I want to either move screen initializations to a new class to call
         //I want to give tasks and building buttons different handlers. They'll do the same thing but it'll be easier
@@ -1174,7 +1184,7 @@ public class GameScreen {
     }
 
     public void displayChoiceTaskScreen(){
-
+        
     }
 
     //creates a screen when a task is completed
@@ -1231,8 +1241,8 @@ public class GameScreen {
         compLabel3.setText(taskName);
         compLabel4.setText(reward);
 
-        startExButtonPanel.setVisible(false);
         imagePanel.setVisible(false);
+        startExButtonPanel.setVisible(false);
 
         compPanel1.setVisible(true);
         compPanel2.setVisible(true);
@@ -1243,6 +1253,7 @@ public class GameScreen {
     public void winScreen(){
         hideEverything();
         menuButtonPanel.setVisible(false);
+        quadButtonPanel.setVisible(false);
         timePanel.setVisible(false);
         buildingTextPanel.setVisible(false);
 
@@ -1258,6 +1269,7 @@ public class GameScreen {
     public void loseScreen(){
         hideEverything();
         menuButtonPanel.setVisible(false);
+        quadButtonPanel.setVisible(false);
         timePanel.setVisible(false);
         buildingTextPanel.setVisible(false);
 
@@ -1321,7 +1333,7 @@ public class GameScreen {
 
     //hides all building related buttons
     public void hideBuildingButtons(){
-        mapButtonPanel.setVisible(false);
+        quadButtonPanel.setVisible(false);
         moveToQuadButtonPanel.setVisible(false);
         southButtonPanel.setVisible(false);
         northButtonPanel.setVisible(false);
@@ -1360,11 +1372,6 @@ public class GameScreen {
         task1Panel.setVisible(false);
         task2Panel.setVisible(false);
 
-        compPanel1.setVisible(false);
-        compPanel2.setVisible(false);
-        compPanel3.setVisible(false);
-        compPanel4.setVisible(false);
-
         lectureButtonPanel.setVisible(false);
         exerciseButtonPanel.setVisible(false);
         startExButtonPanel.setVisible(false);
@@ -1374,14 +1381,6 @@ public class GameScreen {
 
     //hides all menu related button, used so that 'return' will go to previous screen
     public void hideMenuButtons(){
-        menuButtonPanel.setVisible(false);
-        attrPanel.setVisible(false);
-        healthPanel.setVisible(false);
-        hygienePanel.setVisible(false);
-        intelligencePanel.setVisible(false);
-        strengthPanel.setVisible(false);
-        socialStandingPanel.setVisible(false);
-
         menuPanel.setVisible(false);
         savePanel.setVisible(false);
         returnPanel.setVisible(false);
@@ -1418,25 +1417,27 @@ public class GameScreen {
     public class ScreenHandler implements ActionListener{
         public void actionPerformed(ActionEvent event){
             //Need to add a manner which differentiates between start/load
+
             buildingName = "";
+
             imagePanel.setBounds(-10,-10,800,600);
 
             if(event.getSource() == startButton){ //Display the introduction
                 displayIntroScreen();
             }
             //Move to quad from intro screen, building, map, or menu
-            JButton[] quadButtonList = {gStartButton,moveToQuadButton};
+            JButton[] quadButtonList = {gStartButton,quadButton,moveToQuadButton};
             if(containsButton(quadButtonList, event.getSource())){
-                lastMapName = buildingName = "Quad";
-                lastMapImage = buildingImage = "idk/resources/CWRUquadDots.jpg";
+                buildingName = "Quad";
+                buildingImage = "idk/resources/CWRUquadDots.jpg";
             }
             if(event.getSource() == northButton){ //go to northside
-                lastMapName = buildingName = "Northside";
-                lastMapImage = buildingImage = "idk/resources/CWRUnorthDots.jpg";
+                buildingName = "Northside";
+                buildingImage = "idk/resources/CWRUnorthDots.jpg";
             }
             if(event.getSource() == southButton){ //go to southside
-                lastMapName = buildingName = "Southside";
-                lastMapImage = buildingImage = "idk/resources/CWRUsouthDots.jpg";
+                buildingName = "Southside";
+                buildingImage = "idk/resources/CWRUsouthDots.jpg";
             }
             if(event.getSource() == awSmithButton){ //Enter AW Smith
                 buildingName = "Smith";
@@ -1450,6 +1451,7 @@ public class GameScreen {
                 buildingName = "Carlton";
                 buildingImage = "idk/resources/carlton.jpg";
                 actionButton.setText("Eat");
+                //createCarltonScreen();
             }
             if(event.getSource() == crawfordButton){ //Enter Crawford
                 buildingName = "Crawford";
@@ -1459,21 +1461,25 @@ public class GameScreen {
                 buildingName = "Dennys";
                 buildingImage = "idk/resources/dennys.jpg";
                 actionButton.setText("Eat");
+                //createDenScreen();
             }
             if(event.getSource() == eldredButton){ //Enter Eldred
                 buildingName = "Eldred";
                 buildingImage = "idk/resources/eldred.jpg";
                 actionButton.setText("Practice acting");
+                //createEldredScreen();
             }
             if(event.getSource() == elephantButton){ //Elephant Stairs
                 buildingName = "Elephant";
                 buildingImage = "idk/resources/elephant.jpg";
                 actionButton.setText("Walk up steps");
+                //createElephantScreen();
             }
             if(event.getSource() == freshDormsButton){ //Freshman Dorms
                 buildingName = "Freshman Dorms";
                 buildingImage = "idk/resources/freshDorms.jfif";
                 actionButton.setText("Choose Roommate");
+                //createFreshmanDormsScreen();
             }
             if(event.getSource() == glennanButton){ //Enter Glennan
                 buildingName = "Glennan";
@@ -1487,11 +1493,13 @@ public class GameScreen {
                 buildingName = "KSL";
                 buildingImage = "idk/resources/KSL.jpg";
                 actionButton.setText("Study");
+                //createKSLScreen();
             }
             if(event.getSource() == leutnerButton){ //Leutner
                 buildingName = "Leutner";
                 buildingImage = "idk/resources/leutner.jfif";
                 actionButton.setText("Eat");
+                //createLeutnerScreen();
             }
             if(event.getSource() == millisButton){ //Move to Millis Schmidt
                 buildingName = "Millis";
@@ -1511,6 +1519,7 @@ public class GameScreen {
                 buildingName = "PBL";
                 buildingImage = "idk/resources/PBL.jpg";
                 actionButton.setText("Study");
+                //createPBLScreen();
             }
             if(event.getSource() == rockButton){ //Move to Rockefeller
                 buildingName = "Rockefeller";
@@ -1577,7 +1586,6 @@ public class GameScreen {
             }
             if(event.getSource() == startExButton){
                 try {
-                    buildingName = "Completion Screen";
                     displayCompletionScreen();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -1590,10 +1598,6 @@ public class GameScreen {
             if(event.getSource() == returnButton){ //return to previous screen
                 buildingName = previousScreenName;
                 buildingImage = previousScreenImage;
-            }
-            if(event.getSource() == mapButton){ //return to map from a building
-                buildingName = lastMapName;
-                buildingImage = lastMapImage;
             }
             if(event.getSource() == saveButton){
 
