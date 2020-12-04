@@ -51,6 +51,7 @@ public class GameScreen {
             "Leutner", "Millis", "Nord", "Olin", "PBL", "Rockefeller", "Sears", "Smith",
             "Sophomore Dorms", "Strosacker", "Thwing", "Tink", "Tomlinson", "Veale",
             "White", "Wickenden","Yost");
+    List<String> mapNames = Arrays.asList("Quad", "Northside", "Southside");
 
     List<String> taskNames = Arrays.asList("Exercise", "Lecture");
 
@@ -675,7 +676,7 @@ public class GameScreen {
     }
 
     //Following method creates the general building screen
-    public void createBuildingScreen(){
+    public void displayBuildingScreen(){
         hideEverything();
         quadButtonPanel.setVisible(true);
         menuButtonPanel.setVisible(true);
@@ -745,7 +746,6 @@ public class GameScreen {
         menuLabel.setFont(titleFont);
         menuLabel.setForeground(Color.white);
 
-
         taskButtonPanel = new JPanel();
         taskButtonPanel.setBounds(275, 300,200, 50);
         taskButton = new JButton("Task List");
@@ -803,7 +803,6 @@ public class GameScreen {
     }
 
     public void createAttributesScreen(){
-        //menuButtonPanel.setVisible(true);
         attrPanel = new JPanel();
         attrPanel.setBounds(250,100,300,50);
         attrPanel.setBackground(Color.DARK_GRAY);
@@ -878,93 +877,44 @@ public class GameScreen {
     }
 
     //following methods respectively display the quad, northside, southside, menu, and attribute windows
-    public void displayQuadScreen(){
-        introTextPanel.setVisible(false);
+    public void displayMapScreen(){
+        hideEverything();
         buildingTextPanel.setVisible(false);
 
-        imagePanel.setVisible(false);
-        quadButtonPanel.setVisible(false);
-        gStartButtonPanel.setVisible(false);
-        menuPanel.setVisible(false);
-        savePanel.setVisible(false);
-        returnPanel.setVisible(false);
-        attrButtonPanel.setVisible(false);
-        taskButtonPanel.setVisible(false);
-        compPanel1.setVisible(false);
-        compPanel2.setVisible(false);
-        compPanel3.setVisible(false);
-        compPanel4.setVisible(false);
-        hideBuildingButtons();
-
-        image = new ImageIcon("idk/resources/CWRUquadDots.jpg");
+        image = new ImageIcon(buildingImage);
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
 
-        imageLabel.setIcon(image);
+        switch(buildingName) {
+            case "Quad":
+                introTextPanel.setVisible(false);
+                gStartButtonPanel.setVisible(false);
+
+                image.setImage(resizedImage);
+                imageLabel.setIcon(image);
+                displayQuadBuildings();
+                break;
+            case "Northside":
+                imagePanel.setBounds(-10, 45, 800, 600);
+                moveToQuadButtonPanel.setBounds(700, 355, 55, 25);
+                resizedImage = getScaledImage(image.getImage(), 800, 450);
+                image.setImage(resizedImage);
+                imageLabel.setIcon(image);
+                displayNorthBuildings();
+                break;
+            case "Southside":
+                moveToQuadButtonPanel.setBounds(350,530,55,25);
+                resizedImage = getScaledImage(image.getImage(), 518, 585);
+                image.setImage(resizedImage);
+                imageLabel.setIcon(image);
+                displaySouthBuildings();
+                break;
+        }
 
         imagePanel.setVisible(true);
-        vealeButtonPanel.setVisible(true);
-        millisButtonPanel.setVisible(true);
-        rockButtonPanel.setVisible(true);
-        strosackerButtonPanel.setVisible(true);
-        menuButtonPanel.setVisible(true);
-        northButtonPanel.setVisible(true);
-        southButtonPanel.setVisible(true);
-        awSmithButtonPanel.setVisible(true);
-        binghamButtonPanel.setVisible(true);
-        crawfordButtonPanel.setVisible(true);
-        eldredButtonPanel.setVisible(true);
-        glennanButtonPanel.setVisible(true);
-        khsButtonPanel.setVisible(true);
-        nordButtonPanel.setVisible(true);
-        olinButtonPanel.setVisible(true);
-        searsButtonPanel.setVisible(true);
-        tomlinsonButtonPanel.setVisible(true);
-        whiteButtonPanel.setVisible(true);
-        wickendenButtonPanel.setVisible(true);
-        yostButtonPanel.setVisible(true);
         timePanel.setVisible(true);
-    }
 
-    public void displayNorthScreen(){
-        hideBuildingButtons();
-        buildingTextPanel.setVisible(false);
-
-        imagePanel.setBounds(-10,45, 800,600);
-        moveToQuadButtonPanel.setBounds(700,355,55,25);
-
-        image = new ImageIcon("idk/resources/CWRUnorthDots.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 450);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-
-        denButtonPanel.setVisible(true);
-        freshDormsButtonPanel.setVisible(true);
-        leutnerButtonPanel.setVisible(true);
-        tinkButtonPanel.setVisible(true);
-        thwingButtonPanel.setVisible(true);
-        kslButtonPanel.setVisible(true);
-        pblButtonPanel.setVisible(true);
-        moveToQuadButtonPanel.setVisible(true);
-        imagePanel.setVisible(true);
-    }
-
-    public void displaySouthScreen(){
-        hideBuildingButtons();
-        buildingTextPanel.setVisible(false);
-
-        moveToQuadButtonPanel.setBounds(350,530,55,25);
-
-        image = new ImageIcon("idk/resources/CWRUsouthDots.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 518, 585);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-
-        sophDormsButtonPanel.setVisible(true);
-        carltonButtonPanel.setVisible(true);
-        elephantButtonPanel.setVisible(true);
-        moveToQuadButtonPanel.setVisible(true);
-        imagePanel.setVisible(true);
+        previousScreenName = buildingName;
+        previousScreenImage = buildingImage;
     }
 
     public void displayMenuScreen(){
@@ -1128,6 +1078,48 @@ public class GameScreen {
         compPanel4.setVisible(true);
     }
 
+    public void displayQuadBuildings(){
+        imagePanel.setVisible(true);
+        vealeButtonPanel.setVisible(true);
+        millisButtonPanel.setVisible(true);
+        rockButtonPanel.setVisible(true);
+        strosackerButtonPanel.setVisible(true);
+        menuButtonPanel.setVisible(true);
+        northButtonPanel.setVisible(true);
+        southButtonPanel.setVisible(true);
+        awSmithButtonPanel.setVisible(true);
+        binghamButtonPanel.setVisible(true);
+        crawfordButtonPanel.setVisible(true);
+        eldredButtonPanel.setVisible(true);
+        glennanButtonPanel.setVisible(true);
+        khsButtonPanel.setVisible(true);
+        nordButtonPanel.setVisible(true);
+        olinButtonPanel.setVisible(true);
+        searsButtonPanel.setVisible(true);
+        tomlinsonButtonPanel.setVisible(true);
+        whiteButtonPanel.setVisible(true);
+        wickendenButtonPanel.setVisible(true);
+        yostButtonPanel.setVisible(true);
+    }
+
+    public void displayNorthBuildings(){
+        denButtonPanel.setVisible(true);
+        freshDormsButtonPanel.setVisible(true);
+        leutnerButtonPanel.setVisible(true);
+        tinkButtonPanel.setVisible(true);
+        thwingButtonPanel.setVisible(true);
+        kslButtonPanel.setVisible(true);
+        pblButtonPanel.setVisible(true);
+        moveToQuadButtonPanel.setVisible(true);
+    }
+
+    public void displaySouthBuildings(){
+        sophDormsButtonPanel.setVisible(true);
+        carltonButtonPanel.setVisible(true);
+        elephantButtonPanel.setVisible(true);
+        moveToQuadButtonPanel.setVisible(true);
+    }
+
     public void hideEverything(){
         hideBuildingButtons();
         hideTaskButtons();
@@ -1241,8 +1233,16 @@ public class GameScreen {
             //Move to quad from intro screen, building, map, or menu
             JButton[] quadButtonList = {gStartButton,quadButton,moveToQuadButton};
             if(containsButton(quadButtonList, event.getSource())){
-                buildingName = "quad";
-                displayQuadScreen();
+                buildingName = "Quad";
+                buildingImage = "idk/resources/CWRUquadDots.jpg";
+            }
+            if(event.getSource() == northButton){ //go to northside
+                buildingName = "Northside";
+                buildingImage = "idk/resources/CWRUnorthDots.jpg";
+            }
+            if(event.getSource() == southButton){ //go to southside
+                buildingName = "Southside";
+                buildingImage = "idk/resources/CWRUsouthDots.jpg";
             }
             if(event.getSource() == awSmithButton){ //Enter AW Smith
                 buildingName = "Smith";
@@ -1360,16 +1360,10 @@ public class GameScreen {
                     buildingName = "Exercise";
                     createExerciseScreen();
                 }
-                if(buildingName == "Strosacker"){
+                if(buildingName.equals("Strosacker")){
                     buildingName = "Lecture";
                     createLectureScreen();
                 }
-            }
-            if(event.getSource() == northButton){ //go to northside
-                displayNorthScreen();
-            }
-            if(event.getSource() == southButton){ //go to southside
-                displaySouthScreen();
             }
             if(event.getSource() == menuButton) { //open menu
                 buildingName = "menu";
@@ -1388,8 +1382,12 @@ public class GameScreen {
             if(event.getSource() == taskButton){ //show attributes
                 displayTaskScreen();
             }
+
             if(buildingNames.contains(buildingName)){
-                createBuildingScreen();
+                displayBuildingScreen();
+            }
+            if(mapNames.contains(buildingName)){
+                displayMapScreen();
             }
 
             JButton[] menuButtonList = {menuButton, attrButton, taskButton, returnButton, saveButton};
