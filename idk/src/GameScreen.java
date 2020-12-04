@@ -234,6 +234,7 @@ public class GameScreen {
 
         //Veale Button
         vealeButtonPanel = new JPanel();
+        vealeButtonPanel.setVisible(false);
         vealeButtonPanel.setBounds(615, 100,50, 25);
         vealeButton = new JButton("Veale");
         vealeButton.setBackground(Color.darkGray);
@@ -246,6 +247,7 @@ public class GameScreen {
 
         //Millis Button
         millisButtonPanel = new JPanel();
+        millisButtonPanel.setVisible(false);
         millisButtonPanel.setBounds(272, 230,50, 25);
         millisButton = new JButton("Millis");
         millisButton.setBackground(Color.darkGray);
@@ -258,6 +260,7 @@ public class GameScreen {
 
         //Rockefeller Button
         rockButtonPanel = new JPanel();
+        rockButtonPanel.setVisible(false);
         rockButtonPanel.setBounds(287, 320,70, 25);
         rockButton = new JButton("Rockefeller");
         rockButton.setBackground(Color.darkGray);
@@ -270,6 +273,7 @@ public class GameScreen {
 
         //Strosacker Button
         strosackerButtonPanel = new JPanel();
+        strosackerButtonPanel.setVisible(false);
         strosackerButtonPanel.setBounds(327, 280,70, 25);
         strosackerButton = new JButton("Strosacker");
         strosackerButton.setBackground(Color.darkGray);
@@ -282,6 +286,7 @@ public class GameScreen {
 
         //AW Smith Button
         awSmithButtonPanel = new JPanel();
+        awSmithButtonPanel.setVisible(false);
         awSmithButtonPanel.setBounds(367, 230,70, 25);
         awSmithButton = new JButton("AW Smith");
         awSmithButton.setBackground(Color.darkGray);
@@ -294,6 +299,7 @@ public class GameScreen {
 
         //Bingham Button
         binghamButtonPanel = new JPanel();
+        binghamButtonPanel.setVisible(false);
         binghamButtonPanel.setBounds(452, 220,70, 25);
         binghamButton = new JButton("Bingham");
         binghamButton.setBackground(Color.darkGray);
@@ -306,6 +312,7 @@ public class GameScreen {
 
         //Crawford Button
         crawfordButtonPanel = new JPanel();
+        crawfordButtonPanel.setVisible(false);
         crawfordButtonPanel.setBounds(130, 505,70, 25);
         crawfordButton = new JButton("Crawford");
         crawfordButton.setBackground(Color.darkGray);
@@ -318,6 +325,7 @@ public class GameScreen {
 
         //Eldred Button
         eldredButtonPanel = new JPanel();
+        eldredButtonPanel.setVisible(false);
         eldredButtonPanel.setBounds(219, 315,65, 25);
         eldredButton = new JButton("Eldred");
         eldredButton.setBackground(Color.darkGray);
@@ -330,6 +338,7 @@ public class GameScreen {
 
         //Glennan Button
         glennanButtonPanel = new JPanel();
+        glennanButtonPanel.setVisible(false);
         glennanButtonPanel.setBounds(572, 260,70, 25);
         glennanButton = new JButton("Glennan");
         glennanButton.setBackground(Color.darkGray);
@@ -342,6 +351,7 @@ public class GameScreen {
 
         //Virus Button
         khsButtonPanel = new JPanel();
+        khsButtonPanel.setVisible(false);
         khsButtonPanel.setBounds(319, 210,50, 25);
         khsButton = new JButton("KHS");
         khsButton.setBackground(Color.darkGray);
@@ -354,6 +364,7 @@ public class GameScreen {
 
         //Nord Button
         nordButtonPanel = new JPanel();
+        nordButtonPanel.setVisible(false);
         nordButtonPanel.setBounds(422, 347,50, 25);
         nordButton = new JButton("Nord");
         nordButton.setBackground(Color.darkGray);
@@ -366,6 +377,7 @@ public class GameScreen {
 
         //Olin Button
         olinButtonPanel = new JPanel();
+        olinButtonPanel.setVisible(false);
         olinButtonPanel.setBounds(502, 313,50, 25);
         olinButton = new JButton("Olin");
         olinButton.setBackground(Color.darkGray);
@@ -378,6 +390,7 @@ public class GameScreen {
 
         //Sears Button
         searsButtonPanel = new JPanel();
+        searsButtonPanel.setVisible(false);
         searsButtonPanel.setBounds(442, 320,50, 25);
         searsButton = new JButton("Sears");
         searsButton.setBackground(Color.darkGray);
@@ -390,6 +403,7 @@ public class GameScreen {
 
         //Tomlinson Button
         tomlinsonButtonPanel = new JPanel();
+        tomlinsonButtonPanel.setVisible(false);
         tomlinsonButtonPanel.setBounds(242, 485,70, 25);
         tomlinsonButton = new JButton("Tomlinson");
         tomlinsonButton.setBackground(Color.darkGray);
@@ -402,6 +416,7 @@ public class GameScreen {
 
         //White Button
         whiteButtonPanel = new JPanel();
+        whiteButtonPanel.setVisible(false);
         whiteButtonPanel.setBounds(517, 287,50, 25);
         whiteButton = new JButton("White");
         whiteButton.setBackground(Color.darkGray);
@@ -414,6 +429,7 @@ public class GameScreen {
 
         //Wickenden Button
         wickendenButtonPanel = new JPanel();
+        wickendenButtonPanel.setVisible(false);
         wickendenButtonPanel.setBounds(342, 385,70, 25);
         wickendenButton = new JButton("Wickenden");
         wickendenButton.setBackground(Color.darkGray);
@@ -426,6 +442,7 @@ public class GameScreen {
 
         //Yost Button
         yostButtonPanel = new JPanel();
+        yostButtonPanel.setVisible(false);
         yostButtonPanel.setBounds(287, 440,50, 25);
         yostButton = new JButton("Yost");
         yostButton.setBackground(Color.darkGray);
@@ -438,6 +455,7 @@ public class GameScreen {
 
         //Return to quad (from a building)
         quadButtonPanel = new JPanel();
+        quadButtonPanel.setVisible(false);
         quadButtonPanel.setBounds(100, 100, 180, 50);
         quadButton = new JButton("Return to Quad");
         quadButton.setBackground(Color.white);
@@ -451,6 +469,7 @@ public class GameScreen {
 
         //North or South to quad
         moveToQuadButtonPanel = new JPanel();
+        moveToQuadButtonPanel.setVisible(false);
         moveToQuadButtonPanel.setBounds(650,355,55,25);
         moveToQuadButton = new JButton("Quad");
         moveToQuadButton.setBackground(Color.darkGray);
@@ -474,6 +493,7 @@ public class GameScreen {
     public void northButtonsInit(){
         //Go to northside button
         northButtonPanel = new JPanel();
+        northButtonPanel.setVisible(false);
         northButtonPanel.setBounds(25, 425,70, 25);
         northButton = new JButton("Northside");
         northButton.setBackground(Color.darkGray);
@@ -486,6 +506,7 @@ public class GameScreen {
 
         //Denny's
         denButtonPanel = new JPanel();
+        denButtonPanel.setVisible(false);
         denButtonPanel.setBounds(220, 140,50, 25);
         denButton = new JButton("Den");
         denButton.setBackground(Color.darkGray);
@@ -498,6 +519,7 @@ public class GameScreen {
 
         //Freshman Dorms
         freshDormsButtonPanel = new JPanel();
+        freshDormsButtonPanel.setVisible(false);
         freshDormsButtonPanel.setBounds(120, 110,120, 25);
         freshDormsButton = new JButton("Freshman Dorms");
         freshDormsButton.setBackground(Color.darkGray);
@@ -510,6 +532,7 @@ public class GameScreen {
 
         //Leutner
         leutnerButtonPanel = new JPanel();
+        leutnerButtonPanel.setVisible(false);
         leutnerButtonPanel.setBounds(80, 130,65, 25);
         leutnerButton = new JButton("Leutner");
         leutnerButton.setBackground(Color.darkGray);
@@ -522,6 +545,7 @@ public class GameScreen {
 
         //PBL
         pblButtonPanel = new JPanel();
+        pblButtonPanel.setVisible(false);
         pblButtonPanel.setBounds(395, 290,55, 25);
         pblButton = new JButton("PBL");
         pblButton.setBackground(Color.darkGray);
@@ -534,6 +558,7 @@ public class GameScreen {
 
         //Thwing
         thwingButtonPanel = new JPanel();
+        thwingButtonPanel.setVisible(false);
         thwingButtonPanel.setBounds(605, 315,60, 25);
         thwingButton = new JButton("Thwing");
         thwingButton.setBackground(Color.darkGray);
@@ -546,6 +571,7 @@ public class GameScreen {
 
         //Tink
         tinkButtonPanel = new JPanel();
+        tinkButtonPanel.setVisible(false);
         tinkButtonPanel.setBounds(540, 355,55, 25);
         tinkButton = new JButton("TVU");
         tinkButton.setBackground(Color.darkGray);
@@ -558,6 +584,7 @@ public class GameScreen {
 
         //KSL
         kslButtonPanel = new JPanel();
+        kslButtonPanel.setVisible(false);
         kslButtonPanel.setBounds(615, 430,55, 25);
         kslButton = new JButton("KSL");
         kslButton.setBackground(Color.darkGray);
@@ -572,6 +599,7 @@ public class GameScreen {
     public void southButtonsInit(){
         //Go to southside button
         southButtonPanel = new JPanel();
+        southButtonPanel.setVisible(false);
         southButtonPanel.setBounds(375, 25,70, 25);
         southButton = new JButton("Southside");
         southButton.setBackground(Color.darkGray);
@@ -584,6 +612,7 @@ public class GameScreen {
 
         //Carlton Commons
         carltonButtonPanel = new JPanel();
+        carltonButtonPanel.setVisible(false);
         carltonButtonPanel.setBounds(575, 405,60, 25);
         carltonButton = new JButton("Carlton");
         carltonButton.setBackground(Color.darkGray);
@@ -596,6 +625,7 @@ public class GameScreen {
 
         //Elephant Stairs
         elephantButtonPanel = new JPanel();
+        elephantButtonPanel.setVisible(false);
         elephantButtonPanel.setBounds(455, 435,70, 25);
         elephantButton = new JButton("Elephant Stairs");
         elephantButton.setBackground(Color.darkGray);
@@ -608,6 +638,7 @@ public class GameScreen {
 
         //Sophomore Button
         sophDormsButtonPanel = new JPanel();
+        sophDormsButtonPanel.setVisible(false);
         sophDormsButtonPanel.setBounds(500, 250,120, 25);
         sophDormsButton = new JButton("Sophomore Dorms");
         sophDormsButton.setBackground(Color.darkGray);
@@ -621,6 +652,7 @@ public class GameScreen {
     //initalizes buttons relating to tasks
     public void initializeTaskButtons(){
         actionButtonPanel = new JPanel();
+        actionButtonPanel.setVisible(false);
         actionButtonPanel.setBounds(100, 150,180, 50);
         actionButton = new JButton("");
         actionButton.setBackground(Color.white);
@@ -633,6 +665,7 @@ public class GameScreen {
 
         //Exercise Task Room Change
         exerciseButtonPanel = new JPanel();
+        exerciseButtonPanel.setVisible(false);
         exerciseButtonPanel.setBounds(100, 150,180, 50);
         exerciseButton = new JButton("Exercise at Veale");
         exerciseButton.setBackground(Color.white);
@@ -645,6 +678,7 @@ public class GameScreen {
 
         //Start Exercise Task
         startExButtonPanel = new JPanel();
+        startExButtonPanel.setVisible(false);
         startExButtonPanel.setBounds(300, 300 ,150, 50);
         startExButton = new JButton("Start");
         startExButton.setBackground(Color.darkGray);
@@ -657,6 +691,7 @@ public class GameScreen {
 
         //Change to lecture room
         lectureButtonPanel = new JPanel();
+        lectureButtonPanel.setVisible(false);
         lectureButtonPanel.setBounds(100, 150,180, 50);
         lectureButton = new JButton("Attend Lecture");
         lectureButton.setBackground(Color.white);
