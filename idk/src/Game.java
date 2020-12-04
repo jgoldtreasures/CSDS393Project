@@ -12,6 +12,7 @@ public class Game{
     private Level Junior;
     private Level Senior;
     private Level current;
+    private String level;
 
     public Game(){
         //Building b needs to be changed
@@ -36,6 +37,7 @@ public class Game{
         Senior.addTask("Complete Capstone", "Go to you major's specific buildings and complete your major's specific objectives to graduate!", 6, new int[]{2,2,2,2,2});
 
         current = Freshman;
+        level = "Freshman";
     }
     public Level getFreshman(){return Freshman;}
 
@@ -146,4 +148,25 @@ public class Game{
     }
 
     public Level getCurrent(){return current;}
+
+    public boolean nextLevel(){
+        if(level == "Freshman"){
+            current = Sophomore;
+            level = "Sophomore";
+            return false;
+        }
+        else if(level == "Sophomore"){
+            current = Junior;
+            level = "Junior";
+            return false;
+        }
+        else if(level == "Junior"){
+            current = Senior;
+            level = "Senior";
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 }

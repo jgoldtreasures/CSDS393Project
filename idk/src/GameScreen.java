@@ -22,13 +22,15 @@ public class GameScreen {
             searsButtonPanel, thwingButtonPanel, tinkButtonPanel, whiteButtonPanel, wickendenButtonPanel, yostButtonPanel, tomlinsonButtonPanel, exerciseButtonPanel,
             compPanel1, compPanel2, compPanel3, compPanel4, startExButtonPanel, lectureButtonPanel,
             moveToQuadButtonPanel, denButtonPanel, freshDormsButtonPanel,
-            sophDormsButtonPanel, leutnerButtonPanel, taskPanel, taskButtonPanel, buildingTextPanel, actionButtonPanel, task1Panel, task2Panel, timePanel, limagePanel, cimagePanel, rimagePanel;
-    JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel3, compLabel4, task1Label, task2Label, timeLabel, limageLabel, cimageLabel, rimageLabel;
+            sophDormsButtonPanel, leutnerButtonPanel, taskPanel, taskButtonPanel, buildingTextPanel, actionButtonPanel, task1Panel, task2Panel, timePanel, limagePanel,
+            cimagePanel, rimagePanel, ltextPanel, ctextPanel, rtextPanel, ltextButtonPanel, ctextButtonPanel, rtextButtonPanel;
+    JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel2, compLabel3, compLabel4, task1Label,
+            task2Label, timeLabel, limageLabel, cimageLabel, rimageLabel, ltextLabel, ctextLabel, rtextLabel;
     JButton startButton, loadButton, vealeButton, quadButton, millisButton, strosackerButton, rockButton, northButton, southButton, gStartButton,
             menuButton, returnButton, saveButton, attrButton, awSmithButton, binghamButton, carltonButton, crawfordButton, eldredButton, elephantButton,
             glennanButton, kslButton, khsButton, nordButton, olinButton, pblButton, searsButton, thwingButton, tinkButton, tomlinsonButton, whiteButton,
             wickendenButton, yostButton, exerciseButton, startExButton, lectureButton, moveToQuadButton, denButton, taskButton,
-            freshDormsButton, sophDormsButton, upperDormsButton, leutnerButton, actionButton;
+            freshDormsButton, sophDormsButton, upperDormsButton, leutnerButton, actionButton, ltextButton, ctextButton, rtextButton;
     JTextArea introTextArea, buildingTextArea;
     JTextPane buildingTextPane;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
@@ -53,7 +55,7 @@ public class GameScreen {
             "White", "Wickenden","Yost");
     List<String> mapNames = Arrays.asList("Quad", "Northside", "Southside");
 
-    List<String> taskNames = Arrays.asList("Exercise", "Lecture");
+    List<String> taskNames = Arrays.asList("Exercise", "Lecture", "Roommate");
 
     public static void main(String[] args){
         new GameScreen();
@@ -1023,42 +1025,92 @@ public class GameScreen {
         limagePanel = new JPanel();
         limagePanel.setBounds(100,300,100,100);
         limageLabel = new JLabel();
-
-
         limage = new ImageIcon("idk/resources/CWRUquadDots.jpg");
         Image resizedLImage = getScaledImage(limage.getImage(), 100, 100);
         limage.setImage(resizedLImage);
-
         limageLabel.setIcon(image);
         limagePanel.add(imageLabel);
+        con.add(limagePanel);
+
 
         cimagePanel = new JPanel();
         cimagePanel.setBounds(300,300,100,100);
         cimageLabel = new JLabel();
-
-
         cimage = new ImageIcon("idk/resources/CWRUquadDots.jpg");
         Image resizedCImage = getScaledImage(cimage.getImage(), 100, 100);
         cimage.setImage(resizedCImage);
-
         cimageLabel.setIcon(image);
         cimagePanel.add(imageLabel);
+        con.add(cimagePanel);
+
 
         rimagePanel = new JPanel();
         rimagePanel.setBounds(500,300,100,100);
         rimageLabel = new JLabel();
-
-
         rimage = new ImageIcon("idk/resources/CWRUquadDots.jpg");
         Image resizedRImage = getScaledImage(rimage.getImage(), 100, 100);
         rimage.setImage(resizedRImage);
-
         rimageLabel.setIcon(image);
         rimagePanel.add(imageLabel);
-
-        con.add(limagePanel);
-        con.add(cimagePanel);
         con.add(rimagePanel);
+
+
+        ltextPanel = new JPanel();
+        ltextPanel.setBounds(100, 500 ,150, 50);
+        ltextLabel = new JLabel("ltext");
+        ltextLabel.setBackground(Color.white);
+        ltextLabel.setForeground(Color.darkGray);
+        ltextLabel.setFont(normalFont);
+        ltextPanel.add(ltextLabel);
+        con.add(ltextPanel);
+
+        ctextPanel = new JPanel();
+        ctextPanel.setBounds(300, 500 ,150, 50);
+        ctextLabel = new JLabel("ctext");
+        ctextLabel.setBackground(Color.white);
+        ctextLabel.setForeground(Color.darkGray);
+        ctextLabel.setFont(normalFont);
+        ctextPanel.add(ctextLabel);
+        con.add(ctextPanel);
+
+        rtextPanel = new JPanel();
+        rtextPanel.setBounds(500, 500 ,150, 50);
+        rtextLabel = new JLabel("rtext");
+        rtextLabel.setBackground(Color.white);
+        rtextLabel.setForeground(Color.darkGray);
+        rtextLabel.setFont(normalFont);
+        rtextPanel.add(rtextLabel);
+        con.add(rtextPanel);
+
+
+        ltextButtonPanel = new JPanel();
+        ltextButtonPanel.setBounds(100, 550 ,150, 50);
+        ltextButton = new JButton("ltextButton");
+        ltextButton.setBackground(Color.white);
+        ltextButton.setForeground(Color.darkGray);
+        ltextButton.setFont(normalFont);
+        ltextButtonPanel.add(ltextButton);
+        con.add(ltextButtonPanel);
+
+
+        ctextButtonPanel = new JPanel();
+        ctextButtonPanel.setBounds(300, 550 ,150, 50);
+        ctextButton = new JButton("ctextButton");
+        ctextButton.setBackground(Color.white);
+        ctextButton.setForeground(Color.darkGray);
+        ctextButton.setFont(normalFont);
+        ctextButtonPanel.add(ctextButton);
+        con.add(ctextButtonPanel);
+
+
+        rtextButtonPanel = new JPanel();
+        rtextButtonPanel.setBounds(500, 550 ,150, 50);
+        rtextButton = new JButton("rtextButton");
+        rtextButton.setBackground(Color.white);
+        rtextButton.setForeground(Color.darkGray);
+        rtextButton.setFont(normalFont);
+        rtextButtonPanel.add(rtextButton);
+        con.add(rtextButtonPanel);
         
 
     }
@@ -1078,7 +1130,7 @@ public class GameScreen {
         compPanel2 = new JPanel();
         compPanel2.setBounds(230,201,375,50);
         compPanel2.setBackground(Color.DARK_GRAY);
-        JLabel compLabel2 = new JLabel("You Have Completed:");
+        compLabel2 = new JLabel("You Have Completed:");
         compLabel2.setFont(medFont);
         compLabel2.setForeground(Color.white);
 
@@ -1124,6 +1176,25 @@ public class GameScreen {
         compPanel3.setVisible(true);
         compPanel4.setVisible(true);
     }
+
+    public void winScreen(){
+        hideEverything();
+        menuButtonPanel.setVisible(false);
+        quadButtonPanel.setVisible(false);
+        timePanel.setVisible(false);
+        buildingTextPanel.setVisible(false);
+
+        compPanel1.setVisible(true);
+        compLabel2.setText("You Win!");
+        startExButtonPanel.setBounds(310, 300 ,200, 50);
+        startExButton.setText("Click to Continue");
+
+        imagePanel.setVisible(false);
+        startExButtonPanel.setVisible(true);
+        compPanel1.setVisible(true);
+        compPanel2.setVisible(true);
+    }
+
 
     public void displayQuadBuildings(){
         imagePanel.setVisible(true);
@@ -1171,6 +1242,7 @@ public class GameScreen {
         hideBuildingButtons();
         hideTaskButtons();
         hideMenuButtons();
+        buildingTextPanel.setVisible(false);
     }
 
     //hides all building related buttons
@@ -1277,6 +1349,7 @@ public class GameScreen {
                     e.printStackTrace();
                 }
             }
+
             //Move to quad from intro screen, building, map, or menu
             JButton[] quadButtonList = {gStartButton,quadButton,moveToQuadButton};
             if(containsButton(quadButtonList, event.getSource())){
@@ -1453,6 +1526,9 @@ public class GameScreen {
             if(event.getSource() == taskButton){ //show attributes
                 displayTaskScreen();
             }
+            if(event.getSource() == startExButton){ //show attributes
+                System.exit(0);
+            }
 
             if(buildingNames.contains(buildingName)){
                 displayBuildingScreen();
@@ -1465,8 +1541,14 @@ public class GameScreen {
             if(!containsButton(menuButtonList, event.getSource())){
                 if(event.getSource() != gStartButton) {
                     d.useHours(1);
-                    System.out.println(d.getHour());
                     timeLabel.setText("Time: " + String.valueOf(d.getHour()));
+                }
+            }
+
+            if(g.getCurrent().isFinished()){
+                if(g.nextLevel()){
+                    winScreen();
+                    buildingName = "Win";
                 }
             }
         }
