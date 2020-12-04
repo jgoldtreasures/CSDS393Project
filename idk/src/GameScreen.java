@@ -1787,7 +1787,6 @@ public class GameScreen {
             }
 
 
-            System.out.println(Arrays.toString(visited));
             if(event.getSource() == menuButton) { //open menu
                 buildingName = "Menu";
                 displayMenuScreen();
@@ -1829,7 +1828,6 @@ public class GameScreen {
             }
 
             if(campusTour()){
-                System.out.println(5);
                 try {
                     taskName = "Campus Tour";
                     reward = "Good Job!";
