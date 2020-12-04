@@ -35,7 +35,8 @@ public class GameScreen {
     JTextPane buildingTextPane;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 25);
-    Font introFont = new Font("Times New Roman", Font.PLAIN, 20);
+    Font introFont = new Font("Times New Roman", Font.PLAIN, 23);
+    Font descFont = new Font("Times New Roman", Font.PLAIN, 20);
     Font medFont = new Font("Times New Roman", Font.PLAIN, 40);
     Font mapFont = new Font("Times New Roman", Font.PLAIN, 12);
     Day d;
@@ -48,6 +49,7 @@ public class GameScreen {
 
     Game g;
     Player p1;
+    BuildingImplementation building;
 
     List<String> buildingNames = Arrays.asList("Bingham", "Carlton", "Crawford","Dennys","Eldred", "Elephant", "Freshman Dorms", "Glennan", "KHS", "KSL",
             "Leutner", "Millis", "Nord", "Olin", "PBL", "Rockefeller", "Sears", "Smith",
@@ -63,6 +65,9 @@ public class GameScreen {
     public GameScreen() {
         //image home screen - intro, save, and load
 
+        building = new BuildingImplementation();
+        g = new Game();
+        p1 = g.getPlayer();
         d = new Day("Monday");
 
         createTitleScreen();
@@ -71,10 +76,6 @@ public class GameScreen {
         createCompletionScreen();
         createChoiceTaskScreen();
         hideBuildingButtons();
-
-
-        g = new Game();
-        p1 = g.getPlayer();
 
         //need to be able to start even if there is a saved file - give warning though
         //also give warning when trying to save over a saved file
@@ -128,9 +129,6 @@ public class GameScreen {
 
         gameScreen.setVisible(true);
 
-        //popup menu window
-
-        //image for maps
         imagePanel = new JPanel();
         imagePanel.setBounds(-10,-10,800,600);
         imageLabel = new JLabel();
@@ -163,12 +161,11 @@ public class GameScreen {
         String textIntro ="You are a student at Case Western Reserve University. Your goal is to graduate from the " +
                 "university. There will be both required and optional tasks, but the required tasks will be within " +
                 "your task list at the start of each year. Every \"year\" will last 7 in-game days. \n\n" +
-                "When on one of the three maps, you may move around the screen using the arrow-keys and you can enter" +
-                " a nearby building by pressing 'enter'\n\n" +
-                "When in a building, you can cycle between interactable objects using the 'up' and 'down' arrow keys." +
-                " Pressing 'enter' will start an interaction with the object.\n\n" +
-                "On any screen, pressing 'm' will bring up the in-game menu, which will allow you to save the game, " +
-                "look at your attributes, look at your task list, and exit the game. \n\n" +
+                "Use your mouse to interact with buttons on the screen. By clicking " +
+                "on the buttons, you will be able to enter buildings and interact " +
+                "with both the menu and available tasks.\n\nThe menu will allow you " +
+                "to look at your attributes, look at your task list, save the game, " +
+                "and return to the previous screen\n\n" +
                 "Press 'Start' to begin the game. Have fun playing!";
 
         introTextPanel = new JPanel();
@@ -201,7 +198,7 @@ public class GameScreen {
 
         buildingTextArea = new JTextArea(roomTextDesc);
         buildingTextArea.setBounds(25,440,725,100);
-        buildingTextArea.setFont(introFont);
+        buildingTextArea.setFont(descFont);
         buildingTextArea.setLineWrap(true);
         buildingTextArea.setWrapStyleWord(true);
 
@@ -237,7 +234,7 @@ public class GameScreen {
         //Veale Button
         vealeButtonPanel = new JPanel();
         vealeButtonPanel.setVisible(false);
-        vealeButtonPanel.setBounds(615, 100,50, 25);
+        vealeButtonPanel.setBounds(building.veale.getX(), building.veale.getY(),50, 25);
         vealeButton = new JButton("Veale");
         vealeButton.setBackground(Color.darkGray);
         vealeButton.setForeground(Color.white);
@@ -250,7 +247,7 @@ public class GameScreen {
         //Millis Button
         millisButtonPanel = new JPanel();
         millisButtonPanel.setVisible(false);
-        millisButtonPanel.setBounds(272, 230,50, 25);
+        millisButtonPanel.setBounds(building.millis.getX(), building.millis.getY(),50, 25);
         millisButton = new JButton("Millis");
         millisButton.setBackground(Color.darkGray);
         millisButton.setForeground(Color.white);
@@ -263,7 +260,8 @@ public class GameScreen {
         //Rockefeller Button
         rockButtonPanel = new JPanel();
         rockButtonPanel.setVisible(false);
-        rockButtonPanel.setBounds(287, 320,70, 25);
+        rockButtonPanel.setBounds(building.rockefeller.getX(), building.rockefeller.getY(),70
+                , 25);
         rockButton = new JButton("Rockefeller");
         rockButton.setBackground(Color.darkGray);
         rockButton.setForeground(Color.white);
@@ -276,7 +274,8 @@ public class GameScreen {
         //Strosacker Button
         strosackerButtonPanel = new JPanel();
         strosackerButtonPanel.setVisible(false);
-        strosackerButtonPanel.setBounds(327, 280,70, 25);
+        strosackerButtonPanel.setBounds(building.strosacker.getX(),
+                building.strosacker.getY(),70, 25);
         strosackerButton = new JButton("Strosacker");
         strosackerButton.setBackground(Color.darkGray);
         strosackerButton.setForeground(Color.white);
@@ -289,7 +288,7 @@ public class GameScreen {
         //AW Smith Button
         awSmithButtonPanel = new JPanel();
         awSmithButtonPanel.setVisible(false);
-        awSmithButtonPanel.setBounds(367, 230,70, 25);
+        awSmithButtonPanel.setBounds(building.smith.getX(), building.smith.getY(),70, 25);
         awSmithButton = new JButton("AW Smith");
         awSmithButton.setBackground(Color.darkGray);
         awSmithButton.setForeground(Color.white);
@@ -302,7 +301,8 @@ public class GameScreen {
         //Bingham Button
         binghamButtonPanel = new JPanel();
         binghamButtonPanel.setVisible(false);
-        binghamButtonPanel.setBounds(452, 220,70, 25);
+        binghamButtonPanel.setBounds(building.bingham.getX(), building.bingham.getY(),70,
+                25);
         binghamButton = new JButton("Bingham");
         binghamButton.setBackground(Color.darkGray);
         binghamButton.setForeground(Color.white);
@@ -315,7 +315,8 @@ public class GameScreen {
         //Crawford Button
         crawfordButtonPanel = new JPanel();
         crawfordButtonPanel.setVisible(false);
-        crawfordButtonPanel.setBounds(130, 505,70, 25);
+        crawfordButtonPanel.setBounds(building.crawford.getX(),building.crawford.getY(),70,
+                25);
         crawfordButton = new JButton("Crawford");
         crawfordButton.setBackground(Color.darkGray);
         crawfordButton.setForeground(Color.white);
@@ -328,7 +329,7 @@ public class GameScreen {
         //Eldred Button
         eldredButtonPanel = new JPanel();
         eldredButtonPanel.setVisible(false);
-        eldredButtonPanel.setBounds(219, 315,65, 25);
+        eldredButtonPanel.setBounds(building.eldred.getX(),building.eldred.getY(),65, 25);
         eldredButton = new JButton("Eldred");
         eldredButton.setBackground(Color.darkGray);
         eldredButton.setForeground(Color.white);
@@ -341,7 +342,8 @@ public class GameScreen {
         //Glennan Button
         glennanButtonPanel = new JPanel();
         glennanButtonPanel.setVisible(false);
-        glennanButtonPanel.setBounds(572, 260,70, 25);
+        glennanButtonPanel.setBounds(building.glennan.getX(),building.glennan.getY(),70,
+                25);
         glennanButton = new JButton("Glennan");
         glennanButton.setBackground(Color.darkGray);
         glennanButton.setForeground(Color.white);
@@ -354,7 +356,7 @@ public class GameScreen {
         //Virus Button
         khsButtonPanel = new JPanel();
         khsButtonPanel.setVisible(false);
-        khsButtonPanel.setBounds(319, 210,50, 25);
+        khsButtonPanel.setBounds(building.khs.getX(),building.khs.getY(), 50, 25);
         khsButton = new JButton("KHS");
         khsButton.setBackground(Color.darkGray);
         khsButton.setForeground(Color.white);
@@ -367,7 +369,7 @@ public class GameScreen {
         //Nord Button
         nordButtonPanel = new JPanel();
         nordButtonPanel.setVisible(false);
-        nordButtonPanel.setBounds(422, 347,50, 25);
+        nordButtonPanel.setBounds(building.nord.getX(),building.nord.getY(),50, 25);
         nordButton = new JButton("Nord");
         nordButton.setBackground(Color.darkGray);
         nordButton.setForeground(Color.white);
@@ -380,7 +382,7 @@ public class GameScreen {
         //Olin Button
         olinButtonPanel = new JPanel();
         olinButtonPanel.setVisible(false);
-        olinButtonPanel.setBounds(502, 313,50, 25);
+        olinButtonPanel.setBounds(building.olin.getX(),building.olin.getY(),50, 25);
         olinButton = new JButton("Olin");
         olinButton.setBackground(Color.darkGray);
         olinButton.setForeground(Color.white);
@@ -393,7 +395,7 @@ public class GameScreen {
         //Sears Button
         searsButtonPanel = new JPanel();
         searsButtonPanel.setVisible(false);
-        searsButtonPanel.setBounds(442, 320,50, 25);
+        searsButtonPanel.setBounds(building.sears.getX(),building.sears.getY(),50, 25);
         searsButton = new JButton("Sears");
         searsButton.setBackground(Color.darkGray);
         searsButton.setForeground(Color.white);
@@ -406,7 +408,8 @@ public class GameScreen {
         //Tomlinson Button
         tomlinsonButtonPanel = new JPanel();
         tomlinsonButtonPanel.setVisible(false);
-        tomlinsonButtonPanel.setBounds(242, 485,70, 25);
+        tomlinsonButtonPanel.setBounds(building.tomlinson.getX(),building.tomlinson.getY(),70
+                , 25);
         tomlinsonButton = new JButton("Tomlinson");
         tomlinsonButton.setBackground(Color.darkGray);
         tomlinsonButton.setForeground(Color.white);
@@ -419,7 +422,7 @@ public class GameScreen {
         //White Button
         whiteButtonPanel = new JPanel();
         whiteButtonPanel.setVisible(false);
-        whiteButtonPanel.setBounds(517, 287,50, 25);
+        whiteButtonPanel.setBounds(building.white.getX(),building.white.getY(),50, 25);
         whiteButton = new JButton("White");
         whiteButton.setBackground(Color.darkGray);
         whiteButton.setForeground(Color.white);
@@ -432,7 +435,8 @@ public class GameScreen {
         //Wickenden Button
         wickendenButtonPanel = new JPanel();
         wickendenButtonPanel.setVisible(false);
-        wickendenButtonPanel.setBounds(342, 385,70, 25);
+        wickendenButtonPanel.setBounds(building.wickenden.getX(),building.wickenden.getY(),70
+                , 25);
         wickendenButton = new JButton("Wickenden");
         wickendenButton.setBackground(Color.darkGray);
         wickendenButton.setForeground(Color.white);
@@ -445,7 +449,7 @@ public class GameScreen {
         //Yost Button
         yostButtonPanel = new JPanel();
         yostButtonPanel.setVisible(false);
-        yostButtonPanel.setBounds(287, 440,50, 25);
+        yostButtonPanel.setBounds(building.yost.getX(),building.yost.getY(),50, 25);
         yostButton = new JButton("Yost");
         yostButton.setBackground(Color.darkGray);
         yostButton.setForeground(Color.white);
@@ -523,7 +527,7 @@ public class GameScreen {
         //Denny's
         denButtonPanel = new JPanel();
         denButtonPanel.setVisible(false);
-        denButtonPanel.setBounds(220, 140,50, 25);
+        denButtonPanel.setBounds(building.dennys.getX(), building.dennys.getY(),50, 25);
         denButton = new JButton("Den");
         denButton.setBackground(Color.darkGray);
         denButton.setForeground(Color.white);
@@ -536,7 +540,8 @@ public class GameScreen {
         //Freshman Dorms
         freshDormsButtonPanel = new JPanel();
         freshDormsButtonPanel.setVisible(false);
-        freshDormsButtonPanel.setBounds(120, 110,120, 25);
+        freshDormsButtonPanel.setBounds(building.freshmanDorms.getX(),building.freshmanDorms.getY(), 120,
+                25);
         freshDormsButton = new JButton("Freshman Dorms");
         freshDormsButton.setBackground(Color.darkGray);
         freshDormsButton.setForeground(Color.white);
@@ -549,7 +554,7 @@ public class GameScreen {
         //Leutner
         leutnerButtonPanel = new JPanel();
         leutnerButtonPanel.setVisible(false);
-        leutnerButtonPanel.setBounds(80, 130,65, 25);
+        leutnerButtonPanel.setBounds(building.leutner.getX(), building.leutner.getY(),65, 25);
         leutnerButton = new JButton("Leutner");
         leutnerButton.setBackground(Color.darkGray);
         leutnerButton.setForeground(Color.white);
@@ -562,7 +567,7 @@ public class GameScreen {
         //PBL
         pblButtonPanel = new JPanel();
         pblButtonPanel.setVisible(false);
-        pblButtonPanel.setBounds(395, 290,55, 25);
+        pblButtonPanel.setBounds(building.pbl.getX(),building.pbl.getY(),55, 25);
         pblButton = new JButton("PBL");
         pblButton.setBackground(Color.darkGray);
         pblButton.setForeground(Color.white);
@@ -575,7 +580,7 @@ public class GameScreen {
         //Thwing
         thwingButtonPanel = new JPanel();
         thwingButtonPanel.setVisible(false);
-        thwingButtonPanel.setBounds(605, 315,60, 25);
+        thwingButtonPanel.setBounds(building.thwing.getX(),building.thwing.getY(),60, 25);
         thwingButton = new JButton("Thwing");
         thwingButton.setBackground(Color.darkGray);
         thwingButton.setForeground(Color.white);
@@ -588,7 +593,7 @@ public class GameScreen {
         //Tink
         tinkButtonPanel = new JPanel();
         tinkButtonPanel.setVisible(false);
-        tinkButtonPanel.setBounds(540, 355,55, 25);
+        tinkButtonPanel.setBounds(building.tink.getX(),building.tink.getY(),55, 25);
         tinkButton = new JButton("TVU");
         tinkButton.setBackground(Color.darkGray);
         tinkButton.setForeground(Color.white);
@@ -601,7 +606,7 @@ public class GameScreen {
         //KSL
         kslButtonPanel = new JPanel();
         kslButtonPanel.setVisible(false);
-        kslButtonPanel.setBounds(615, 430,55, 25);
+        kslButtonPanel.setBounds(building.ksl.getX(),building.ksl.getY(),55, 25);
         kslButton = new JButton("KSL");
         kslButton.setBackground(Color.darkGray);
         kslButton.setForeground(Color.white);
@@ -629,7 +634,7 @@ public class GameScreen {
         //Carlton Commons
         carltonButtonPanel = new JPanel();
         carltonButtonPanel.setVisible(false);
-        carltonButtonPanel.setBounds(575, 405,60, 25);
+        carltonButtonPanel.setBounds(building.carlton.getX(),building.carlton.getY(),60, 25);
         carltonButton = new JButton("Carlton");
         carltonButton.setBackground(Color.darkGray);
         carltonButton.setForeground(Color.white);
@@ -642,7 +647,8 @@ public class GameScreen {
         //Elephant Stairs
         elephantButtonPanel = new JPanel();
         elephantButtonPanel.setVisible(false);
-        elephantButtonPanel.setBounds(455, 435,70, 25);
+        elephantButtonPanel.setBounds(building.elephant.getX(),building.elephant.getY(),70,
+                25);
         elephantButton = new JButton("Elephant Stairs");
         elephantButton.setBackground(Color.darkGray);
         elephantButton.setForeground(Color.white);
@@ -655,7 +661,8 @@ public class GameScreen {
         //Sophomore Button
         sophDormsButtonPanel = new JPanel();
         sophDormsButtonPanel.setVisible(false);
-        sophDormsButtonPanel.setBounds(500, 250,120, 25);
+        sophDormsButtonPanel.setBounds(building.sophomoreDorms.getX(),building.sophomoreDorms.getY(), 120,
+                25);
         sophDormsButton = new JButton("Sophomore Dorms");
         sophDormsButton.setBackground(Color.darkGray);
         sophDormsButton.setForeground(Color.white);

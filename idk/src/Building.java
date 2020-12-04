@@ -6,12 +6,19 @@ public class Building {
     private int y;
     private TaskManager tasks;
     private Person[] npcs;
+    private String buildingName;
 
     public Building(int x, int y, TaskManager tasks, Person[] npcs) {
         this.x = x;
         this.y = y;
         this.tasks = tasks;
         this.npcs = npcs;
+    }
+
+    public Building(int x, int y, String buildingName) {
+        this.x = x;
+        this.y = y;
+        this.buildingName = buildingName;
     }
 
     public int getX() {
@@ -22,6 +29,8 @@ public class Building {
         return y;
     }
 
+    public String getName(){return buildingName;}
+
     public void setPos(int x, int y) {
         this.x = x;
         this.y = y;
@@ -29,6 +38,10 @@ public class Building {
 
     public TaskManager getTasks() {
         return this.tasks;
+    }
+
+    public boolean hasTask(){
+        return this.tasks != null;
     }
 
 //    public void removeTask(String task) {
@@ -45,7 +58,7 @@ public class Building {
         List<Person> npcList = Arrays.asList(npcs);
         boolean changed = false;
         for (Person npc : npcList) {
-            if (npc.getName() == name) {
+            if (npc.getName().equals(name)) {
                 npc.setStatus("DORMANT");      //need npc to have setStatus method
                 changed = true;
             }

@@ -17,12 +17,12 @@ public class Level {
     }
 
     public boolean isFinished(){
-        if(finish == true){
+        if(finish){
             return true;
         }
         else {
-            for (int i = 0; i < tasks.size(); i++) {
-                if (tasks.get(i).isFinished() == false) {
+            for (Task task : tasks) {
+                if (!task.isFinished()) {
                     return false;
                 }
             }
@@ -40,4 +40,6 @@ public class Level {
     public String getName(){
         return name;
     }
+
+    public void setName(String newName){this.name = newName;}
 }

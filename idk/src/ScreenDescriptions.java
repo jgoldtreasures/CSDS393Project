@@ -19,11 +19,13 @@ public class ScreenDescriptions{
                 break;
             case ("Carlton"):
                 description = "Carlton Commons has a few study spaces as well as the rough " +
-                        "rider room restaurant";
+                        "rider room restaurant. It is currently under renovations to " +
+                        "allow student dining.";
                 break;
             case ("Crawford"): //Access Services, SAGES office, a cafe, childhood,
                 // social justice institute,cognitive science studies,
-                description = "Contains Access Services, SAGES office, a cafe, childhood, " +
+                description = "Contains Access Services, SAGES office, a cafe, " +
+                        "Childhood Studies Offices, " +
                         "social justice institute, cognitive science studies, and assorted classrooms";
                 break;
             case ("Dennys"):
@@ -54,8 +56,8 @@ public class ScreenDescriptions{
                         "rentable electronic devices.";
                 break;
             case ("KHS"): //macromolecular science and engineering
-                description = "macromolecular science and engineering offices, as well as" +
-                        "lecture halls and labs";
+                description = "Houses the macromolecular science and engineering " +
+                        "offices, as well as lecture halls and labs";
                 break;
             case ("Leutner"):
                 description = "One of the two main dining halls on campus, also contains " +
