@@ -9,7 +9,8 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 
 public class GameScreen {
-    public String screenName, taskName, reward, buildingName, buildingImage;
+    public String screenName, taskName, reward, buildingName, buildingImage,
+            previousScreenName, previousScreenImage;
 
     JFrame gameScreen;
     Container con;
@@ -44,6 +45,7 @@ public class GameScreen {
     ScreenHandler sHandler = new ScreenHandler();
 
     Game g;
+    Player p1;
 
     List<String> buildingNames = Arrays.asList("Bingham", "Carlton", "Crawford","Dennys","Eldred", "Elephant", "Freshman Dorms", "Glennan", "KHS", "KSL",
             "Leutner", "Millis", "Nord", "Olin", "PBL", "Rockefeller", "Sears", "Smith",
@@ -64,16 +66,12 @@ public class GameScreen {
         createTitleScreen();
         createIntroScreen();
         buttonInitializer();
-        createMenuScreen();
-        createTaskScreen();
         createCompletionScreen();
         hideBuildingButtons();
 
 
-
         g = new Game();
-
-        createAttributesScreen();
+        p1 = g.getPlayer();
 
         //need to be able to start even if there is a saved file - give warning though
         //also give warning when trying to save over a saved file
@@ -465,6 +463,7 @@ public class GameScreen {
         initializeTaskButtons();
         northButtonsInit();
         southButtonsInit();
+        initializeMenuButtons();
 
         con.add(imagePanel);
         imagePanel.setVisible(false);
@@ -669,10 +668,17 @@ public class GameScreen {
         con.add(lectureButtonPanel);
     }
 
+    public void initializeMenuButtons(){
+        createAttributesScreen();
+        createTaskScreen();
+        createMenuScreen();
+    }
+
     //Following method creates the general building screen
     public void createBuildingScreen(){
-        hideBuildingButtons();
+        hideEverything();
         quadButtonPanel.setVisible(true);
+        menuButtonPanel.setVisible(true);
         String roomTextDesc = new ScreenDescriptions(buildingName).returnDesc();
 
         buildingTextArea.setText(roomTextDesc);
@@ -684,286 +690,11 @@ public class GameScreen {
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
 
-        //buildingName = "";
+        imagePanel.setVisible(true);
+
+        previousScreenName = buildingName;
+        previousScreenImage = buildingImage;
     }
-
-    //Following methods are for creating the individual building screens
-    /*
-    public void createAWSmithScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/smith.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createBinghamScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/Bingham.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createCarltonScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/Carlton.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createCrawfordScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/Crawford.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createDenScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/dennys.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createEldredScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/eldred.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createElephantScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/elephant.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createFreshmanDormsScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/freshDorms.jfif");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createGlennanScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/glennan.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createKHSScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/KHS.jpeg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createKSLScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/ksl.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createLeutnerScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/leutner.jfif");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createMillisScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/Millis.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-
-    }
-
-    public void createNordScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/Nord.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createOlinScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/Olin.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createPBLScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/PBL.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createRockefellerScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/Rockefeller.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-
-        lectureButtonPanel.setVisible(true);
-    }
-
-    public void createSearsScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/Sears.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createSophDorms(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/southDorms.jfif");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createStrosackerScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/Strosacker.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createThwingScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/thwing.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createTinkScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/tink.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createTomlinsonScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/tomlinson.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createVealeScreen(){
-        hideBuildingButtons();
-
-        image = new ImageIcon("idk/resources/Veale.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-
-        quadButtonPanel.setVisible(true);
-        exerciseButtonPanel.setVisible(true);
-    }
-
-    public void createWhiteScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/white.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createWickendenScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/Wickenden.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-
-    public void createYostScreen(){
-        hideBuildingButtons();
-        quadButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/yost.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-    }
-     */
 
     //creates task screen
     public void createTaskScreen(){
@@ -1242,9 +973,6 @@ public class GameScreen {
         buildingTextPanel.setVisible(false);
         hideBuildingButtons();
         hideTaskButtons();
-        taskPanel.setVisible(false);
-        task1Panel.setVisible(false);
-        task2Panel.setVisible(false);
         menuButtonPanel.setVisible(false);
         attrPanel.setVisible(false);
         healthPanel.setVisible(false);
@@ -1256,7 +984,9 @@ public class GameScreen {
         compPanel2.setVisible(false);
         compPanel3.setVisible(false);
         compPanel4.setVisible(false);
-
+        taskPanel.setVisible(false);
+        task1Panel.setVisible(false);
+        task2Panel.setVisible(false);
 
         menuPanel.setVisible(true);
         savePanel.setVisible(true);
@@ -1392,7 +1122,13 @@ public class GameScreen {
         compPanel4.setVisible(true);
     }
 
-    //hides all building and task buttons
+    public void hideEverything(){
+        hideBuildingButtons();
+        hideTaskButtons();
+        hideMenuButtons();
+    }
+
+    //hides all building related buttons
     public void hideBuildingButtons(){
         moveToQuadButtonPanel.setVisible(false);
         southButtonPanel.setVisible(false);
@@ -1432,12 +1168,26 @@ public class GameScreen {
         actionButtonPanel.setVisible(false);
     }
 
+    //hides all task related buttons
     public void hideTaskButtons(){
+        taskPanel.setVisible(false);
+        task1Panel.setVisible(false);
+        task2Panel.setVisible(false);
+
         lectureButtonPanel.setVisible(false);
         exerciseButtonPanel.setVisible(false);
         startExButtonPanel.setVisible(false);
         exerciseButtonPanel.setVisible(false);
         actionButtonPanel.setVisible(false);
+    }
+
+    //hides all menu related button, used so that 'return' will go to previous screen
+    public void hideMenuButtons(){
+        menuPanel.setVisible(false);
+        savePanel.setVisible(false);
+        returnPanel.setVisible(false);
+        attrButtonPanel.setVisible(false);
+        taskButtonPanel.setVisible(false);
     }
 
     //Scales an image to be a specific height and width
@@ -1456,8 +1206,8 @@ public class GameScreen {
         boolean isContained = false;
         //add conditional about whether object is a button
         if(objectName instanceof JButton) {
-            for (int i = 0; i < buttonList.length; i++) {
-                if (buttonList[i].equals(objectName)) {
+            for (JButton jButton : buttonList) {
+                if (jButton.equals(objectName)) {
                     isContained = true;
                     break;
                 }
@@ -1469,6 +1219,7 @@ public class GameScreen {
     public class ScreenHandler implements ActionListener{
         public void actionPerformed(ActionEvent event){
             //Need to add a manner which differentiates between start/load
+            buildingName = "";
             imagePanel.setBounds(-10,-10,800,600);
             if(event.getSource() == startButton){ //Display the introduction
                 displayIntroScreen();
@@ -1482,7 +1233,7 @@ public class GameScreen {
                 }
             }
             //Move to quad from intro screen, building, map, or menu
-            JButton[] quadButtonList = {gStartButton,quadButton,moveToQuadButton,returnButton};
+            JButton[] quadButtonList = {gStartButton,quadButton,moveToQuadButton};
             if(containsButton(quadButtonList, event.getSource())){
                 buildingName = "quad";
                 displayQuadScreen();
@@ -1490,143 +1241,116 @@ public class GameScreen {
             if(event.getSource() == awSmithButton){ //Enter AW Smith
                 buildingName = "Smith";
                 buildingImage = "idk/resources/smith.jpg";
-                //createAWSmithScreen();
             }
             if(event.getSource() == binghamButton){ // Enter Bingham
                 buildingName = "Bingham";
                 buildingImage = "idk/resources/bingham.jpg";
-                //createBinghamScreen();
             }
             if(event.getSource() == carltonButton){ // Enter Carlton Commons
                 buildingName = "Carlton";
                 buildingImage = "idk/resources/carlton.jpg";
-                //createCarltonScreen();
             }
             if(event.getSource() == crawfordButton){ //Enter Crawford
                 buildingName = "Crawford";
                 buildingImage = "idk/resources/Crawford.jpg";
-                //createCrawfordScreen();
             }
             if(event.getSource() == denButton){ //The Den
                 buildingName = "Dennys";
                 buildingImage = "idk/resources/dennys.jpg";
-                //createDenScreen();
             }
             if(event.getSource() == eldredButton){ //Enter Eldred
                 buildingName = "Eldred";
                 buildingImage = "idk/resources/eldred.jpg";
-                //createEldredScreen();
             }
             if(event.getSource() == elephantButton){ //Elephant Stairs
                 buildingName = "Elephant";
                 buildingImage = "idk/resources/elephant.jpg";
-                //createElephantScreen();
             }
             if(event.getSource() == freshDormsButton){ //Freshman Dorms
                 buildingName = "Freshman Dorms";
                 buildingImage = "idk/resources/freshDorms.jfif";
-                //createFreshmanDormsScreen();
             }
             if(event.getSource() == glennanButton){ //Enter Glennan
                 buildingName = "Glennan";
                 buildingImage = "idk/resources/glennan.jpg";
-                //createGlennanScreen();
             }
             if(event.getSource() == khsButton){//Enter Kent Hale Smith, the Virus
                 buildingName = "KHS";
                 buildingImage = "idk/resources/KHS.jpeg";
-                //createKHSScreen();
             }
             if(event.getSource() == kslButton){//Enter KSL
                 buildingName = "KSL";
                 buildingImage = "idk/resources/KSL.jpg";
-                //createKSLScreen();
             }
             if(event.getSource() == leutnerButton){ //Leutner
                 buildingName = "Leutner";
                 buildingImage = "idk/resources/leutner.jfif";
-                //createLeutnerScreen();
             }
             if(event.getSource() == millisButton){ //Move to Millis Schmidt
                 buildingName = "Millis";
                 buildingImage = "idk/resources/millis.jpg";
-                //createMillisScreen();
             }
             if(event.getSource() == nordButton){//Enter Nord
                 buildingName = "Nord";
                 buildingImage = "idk/resources/nord.jpg";
-                //createNordScreen();
             }
             if(event.getSource() == olinButton){ //Enter Olin
                 buildingName = "Olin";
                 buildingImage = "idk/resources/olin.jpg";
-                //createOlinScreen();
             }
             if(event.getSource() == pblButton){ //Enter PBL
                 buildingName = "PBL";
                 buildingImage = "idk/resources/PBL.jpg";
-                //createPBLScreen();
             }
             if(event.getSource() == rockButton){ //Move to Rockefeller
                 buildingName = "Rockefeller";
                 buildingImage = "idk/resources/Rockefeller.jpg";
-                //createRockefellerScreen();
             }
             if(event.getSource() == searsButton){ //Enter Sears
                 buildingName = "Sears";
                 buildingImage = "idk/resources/Sears.jpg";
-                //createSearsScreen();
             }
             if(event.getSource() == sophDormsButton){ //Sophomore Dorms
                 buildingName = "Sophomore Dorms";
                 buildingImage = "idk/resources/southDorms.jfif";
-                //createSophDorms();
             }
             if(event.getSource() == strosackerButton){ //Enter Strosacker
                 buildingName = "Strosacker";
                 buildingImage = "idk/resources/Strosacker.jpg";
                 actionButton.setText("Attend Lecture");
-                //createStrosackerScreen();
             }
             if(event.getSource() == thwingButton){ //Enter Thwing
                 buildingName = "Thwing";
                 buildingImage = "idk/resources/thwing.jpg";
-                //createThwingScreen();
             }
             if(event.getSource() == tinkButton){ //Enter Tink
                 buildingName = "Tink";
                 buildingImage = "idk/resources/tink.jpg";
-                //createTinkScreen();
             }
             if(event.getSource() == tomlinsonButton){ //Enter Tomlinson
                 buildingName = "Tomlinson";
                 buildingImage = "idk/resources/tomlinson.jpg";
-                //createTomlinsonScreen();
             }
             if(event.getSource() == vealeButton){ //Go to Veale Gymnasium
                 buildingName = "Veale";
                 buildingImage = "idk/resources/Veale.jpg";
                 actionButton.setText("Exercise at Veale");
-                //createVealeScreen();
             }
             if(event.getSource() == whiteButton){ //enter White
                 buildingName = "White";
                 buildingImage = "idk/resources/white.jpg";
-                //createWhiteScreen();
             }
             if(event.getSource() == wickendenButton){ //Enter Wickenden
                 buildingName = "Wickenden";
                 buildingImage = "idk/resources/Wickenden.jpg";
-                //createWickendenScreen();
             }
             if(event.getSource() == yostButton){ //Enter Yost
                 buildingName = "Yost";
                 buildingImage = "idk/resources/yost.jpg";
-                //createYostScreen();
             }
             if(event.getSource() == actionButton){
                 buildingTextPanel.setVisible(false);
-                if(buildingName == "Veale"){
+                if(buildingName.equals("Veale")){
                     buildingName = "Exercise";
                     createExerciseScreen();
                 }
@@ -1641,6 +1365,10 @@ public class GameScreen {
                 buildingName = "menu";
                 displayMenuScreen();
             }
+            if(event.getSource()==returnButton){ //return to previous screen
+                buildingName = previousScreenName;
+                buildingImage = previousScreenImage;
+            }
             if(event.getSource() == saveButton){
 
             }
@@ -1650,15 +1378,17 @@ public class GameScreen {
             if(event.getSource() == taskButton){ //show attributes
                 displayTaskScreen();
             }
-
             if(buildingNames.contains(buildingName)){
                 createBuildingScreen();
             }
 
             JButton[] menuButtonList = {menuButton, attrButton, taskButton, returnButton, saveButton};
-            if(!(containsButton(menuButtonList, event.getSource()))){
-                d.useHours(1);
-                timeLabel.setText("Time: " + String.valueOf(d.getHour()));
+            if(!containsButton(menuButtonList, event.getSource())){
+                if(event.getSource() != gStartButton) {
+                    d.useHours(1);
+                    System.out.println(d.getHour());
+                    timeLabel.setText("Time: " + String.valueOf(d.getHour()));
+                }
             }
         }
     }
