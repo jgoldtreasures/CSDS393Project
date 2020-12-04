@@ -21,8 +21,8 @@ public class GameScreen {
             searsButtonPanel, thwingButtonPanel, tinkButtonPanel, whiteButtonPanel, wickendenButtonPanel, yostButtonPanel, tomlinsonButtonPanel, exerciseButtonPanel,
             compPanel1, compPanel2, compPanel3, compPanel4, startExButtonPanel, lectureButtonPanel,
             moveToQuadButtonPanel, denButtonPanel, freshDormsButtonPanel,
-            sophDormsButtonPanel, leutnerButtonPanel, taskPanel, taskButtonPanel, buildingTextPanel, actionButtonPanel, task1Panel, task2Panel, timePanel;
-    JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel3, compLabel4, task1Label, task2Label, timeLabel;
+            sophDormsButtonPanel, leutnerButtonPanel, taskPanel, taskButtonPanel, buildingTextPanel, actionButtonPanel, task1Panel, task2Panel, timePanel, limagePanel, cimagePanel, rimagePanel;
+    JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel3, compLabel4, task1Label, task2Label, timeLabel, limageLabel, cimageLabel, rimageLabel;
     JButton startButton, loadButton, vealeButton, quadButton, millisButton, strosackerButton, rockButton, northButton, southButton, gStartButton,
             menuButton, returnButton, saveButton, attrButton, awSmithButton, binghamButton, carltonButton, crawfordButton, eldredButton, elephantButton,
             glennanButton, kslButton, khsButton, nordButton, olinButton, pblButton, searsButton, thwingButton, tinkButton, tomlinsonButton, whiteButton,
@@ -37,7 +37,7 @@ public class GameScreen {
     Font mapFont = new Font("Times New Roman", Font.PLAIN, 12);
     Day d;
 
-    ImageIcon image;
+    ImageIcon image, limage, cimage, rimage;
     ScreenDescriptions roomTextDesc = new ScreenDescriptions(buildingName);
 
     //sHandler is for changing the window screen from one map/building to another
@@ -1331,9 +1331,56 @@ public class GameScreen {
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
 
-        intelligencelabel.setText("Intelligence: 2");
+        g.getPlayer().setAttributeVal("Intelligence", g.getPlayer().getAttributeVal("Intelligence") + 1);
         reward = "Intelligence increased by 1";
         taskName = "Attend Lecture";
+    }
+
+    public void createChoiceTaskScreen(){
+        actionButtonPanel.setVisible(false);
+        imagePanel.setVisible(false);
+
+        limagePanel = new JPanel();
+        limagePanel.setBounds(100,300,100,100);
+        limageLabel = new JLabel();
+
+
+        limage = new ImageIcon("idk/resources/CWRUquadDots.jpg");
+        Image resizedLImage = getScaledImage(limage.getImage(), 100, 100);
+        limage.setImage(resizedLImage);
+
+        limageLabel.setIcon(image);
+        limagePanel.add(imageLabel);
+
+        cimagePanel = new JPanel();
+        cimagePanel.setBounds(300,300,100,100);
+        cimageLabel = new JLabel();
+
+
+        cimage = new ImageIcon("idk/resources/CWRUquadDots.jpg");
+        Image resizedCImage = getScaledImage(cimage.getImage(), 100, 100);
+        cimage.setImage(resizedCImage);
+
+        cimageLabel.setIcon(image);
+        cimagePanel.add(imageLabel);
+
+        rimagePanel = new JPanel();
+        rimagePanel.setBounds(500,300,100,100);
+        rimageLabel = new JLabel();
+
+
+        rimage = new ImageIcon("idk/resources/CWRUquadDots.jpg");
+        Image resizedRImage = getScaledImage(rimage.getImage(), 100, 100);
+        rimage.setImage(resizedRImage);
+
+        rimageLabel.setIcon(image);
+        rimagePanel.add(imageLabel);
+
+        con.add(limagePanel);
+        con.add(cimagePanel);
+        con.add(rimagePanel);
+        
+
     }
 
     //creates a screen when a task is completed
@@ -1506,6 +1553,7 @@ public class GameScreen {
             if(event.getSource() == carltonButton){ // Enter Carlton Commons
                 buildingName = "Carlton";
                 buildingImage = "idk/resources/carlton.jpg";
+                actionButton.setText("Eat");
                 //createCarltonScreen();
             }
             if(event.getSource() == crawfordButton){ //Enter Crawford
@@ -1516,21 +1564,25 @@ public class GameScreen {
             if(event.getSource() == denButton){ //The Den
                 buildingName = "Dennys";
                 buildingImage = "idk/resources/dennys.jpg";
+                actionButton.setText("Eat");
                 //createDenScreen();
             }
             if(event.getSource() == eldredButton){ //Enter Eldred
                 buildingName = "Eldred";
                 buildingImage = "idk/resources/eldred.jpg";
+                actionButton.setText("Practice acting");
                 //createEldredScreen();
             }
             if(event.getSource() == elephantButton){ //Elephant Stairs
                 buildingName = "Elephant";
                 buildingImage = "idk/resources/elephant.jpg";
+                actionButton.setText("Walk up steps");
                 //createElephantScreen();
             }
             if(event.getSource() == freshDormsButton){ //Freshman Dorms
                 buildingName = "Freshman Dorms";
                 buildingImage = "idk/resources/freshDorms.jfif";
+                actionButton.setText("Choose Roommate");
                 //createFreshmanDormsScreen();
             }
             if(event.getSource() == glennanButton){ //Enter Glennan
@@ -1546,11 +1598,13 @@ public class GameScreen {
             if(event.getSource() == kslButton){//Enter KSL
                 buildingName = "KSL";
                 buildingImage = "idk/resources/KSL.jpg";
+                actionButton.setText("Study");
                 //createKSLScreen();
             }
             if(event.getSource() == leutnerButton){ //Leutner
                 buildingName = "Leutner";
                 buildingImage = "idk/resources/leutner.jfif";
+                actionButton.setText("Eat");
                 //createLeutnerScreen();
             }
             if(event.getSource() == millisButton){ //Move to Millis Schmidt
@@ -1561,6 +1615,7 @@ public class GameScreen {
             if(event.getSource() == nordButton){//Enter Nord
                 buildingName = "Nord";
                 buildingImage = "idk/resources/nord.jpg";
+                actionButton.setText("Choose Major");
                 //createNordScreen();
             }
             if(event.getSource() == olinButton){ //Enter Olin
@@ -1571,6 +1626,7 @@ public class GameScreen {
             if(event.getSource() == pblButton){ //Enter PBL
                 buildingName = "PBL";
                 buildingImage = "idk/resources/PBL.jpg";
+                actionButton.setText("Study");
                 //createPBLScreen();
             }
             if(event.getSource() == rockButton){ //Move to Rockefeller
@@ -1602,6 +1658,7 @@ public class GameScreen {
             if(event.getSource() == tinkButton){ //Enter Tink
                 buildingName = "Tink";
                 buildingImage = "idk/resources/tink.jpg";
+                actionButton.setText("Join Club");
                 //createTinkScreen();
             }
             if(event.getSource() == tomlinsonButton){ //Enter Tomlinson
@@ -1639,6 +1696,10 @@ public class GameScreen {
                 if(buildingName == "Strosacker"){
                     buildingName = "Lecture";
                     createLectureScreen();
+                }
+                if(buildingName == "Freshman Dorms"){
+                    buildingName = "Roommate";
+                    createChoiceTaskScreen();
                 }
             }
             if(event.getSource() == northButton){ //go to northside
