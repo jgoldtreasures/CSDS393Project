@@ -65,6 +65,7 @@ public class GameScreen {
         createIntroScreen();
         buttonInitializer();
         createMenuScreen();
+        createTaskScreen();
         createCompletionScreen();
         hideBuildingButtons();
 
@@ -1236,12 +1237,14 @@ public class GameScreen {
     }
 
     public void displayMenuScreen(){
-        createTaskScreen();
         imagePanel.setVisible(false);
         quadButtonPanel.setVisible(false);
         buildingTextPanel.setVisible(false);
         hideBuildingButtons();
         hideTaskButtons();
+        taskPanel.setVisible(false);
+        task1Panel.setVisible(false);
+        task2Panel.setVisible(false);
         menuButtonPanel.setVisible(false);
         attrPanel.setVisible(false);
         healthPanel.setVisible(false);
@@ -1253,9 +1256,7 @@ public class GameScreen {
         compPanel2.setVisible(false);
         compPanel3.setVisible(false);
         compPanel4.setVisible(false);
-        taskPanel.setVisible(false);
-        task1Panel.setVisible(false);
-        task2Panel.setVisible(false);
+
 
         menuPanel.setVisible(true);
         savePanel.setVisible(true);
@@ -1289,6 +1290,7 @@ public class GameScreen {
         savePanel.setVisible(false);
         returnPanel.setVisible(false);
         taskButtonPanel.setVisible(false);
+
         taskPanel.setVisible(true);
         task1Panel.setVisible(true);
         task2Panel.setVisible(true);
