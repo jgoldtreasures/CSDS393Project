@@ -1473,6 +1473,14 @@ public class GameScreen {
             if(event.getSource() == startButton){ //Display the introduction
                 displayIntroScreen();
             }
+
+            if(taskNames.contains(buildingName)){//when player completes a task, show the task completion screen
+                try {
+                    displayCompletionScreen();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
             //Move to quad from intro screen, building, map, or menu
             JButton[] quadButtonList = {gStartButton,quadButton,moveToQuadButton,returnButton};
             if(containsButton(quadButtonList, event.getSource())){
@@ -1617,7 +1625,9 @@ public class GameScreen {
                 //createYostScreen();
             }
             if(event.getSource() == actionButton){
+                buildingTextPanel.setVisible(false);
                 if(buildingName == "Veale"){
+                    buildingName = "Exercise";
                     createExerciseScreen();
                 }
             }
@@ -1639,21 +1649,6 @@ public class GameScreen {
             }
             if(event.getSource() == taskButton){ //show attributes
                 displayTaskScreen();
-            }
-            if(event.getSource() == exerciseButton){//enter gym
-                buildingName = "Exercise";
-                createExerciseScreen();
-            }
-            if(event.getSource() == lectureButton){//enter lecture
-                buildingName = "Lecture";
-                createLectureScreen();
-            }
-            if(taskNames.contains(buildingName)){//when player completes a task, show the task completion screen
-                try {
-                    displayCompletionScreen();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
             }
 
             if(buildingNames.contains(buildingName)){
