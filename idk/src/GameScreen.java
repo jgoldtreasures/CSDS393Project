@@ -1164,7 +1164,7 @@ public class GameScreen {
         compPanel1 = new JPanel();
         compPanel1.setBounds(245,150,350,50);
         compPanel1.setBackground(Color.DARK_GRAY);
-        JLabel compLabel1 = new JLabel("Congratulations!");
+        compLabel1 = new JLabel("Congratulations!");
         compLabel1.setFont(medFont);
         compLabel1.setForeground(Color.white);
 
@@ -1390,13 +1390,6 @@ public class GameScreen {
         public void actionPerformed(ActionEvent event){
             //Need to add a manner which differentiates between start/load
 
-            JButton[] menuButtonList = {menuButton, attrButton, taskButton, returnButton, saveButton};
-            if(!containsButton(menuButtonList, event.getSource())){
-                if(event.getSource() != gStartButton) {
-                    d.useHours(1);
-                    timeLabel.setText("Time: " + String.valueOf(d.getHour()));
-                }
-            }
 
             buildingName = "";
 
@@ -1603,7 +1596,7 @@ public class GameScreen {
                 displayCurrentTaskScreen();
             }
 
-            menuButtonList = new JButton[]{menuButton, attrButton, taskButton, returnButton, saveButton};
+            JButton[] menuButtonList = {menuButton, attrButton, taskButton, returnButton, saveButton};
             if(!containsButton(menuButtonList, event.getSource())){
                 if(event.getSource() != gStartButton) {
                     d.useHours(1);
@@ -1618,7 +1611,7 @@ public class GameScreen {
                 }
             }
 
-            if(d.getHour() >= 10){
+            if(d.getHour() >= 100){
                 loseScreen();
             }
         }
