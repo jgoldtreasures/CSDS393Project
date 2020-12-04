@@ -1109,7 +1109,7 @@ public class GameScreen {
         ltextPanel.setVisible(false);
 
         ltext2Panel = new JPanel();
-        ltext2Panel.setBounds(50, 350 ,200, 50);
+        ltext2Panel.setBounds(30, 350 ,200, 50);
         ltext2Label = new JLabel("ltext2");
         ltext2Label.setBackground(Color.white);
         ltext2Label.setForeground(Color.darkGray);
@@ -1131,7 +1131,7 @@ public class GameScreen {
         ctextPanel.setVisible(false);
 
         ctext2Panel = new JPanel();
-        ctext2Panel.setBounds(275, 350 ,250, 50);
+        ctext2Panel.setBounds(250, 350 ,250, 50);
         ctext2Label = new JLabel("ctext2");
         ctext2Label.setBackground(Color.white);
         ctext2Label.setForeground(Color.darkGray);
@@ -1153,7 +1153,7 @@ public class GameScreen {
         rtextPanel.setVisible(false);
 
         rtext2Panel = new JPanel();
-        rtext2Panel.setBounds(550, 350 ,225, 50);
+        rtext2Panel.setBounds(520, 350 ,225, 50);
         rtext2Label = new JLabel("rtext2");
         rtext2Label.setBackground(Color.white);
         rtext2Label.setForeground(Color.darkGray);
@@ -1304,7 +1304,7 @@ public class GameScreen {
         con.add(compPanel3);
 
         compPanel4 = new JPanel();
-        compPanel4.setBounds(165, 400 ,500, 50);
+        compPanel4.setBounds(145, 400 ,540, 50);
         compPanel4.setBackground(Color.DARK_GRAY);
         compLabel4 = new JLabel(" ");
         compLabel4.setForeground(Color.white);
