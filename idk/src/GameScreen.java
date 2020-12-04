@@ -54,8 +54,7 @@ public class GameScreen {
             "Sophomore Dorms", "Strosacker", "Thwing", "Tink", "Tomlinson", "Veale",
             "White", "Wickenden","Yost");
     List<String> mapNames = Arrays.asList("Quad", "Northside", "Southside");
-
-    List<String> taskNames = Arrays.asList("Exercise", "Lecture", "Roommate");
+    List<String> taskNames = Arrays.asList("Exercise", "Lecture");
 
     public static void main(String[] args){
         new GameScreen();
@@ -926,7 +925,8 @@ public class GameScreen {
         gStartButtonPanel.setVisible(true);
     }
 
-    //following methods respectively display the quad, northside, southside, menu, and attribute windows
+    //following methods respectively display a map(depending on buildingName), menu, and
+    // attribute windows
     public void displayMapScreen(){
         hideEverything();
         buildingTextPanel.setVisible(false);
@@ -1033,8 +1033,8 @@ public class GameScreen {
         menuButtonPanel.setVisible(true);
     }
 
-    //task related screens
-    public void createExerciseScreen(){
+    //
+    public void displayCurrentTaskScreen(){
         //I want to either move screen initializations to a new class to call
         //I want to give tasks and building buttons different handlers. They'll do the same thing but it'll be easier
         // to look at
@@ -1042,28 +1042,23 @@ public class GameScreen {
         actionButtonPanel.setVisible(false);
         startExButtonPanel.setVisible(true);
 
-        image = new ImageIcon("idk/resources/gym.jpg");
+        image = new ImageIcon(buildingImage);
         Image resizedImage = getScaledImage(image.getImage(), 800, 600);
         image.setImage(resizedImage);
         imageLabel.setIcon(image);
 
-        g.getPlayer().setAttributeVal("Strength", g.getPlayer().getAttributeVal("Strength") + 1);
-        reward = "Strength increased by 1";
-        taskName = "Exercise at Veale";
-    }
-
-    public void createLectureScreen(){
-        actionButtonPanel.setVisible(false);
-        startExButtonPanel.setVisible(true);
-
-        image = new ImageIcon("idk/resources/lecture.jpg");
-        Image resizedImage = getScaledImage(image.getImage(), 800, 600);
-        image.setImage(resizedImage);
-        imageLabel.setIcon(image);
-
-        g.getPlayer().setAttributeVal("Intelligence", g.getPlayer().getAttributeVal("Intelligence") + 1);
-        reward = "Intelligence increased by 1";
-        taskName = "Attend Lecture";
+        switch(buildingName){
+            case "Exercise":
+                g.getPlayer().setAttributeVal("Strength", g.getPlayer().getAttributeVal("Strength") + 1);
+                reward = "Strength increased by 1";
+                taskName = "Exercise at Veale";
+                break;
+            case "Lecture":
+                g.getPlayer().setAttributeVal("Intelligence", g.getPlayer().getAttributeVal("Intelligence") + 1);
+                reward = "Intelligence increased by 1";
+                taskName = "Attend Lecture";
+                break;
+        }
     }
 
     //tasks such as choose major, choose roommate, etc.
@@ -1160,7 +1155,7 @@ public class GameScreen {
         rtextButton.setFont(normalFont);
         rtextButtonPanel.add(rtextButton);
         con.add(rtextButtonPanel);
-        
+
 
     }
 
@@ -1169,7 +1164,7 @@ public class GameScreen {
         compPanel1 = new JPanel();
         compPanel1.setBounds(245,150,350,50);
         compPanel1.setBackground(Color.DARK_GRAY);
-        compLabel1 = new JLabel("Congratulations!");
+        JLabel compLabel1 = new JLabel("Congratulations!");
         compLabel1.setFont(medFont);
         compLabel1.setForeground(Color.white);
 
@@ -1213,13 +1208,14 @@ public class GameScreen {
     }
 
     public void displayCompletionScreen() throws InterruptedException {
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(1/2);
 
         compLabel3.setText(taskName);
         compLabel4.setText(reward);
 
         imagePanel.setVisible(false);
         startExButtonPanel.setVisible(false);
+
         compPanel1.setVisible(true);
         compPanel2.setVisible(true);
         compPanel3.setVisible(true);
@@ -1249,9 +1245,7 @@ public class GameScreen {
         timePanel.setVisible(false);
         buildingTextPanel.setVisible(false);
 
-
         compLabel1.setText("Oh No!");
-        compPanel1.setVisible(true);
         compLabel2.setText("You Ran Out of Time!");
 
         imagePanel.setVisible(false);
@@ -1259,7 +1253,6 @@ public class GameScreen {
         compPanel1.setVisible(true);
         compPanel2.setVisible(true);
     }
-
 
     public void displayQuadBuildings(){
         imagePanel.setVisible(true);
@@ -1312,6 +1305,7 @@ public class GameScreen {
 
     //hides all building related buttons
     public void hideBuildingButtons(){
+        quadButtonPanel.setVisible(false);
         moveToQuadButtonPanel.setVisible(false);
         southButtonPanel.setVisible(false);
         northButtonPanel.setVisible(false);
@@ -1342,12 +1336,6 @@ public class GameScreen {
         whiteButtonPanel.setVisible(false);
         wickendenButtonPanel.setVisible(false);
         yostButtonPanel.setVisible(false);
-
-        lectureButtonPanel.setVisible(false);
-        exerciseButtonPanel.setVisible(false);
-        startExButtonPanel.setVisible(false);
-        exerciseButtonPanel.setVisible(false);
-        actionButtonPanel.setVisible(false);
     }
 
     //hides all task related buttons
@@ -1411,19 +1399,12 @@ public class GameScreen {
             }
 
             buildingName = "";
+
             imagePanel.setBounds(-10,-10,800,600);
+
             if(event.getSource() == startButton){ //Display the introduction
                 displayIntroScreen();
             }
-
-            if(taskNames.contains(buildingName)){//when player completes a task, show the task completion screen
-                try {
-                    displayCompletionScreen();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
             //Move to quad from intro screen, building, map, or menu
             JButton[] quadButtonList = {gStartButton,quadButton,moveToQuadButton};
             if(containsButton(quadButtonList, event.getSource())){
@@ -1570,13 +1551,20 @@ public class GameScreen {
             }
             if(event.getSource() == actionButton){
                 buildingTextPanel.setVisible(false);
-                if(buildingName.equals("Veale")){
+                if(previousScreenName.equals("Veale")){
                     buildingName = "Exercise";
-                    createExerciseScreen();
+                    buildingImage = "idk/resources/gym.jpg";
                 }
-                if(buildingName.equals("Strosacker")){
+                if(previousScreenName.equals("Strosacker")){
                     buildingName = "Lecture";
-                    createLectureScreen();
+                    buildingImage = "idk/resources/lecture.jpg";
+                }
+            }
+            if(event.getSource() == startExButton){
+                try {
+                    displayCompletionScreen();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
                 if(buildingName == "Freshman Dorms"){
                     buildingName = "Roommate";
@@ -1584,10 +1572,10 @@ public class GameScreen {
                 }
             }
             if(event.getSource() == menuButton) { //open menu
-                buildingName = "menu";
+                buildingName = "Menu";
                 displayMenuScreen();
             }
-            if(event.getSource()==returnButton){ //return to previous screen
+            if(event.getSource() == returnButton){ //return to previous screen
                 buildingName = previousScreenName;
                 buildingImage = previousScreenImage;
             }
@@ -1600,7 +1588,8 @@ public class GameScreen {
             if(event.getSource() == taskButton){ //show attributes
                 displayTaskScreen();
             }
-            if(event.getSource() == continueButton){ //show attributes
+
+            if(event.getSource() == continueButton){ //close screen
                 System.exit(0);
             }
 
@@ -1609,6 +1598,17 @@ public class GameScreen {
             }
             if(mapNames.contains(buildingName)){
                 displayMapScreen();
+            }
+            if(taskNames.contains(buildingName)){
+                displayCurrentTaskScreen();
+            }
+
+            menuButtonList = new JButton[]{menuButton, attrButton, taskButton, returnButton, saveButton};
+            if(!containsButton(menuButtonList, event.getSource())){
+                if(event.getSource() != gStartButton) {
+                    d.useHours(1);
+                    timeLabel.setText("Time: " + String.valueOf(d.getHour()));
+                }
             }
 
             if(g.getCurrent().isFinished()){
