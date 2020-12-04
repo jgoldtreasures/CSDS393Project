@@ -23,9 +23,9 @@ public class GameScreen {
             compPanel1, compPanel2, compPanel3, compPanel4, startExButtonPanel, lectureButtonPanel,
             moveToQuadButtonPanel, denButtonPanel, freshDormsButtonPanel,
             sophDormsButtonPanel, leutnerButtonPanel, taskPanel, taskButtonPanel, buildingTextPanel, actionButtonPanel, task1Panel, task2Panel, timePanel, limagePanel,
-            cimagePanel, rimagePanel, ltextPanel, ctextPanel, rtextPanel, ltextButtonPanel, ctextButtonPanel, rtextButtonPanel, continueButtonPanel;
+            cimagePanel, rimagePanel, ltextPanel, ctextPanel, rtextPanel, ltextButtonPanel, ctext2Panel, rtext2Panel, ltext2Panel, ctextButtonPanel, rtextButtonPanel, continueButtonPanel;
     JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel1, compLabel2, compLabel3, compLabel4, task1Label,
-            task2Label, timeLabel, limageLabel, cimageLabel, rimageLabel, ltextLabel, ctextLabel, rtextLabel;
+            task2Label, timeLabel, limageLabel, cimageLabel, rimageLabel, ltextLabel, ctextLabel, rtextLabel, ltext2Label, ctext2Label, rtext2Label;
     JButton startButton, loadButton, vealeButton, quadButton, millisButton, strosackerButton, rockButton, northButton, southButton, gStartButton,
             menuButton, returnButton, saveButton, attrButton, awSmithButton, binghamButton, carltonButton, crawfordButton, eldredButton, elephantButton,
             glennanButton, kslButton, khsButton, nordButton, olinButton, pblButton, searsButton, thwingButton, tinkButton, tomlinsonButton, whiteButton,
@@ -74,6 +74,7 @@ public class GameScreen {
         createIntroScreen();
         buttonInitializer();
         createCompletionScreen();
+        createChoiceTaskScreen();
         hideBuildingButtons();
 
         //need to be able to start even if there is a saved file - give warning though
@@ -1070,44 +1071,44 @@ public class GameScreen {
 
     //tasks such as choose major, choose roommate, etc.
     public void createChoiceTaskScreen(){
-        actionButtonPanel.setVisible(false);
-        imagePanel.setVisible(false);
-
         limagePanel = new JPanel();
-        limagePanel.setBounds(100,300,100,100);
+        limagePanel.setBounds(75,200,100,100);
         limageLabel = new JLabel();
         limage = new ImageIcon("idk/resources/CWRUquadDots.jpg");
         Image resizedLImage = getScaledImage(limage.getImage(), 100, 100);
         limage.setImage(resizedLImage);
-        limageLabel.setIcon(image);
-        limagePanel.add(imageLabel);
+        limageLabel.setIcon(limage);
+        limagePanel.add(limageLabel);
         con.add(limagePanel);
 
+        limagePanel.setVisible(false);
 
         cimagePanel = new JPanel();
-        cimagePanel.setBounds(300,300,100,100);
+        cimagePanel.setBounds(325,200,100,100);
         cimageLabel = new JLabel();
         cimage = new ImageIcon("idk/resources/CWRUquadDots.jpg");
         Image resizedCImage = getScaledImage(cimage.getImage(), 100, 100);
         cimage.setImage(resizedCImage);
-        cimageLabel.setIcon(image);
-        cimagePanel.add(imageLabel);
+        cimageLabel.setIcon(cimage);
+        cimagePanel.add(cimageLabel);
         con.add(cimagePanel);
 
+        cimagePanel.setVisible(false);
 
         rimagePanel = new JPanel();
-        rimagePanel.setBounds(500,300,100,100);
+        rimagePanel.setBounds(575,200,100,100);
         rimageLabel = new JLabel();
         rimage = new ImageIcon("idk/resources/CWRUquadDots.jpg");
         Image resizedRImage = getScaledImage(rimage.getImage(), 100, 100);
         rimage.setImage(resizedRImage);
-        rimageLabel.setIcon(image);
-        rimagePanel.add(imageLabel);
+        rimageLabel.setIcon(rimage);
+        rimagePanel.add(rimageLabel);
         con.add(rimagePanel);
 
+        rimagePanel.setVisible(false);
 
         ltextPanel = new JPanel();
-        ltextPanel.setBounds(100, 500 ,150, 50);
+        ltextPanel.setBounds(50, 300 ,150, 50);
         ltextLabel = new JLabel("ltext");
         ltextLabel.setBackground(Color.white);
         ltextLabel.setForeground(Color.darkGray);
@@ -1115,8 +1116,21 @@ public class GameScreen {
         ltextPanel.add(ltextLabel);
         con.add(ltextPanel);
 
+        ltextPanel.setVisible(false);
+
+        ltext2Panel = new JPanel();
+        ltext2Panel.setBounds(50, 350 ,200, 50);
+        ltext2Label = new JLabel("ltext2");
+        ltext2Label.setBackground(Color.white);
+        ltext2Label.setForeground(Color.darkGray);
+        ltext2Label.setFont(normalFont);
+        ltext2Panel.add(ltext2Label);
+        con.add(ltext2Panel);
+
+        ltext2Panel.setVisible(false);
+
         ctextPanel = new JPanel();
-        ctextPanel.setBounds(300, 500 ,150, 50);
+        ctextPanel.setBounds(300, 300 ,150, 50);
         ctextLabel = new JLabel("ctext");
         ctextLabel.setBackground(Color.white);
         ctextLabel.setForeground(Color.darkGray);
@@ -1124,8 +1138,21 @@ public class GameScreen {
         ctextPanel.add(ctextLabel);
         con.add(ctextPanel);
 
+        ctextPanel.setVisible(false);
+
+        ctext2Panel = new JPanel();
+        ctext2Panel.setBounds(275, 350 ,250, 50);
+        ctext2Label = new JLabel("ctext2");
+        ctext2Label.setBackground(Color.white);
+        ctext2Label.setForeground(Color.darkGray);
+        ctext2Label.setFont(normalFont);
+        ctext2Panel.add(ctext2Label);
+        con.add(ctext2Panel);
+
+        ctext2Panel.setVisible(false);
+
         rtextPanel = new JPanel();
-        rtextPanel.setBounds(500, 500 ,150, 50);
+        rtextPanel.setBounds(550, 300 ,150, 50);
         rtextLabel = new JLabel("rtext");
         rtextLabel.setBackground(Color.white);
         rtextLabel.setForeground(Color.darkGray);
@@ -1133,36 +1160,124 @@ public class GameScreen {
         rtextPanel.add(rtextLabel);
         con.add(rtextPanel);
 
+        rtextPanel.setVisible(false);
+
+        rtext2Panel = new JPanel();
+        rtext2Panel.setBounds(550, 350 ,225, 50);
+        rtext2Label = new JLabel("rtext2");
+        rtext2Label.setBackground(Color.white);
+        rtext2Label.setForeground(Color.darkGray);
+        rtext2Label.setFont(normalFont);
+        rtext2Panel.add(rtext2Label);
+        con.add(rtext2Panel);
+
+        rtext2Panel.setVisible(false);
 
         ltextButtonPanel = new JPanel();
-        ltextButtonPanel.setBounds(100, 550 ,150, 50);
-        ltextButton = new JButton("ltextButton");
+        ltextButtonPanel.setBounds(50, 400 ,150, 50);
+        ltextButton = new JButton("Choose");
         ltextButton.setBackground(Color.white);
         ltextButton.setForeground(Color.darkGray);
         ltextButton.setFont(normalFont);
         ltextButtonPanel.add(ltextButton);
         con.add(ltextButtonPanel);
+        ltextButton.addActionListener(sHandler);
 
+        ltextButtonPanel.setVisible(false);
 
         ctextButtonPanel = new JPanel();
-        ctextButtonPanel.setBounds(300, 550 ,150, 50);
-        ctextButton = new JButton("ctextButton");
+        ctextButtonPanel.setBounds(300, 400 ,150, 50);
+        ctextButton = new JButton("Choose");
         ctextButton.setBackground(Color.white);
         ctextButton.setForeground(Color.darkGray);
         ctextButton.setFont(normalFont);
         ctextButtonPanel.add(ctextButton);
         con.add(ctextButtonPanel);
+        ctextButton.addActionListener(sHandler);
 
+        ctextButtonPanel.setVisible(false);
 
         rtextButtonPanel = new JPanel();
-        rtextButtonPanel.setBounds(500, 550 ,150, 50);
-        rtextButton = new JButton("rtextButton");
+        rtextButtonPanel.setBounds(550, 400 ,150, 50);
+        rtextButton = new JButton("Choose");
         rtextButton.setBackground(Color.white);
         rtextButton.setForeground(Color.darkGray);
         rtextButton.setFont(normalFont);
         rtextButtonPanel.add(rtextButton);
         con.add(rtextButtonPanel);
+        rtextButton.addActionListener(sHandler);
 
+        rtextButtonPanel.setVisible(false);
+
+    }
+
+    public void displayChoiceTaskScreen(){
+        actionButtonPanel.setVisible(false);
+        imagePanel.setVisible(false);
+
+        if(buildingName == "Roommate"){
+            limage = new ImageIcon("idk/resources/roommate1.jpg");
+            Image resizedImage = getScaledImage(limage.getImage(), 200, 200);
+            limage.setImage(resizedImage);
+            limageLabel.setIcon(limage);
+
+            cimage = new ImageIcon("idk/resources/roommate2.jpeg");
+            resizedImage = getScaledImage(cimage.getImage(), 200, 200);
+            cimage.setImage(resizedImage);
+            cimageLabel.setIcon(cimage);
+
+            rimage = new ImageIcon("idk/resources/roommate3.jpg");
+            resizedImage = getScaledImage(rimage.getImage(), 200, 200);
+            rimage.setImage(resizedImage);
+            rimageLabel.setIcon(rimage);
+
+            ltextLabel.setText("Roomate 1");
+            ctextLabel.setText("Roomate 2");
+            rtextLabel.setText("Roomate 3");
+
+            ltext2Label.setText("increases strength");
+            ctext2Label.setText("increases social standing");
+            rtext2Label.setText("increases intelligence");
+        }
+
+        else if(buildingName == "Major"){
+            limage = new ImageIcon("idk/resources/major1.jpg");
+            Image resizedImage = getScaledImage(limage.getImage(), 200, 200);
+            limage.setImage(resizedImage);
+            limageLabel.setIcon(limage);
+
+            cimage = new ImageIcon("idk/resources/major2.jpg");
+            resizedImage = getScaledImage(cimage.getImage(), 200, 200);
+            cimage.setImage(resizedImage);
+            cimageLabel.setIcon(cimage);
+
+            rimage = new ImageIcon("idk/resources/major3.jpg");
+            resizedImage = getScaledImage(rimage.getImage(), 200, 200);
+            rimage.setImage(resizedImage);
+            rimageLabel.setIcon(rimage);
+
+            ltextLabel.setText("Major 1");
+            ctextLabel.setText("Major 2");
+            rtextLabel.setText("Major 3");
+
+            ltext2Label.setText("Computer Science");
+            ctext2Label.setText("Pre Med");
+            rtext2Label.setText("Economics");
+        }
+
+
+        limagePanel.setVisible(true);
+        cimagePanel.setVisible(true);
+        rimagePanel.setVisible(true);
+        ltextPanel.setVisible(true);
+        ctextPanel.setVisible(true);
+        rtextPanel.setVisible(true);
+        ltextButtonPanel.setVisible(true);
+        ctextButtonPanel.setVisible(true);
+        rtextButtonPanel.setVisible(true);
+        ltext2Panel.setVisible(true);
+        ctext2Panel.setVisible(true);
+        rtext2Panel.setVisible(true);
 
     }
 
@@ -1221,7 +1336,7 @@ public class GameScreen {
         compLabel4.setText(reward);
 
         imagePanel.setVisible(false);
-        startExButtonPanel.setVisible(false);
+        hideTaskButtons();
 
         compPanel1.setVisible(true);
         compPanel2.setVisible(true);
@@ -1356,6 +1471,24 @@ public class GameScreen {
         startExButtonPanel.setVisible(false);
         exerciseButtonPanel.setVisible(false);
         actionButtonPanel.setVisible(false);
+
+        limagePanel.setVisible(false);
+        cimagePanel.setVisible(false);
+        rimagePanel.setVisible(false);
+        ltextPanel.setVisible(false);
+        ctextPanel.setVisible(false);
+        rtextPanel.setVisible(false);
+        ltextButtonPanel.setVisible(false);
+        ctextButtonPanel.setVisible(false);
+        rtextButtonPanel.setVisible(false);
+        ltext2Panel.setVisible(false);
+        ctext2Panel.setVisible(false);
+        rtext2Panel.setVisible(false);
+
+        compPanel1.setVisible(false);
+        compPanel2.setVisible(false);
+        compPanel3.setVisible(false);
+        compPanel4.setVisible(false);
     }
 
     //hides all menu related button, used so that 'return' will go to previous screen
@@ -1396,7 +1529,6 @@ public class GameScreen {
     public class ScreenHandler implements ActionListener{
         public void actionPerformed(ActionEvent event){
             //Need to add a manner which differentiates between start/load
-
 
             buildingName = "";
 
@@ -1559,6 +1691,16 @@ public class GameScreen {
                     buildingName = "Lecture";
                     buildingImage = "idk/resources/lecture.jpg";
                 }
+                if(previousScreenName == "Freshman Dorms"){
+                    buildingName = "Roommate";
+                    taskName = "Choose Roommate";
+                    displayChoiceTaskScreen();
+                }
+                if(previousScreenName == "Nord"){
+                    buildingName = "Major";
+                    taskName = "Choose Major";
+                    displayChoiceTaskScreen();
+                }
             }
             if(event.getSource() == startExButton){
                 try {
@@ -1566,9 +1708,47 @@ public class GameScreen {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if(buildingName.equals("Freshman Dorms")){
-                    buildingName = "Roommate";
-                    createChoiceTaskScreen();
+            }
+            if(event.getSource() == ltextButton){
+                if(buildingName == "Roommate"){
+                    g.getPlayer().setAttributeVal("Strength", g.getPlayer().getAttributeVal("Strength") + 1);
+                    reward = "Strength increased by 1";
+                }
+                else if(taskName == "Choose Major"){
+                    reward = "Chosen Computer Science Major";
+                }
+                try {
+                    displayCompletionScreen();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(event.getSource() == ctextButton){
+                if(taskName == "Choose Roommate"){
+                    g.getPlayer().setAttributeVal("SocialStanding", g.getPlayer().getAttributeVal("SocialStanding") + 1);
+                    reward = "Social Standing increased by 1";
+                }
+                else if(taskName == "Choose Major"){
+                    reward = "Chosen Pre Med Major";
+                }
+                try {
+                    displayCompletionScreen();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(event.getSource() == rtextButton){
+                if(taskName == "Choose Roommate"){
+                    g.getPlayer().setAttributeVal("Intelligence", g.getPlayer().getAttributeVal("Intelligence") + 1);
+                    reward = "Intelligence increased by 1";
+                }
+                else if(taskName == "Choose Major"){
+                    reward = "Chosen Economics Major";
+                }
+                try {
+                    displayCompletionScreen();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
             if(event.getSource() == menuButton) { //open menu
