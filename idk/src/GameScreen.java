@@ -498,6 +498,7 @@ public class GameScreen {
         northButtonsInit();
         southButtonsInit();
         initializeMenuButtons();
+        createChoiceTaskScreen();
 
         con.add(imagePanel);
         imagePanel.setVisible(false);
@@ -1063,6 +1064,7 @@ public class GameScreen {
 
     //tasks such as choose major, choose roommate, etc.
     public void createChoiceTaskScreen(){
+        hideEverything();
         actionButtonPanel.setVisible(false);
         imagePanel.setVisible(false);
 
@@ -1076,6 +1078,8 @@ public class GameScreen {
         limagePanel.add(imageLabel);
         con.add(limagePanel);
 
+        limagePanel.setVisible(false);
+
 
         cimagePanel = new JPanel();
         cimagePanel.setBounds(300,300,100,100);
@@ -1086,6 +1090,8 @@ public class GameScreen {
         cimageLabel.setIcon(image);
         cimagePanel.add(imageLabel);
         con.add(cimagePanel);
+
+        cimagePanel.setVisible(false);
 
 
         rimagePanel = new JPanel();
@@ -1098,6 +1104,8 @@ public class GameScreen {
         rimagePanel.add(imageLabel);
         con.add(rimagePanel);
 
+        rimagePanel.setVisible(false);
+
 
         ltextPanel = new JPanel();
         ltextPanel.setBounds(100, 500 ,150, 50);
@@ -1108,6 +1116,9 @@ public class GameScreen {
         ltextPanel.add(ltextLabel);
         con.add(ltextPanel);
 
+        ltextPanel.setVisible(false);
+
+
         ctextPanel = new JPanel();
         ctextPanel.setBounds(300, 500 ,150, 50);
         ctextLabel = new JLabel("ctext");
@@ -1116,6 +1127,9 @@ public class GameScreen {
         ctextLabel.setFont(normalFont);
         ctextPanel.add(ctextLabel);
         con.add(ctextPanel);
+
+        ctextPanel.setVisible(false);
+
 
         rtextPanel = new JPanel();
         rtextPanel.setBounds(500, 500 ,150, 50);
@@ -1126,6 +1140,8 @@ public class GameScreen {
         rtextPanel.add(rtextLabel);
         con.add(rtextPanel);
 
+        rtextPanel.setVisible(false);
+
 
         ltextButtonPanel = new JPanel();
         ltextButtonPanel.setBounds(100, 550 ,150, 50);
@@ -1135,6 +1151,9 @@ public class GameScreen {
         ltextButton.setFont(normalFont);
         ltextButtonPanel.add(ltextButton);
         con.add(ltextButtonPanel);
+        ltextButton.addActionListener(sHandler);
+
+        ltextButtonPanel.setVisible(false);
 
 
         ctextButtonPanel = new JPanel();
@@ -1145,6 +1164,9 @@ public class GameScreen {
         ctextButton.setFont(normalFont);
         ctextButtonPanel.add(ctextButton);
         con.add(ctextButtonPanel);
+        ctextButton.addActionListener(sHandler);
+
+        ctextButtonPanel.setVisible(false);
 
 
         rtextButtonPanel = new JPanel();
@@ -1155,8 +1177,14 @@ public class GameScreen {
         rtextButton.setFont(normalFont);
         rtextButtonPanel.add(rtextButton);
         con.add(rtextButtonPanel);
+        rtextButton.addActionListener(sHandler);
 
+        rtextButtonPanel.setVisible(false);
 
+    }
+
+    public void displayChoiceTaskScreen(){
+        
     }
 
     //creates a screen when a task is completed
@@ -1390,7 +1418,6 @@ public class GameScreen {
         public void actionPerformed(ActionEvent event){
             //Need to add a manner which differentiates between start/load
 
-
             buildingName = "";
 
             imagePanel.setBounds(-10,-10,800,600);
@@ -1552,16 +1579,16 @@ public class GameScreen {
                     buildingName = "Lecture";
                     buildingImage = "idk/resources/lecture.jpg";
                 }
+                if(previousScreenName.equals("Freshman Dorms")){
+                    buildingName = "Roommate";
+                    displayChoiceTaskScreen();
+                }
             }
             if(event.getSource() == startExButton){
                 try {
                     displayCompletionScreen();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }
-                if(buildingName == "Freshman Dorms"){
-                    buildingName = "Roommate";
-                    createChoiceTaskScreen();
                 }
             }
             if(event.getSource() == menuButton) { //open menu
