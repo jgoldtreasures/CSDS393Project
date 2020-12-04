@@ -71,15 +71,18 @@ public class Player {
     public int[] getStatus(){
         String goodStatus = "Positive Statuses: ";
         String badStatus = "Negative Statuses: ";
-        for(int i=0; i<status.length; i++){
-            if(status[i]==0){
+        for (int statusVal : status) {
+            if (statusVal == 0) {
                 goodStatus += ""; //Will add the actual status name
-            }
-            else
+            } else
                 badStatus += ""; //Will add the actual status name
         }
         //Output the two lists so that they can be more easily readable
         return status;
+    }
+
+    public void setStatus(int[] status){
+        this.status = status;
     }
 
     /*

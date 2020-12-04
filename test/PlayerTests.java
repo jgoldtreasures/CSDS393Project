@@ -30,8 +30,7 @@ public class PlayerTests {
         int[] status = {0,0,0};
         int[] goalStatus = {0,0,0};
 
-        p1.setPlayerStatus("yolo");
-        assertArrayEquals(p1.getStatus(), goalStatus);
+        p1.setStatus(status);
 
         p1.setPlayerStatus("Tired");
         goalStatus[0]=1;
@@ -59,7 +58,7 @@ public class PlayerTests {
     @Test
     public void attValueGetTest(){
         int healthVal = p1.getAttributeVal("Health");
-        assertEquals(healthVal, 0);
+        assertEquals(1, healthVal);
     }
 
 }
