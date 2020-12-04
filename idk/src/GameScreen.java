@@ -24,7 +24,7 @@ public class GameScreen {
             moveToQuadButtonPanel, denButtonPanel, freshDormsButtonPanel,
             sophDormsButtonPanel, leutnerButtonPanel, taskPanel, taskButtonPanel, buildingTextPanel, actionButtonPanel, task1Panel, task2Panel, timePanel, limagePanel,
             cimagePanel, rimagePanel, ltextPanel, ctextPanel, rtextPanel, ltextButtonPanel, ctextButtonPanel, rtextButtonPanel;
-    JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel2, compLabel3, compLabel4, task1Label,
+    JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel1, compLabel2, compLabel3, compLabel4, task1Label,
             task2Label, timeLabel, limageLabel, cimageLabel, rimageLabel, ltextLabel, ctextLabel, rtextLabel;
     JButton startButton, loadButton, vealeButton, quadButton, millisButton, strosackerButton, rockButton, northButton, southButton, gStartButton,
             menuButton, returnButton, saveButton, attrButton, awSmithButton, binghamButton, carltonButton, crawfordButton, eldredButton, elephantButton,
@@ -1155,7 +1155,7 @@ public class GameScreen {
         compPanel1 = new JPanel();
         compPanel1.setBounds(245,150,350,50);
         compPanel1.setBackground(Color.DARK_GRAY);
-        JLabel compLabel1 = new JLabel("Congratulations!");
+        compLabel1 = new JLabel("Congratulations!");
         compLabel1.setFont(medFont);
         compLabel1.setForeground(Color.white);
 
@@ -1221,6 +1221,26 @@ public class GameScreen {
 
         compPanel1.setVisible(true);
         compLabel2.setText("You Win!");
+        startExButtonPanel.setBounds(310, 300 ,200, 50);
+        startExButton.setText("Click to Continue");
+
+        imagePanel.setVisible(false);
+        startExButtonPanel.setVisible(true);
+        compPanel1.setVisible(true);
+        compPanel2.setVisible(true);
+    }
+
+    public void loseScreen(){
+        hideEverything();
+        menuButtonPanel.setVisible(false);
+        quadButtonPanel.setVisible(false);
+        timePanel.setVisible(false);
+        buildingTextPanel.setVisible(false);
+
+
+        compLabel1.setText("Oh No!");
+        compPanel1.setVisible(true);
+        compLabel2.setText("You Ran Out of Time!");
         startExButtonPanel.setBounds(310, 300 ,200, 50);
         startExButton.setText("Click to Continue");
 
@@ -1371,6 +1391,17 @@ public class GameScreen {
     public class ScreenHandler implements ActionListener{
         public void actionPerformed(ActionEvent event){
             //Need to add a manner which differentiates between start/load
+
+            JButton[] menuButtonList = {menuButton, attrButton, taskButton, returnButton, saveButton};
+            if(!containsButton(menuButtonList, event.getSource())){
+                if(event.getSource() != gStartButton) {
+                    d.useHours(1);
+                    timeLabel.setText("Time: " + String.valueOf(d.getHour()));
+                }
+            }
+
+
+
             buildingName = "";
             imagePanel.setBounds(-10,-10,800,600);
             if(event.getSource() == startButton){ //Display the introduction
@@ -1572,19 +1603,15 @@ public class GameScreen {
                 displayMapScreen();
             }
 
-            JButton[] menuButtonList = {menuButton, attrButton, taskButton, returnButton, saveButton};
-            if(!containsButton(menuButtonList, event.getSource())){
-                if(event.getSource() != gStartButton) {
-                    d.useHours(1);
-                    timeLabel.setText("Time: " + String.valueOf(d.getHour()));
-                }
-            }
-
             if(g.getCurrent().isFinished()){
                 if(g.nextLevel()){
                     winScreen();
                     buildingName = "Win";
                 }
+            }
+
+            if(d.getHour() >= 10){
+                loseScreen();
             }
         }
     }
