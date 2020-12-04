@@ -10,12 +10,13 @@ import javax.swing.*;
 
 public class GameScreen {
     public String screenName, taskName, reward, buildingName, buildingImage,
-            previousScreenName, previousScreenImage;
+            lastMapName, lastMapImage, previousScreenName, previousScreenImage;
 
     JFrame gameScreen;
     Container con;
     JPanel titleNamePanel, startButtonPanel, loadButtonPanel, imagePanel,introTextPanel, vealeButtonPanel,
-            quadButtonPanel, millisButtonPanel, rockButtonPanel, strosackerButtonPanel, awSmithButtonPanel, binghamButtonPanel,
+            mapButtonPanel, millisButtonPanel, rockButtonPanel, strosackerButtonPanel,
+            awSmithButtonPanel, binghamButtonPanel,
             carltonButtonPanel, crawfordButtonPanel, eldredButtonPanel, elephantButtonPanel, northButtonPanel, southButtonPanel, gStartButtonPanel,
             menuButtonPanel, returnPanel, savePanel, menuPanel, attrButtonPanel, attrPanel, healthPanel, hygienePanel, intelligencePanel,
             strengthPanel, socialStandingPanel, glennanButtonPanel, khsButtonPanel, kslButtonPanel, nordButtonPanel, olinButtonPanel, pblButtonPanel,
@@ -26,7 +27,8 @@ public class GameScreen {
             cimagePanel, rimagePanel, ltextPanel, ctextPanel, rtextPanel, ltextButtonPanel, ctext2Panel, rtext2Panel, ltext2Panel, ctextButtonPanel, rtextButtonPanel, continueButtonPanel;
     JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel1, compLabel2, compLabel3, compLabel4, task1Label,
             task2Label, timeLabel, limageLabel, cimageLabel, rimageLabel, ltextLabel, ctextLabel, rtextLabel, ltext2Label, ctext2Label, rtext2Label;
-    JButton startButton, loadButton, vealeButton, quadButton, millisButton, strosackerButton, rockButton, northButton, southButton, gStartButton,
+    JButton startButton, loadButton, vealeButton, mapButton, millisButton,
+            strosackerButton, rockButton, northButton, southButton, gStartButton,
             menuButton, returnButton, saveButton, attrButton, awSmithButton, binghamButton, carltonButton, crawfordButton, eldredButton, elephantButton,
             glennanButton, kslButton, khsButton, nordButton, olinButton, pblButton, searsButton, thwingButton, tinkButton, tomlinsonButton, whiteButton,
             wickendenButton, yostButton, exerciseButton, startExButton, lectureButton, moveToQuadButton, denButton, taskButton,
@@ -459,19 +461,19 @@ public class GameScreen {
         yostButtonPanel.add(yostButton);
         con.add(yostButtonPanel);
 
-        //Return to quad (from a building)
-        quadButtonPanel = new JPanel();
-        quadButtonPanel.setVisible(false);
-        quadButtonPanel.setBounds(100, 100, 180, 50);
-        quadButton = new JButton("Return to Quad");
-        quadButton.setBackground(Color.white);
-        quadButton.setForeground(Color.darkGray);
-        quadButton.setFont(normalFont);
-        quadButtonPanel.setVisible(false);
+        //Return to map (from a building)
+        mapButtonPanel = new JPanel();
+        mapButtonPanel.setVisible(false);
+        mapButtonPanel.setBounds(100, 100, 180, 50);
+        mapButton = new JButton("Return to Map");
+        mapButton.setBackground(Color.white);
+        mapButton.setForeground(Color.darkGray);
+        mapButton.setFont(normalFont);
+        mapButtonPanel.setVisible(false);
 
-        quadButton.addActionListener(sHandler);
-        quadButtonPanel.add(quadButton);
-        con.add(quadButtonPanel);
+        mapButton.addActionListener(sHandler);
+        mapButtonPanel.add(mapButton);
+        con.add(mapButtonPanel);
 
         //North or South to quad
         moveToQuadButtonPanel = new JPanel();
@@ -735,7 +737,7 @@ public class GameScreen {
     //Following method creates the general building screen
     public void displayBuildingScreen(){
         hideEverything();
-        quadButtonPanel.setVisible(true);
+        mapButtonPanel.setVisible(true);
         menuButtonPanel.setVisible(true);
         String roomTextDesc = new ScreenDescriptions(buildingName).returnDesc();
 
@@ -977,24 +979,7 @@ public class GameScreen {
 
     public void displayMenuScreen(){
         imagePanel.setVisible(false);
-        quadButtonPanel.setVisible(false);
-        buildingTextPanel.setVisible(false);
-        hideBuildingButtons();
-        hideTaskButtons();
-        menuButtonPanel.setVisible(false);
-        attrPanel.setVisible(false);
-        healthPanel.setVisible(false);
-        hygienePanel.setVisible(false);
-        intelligencePanel.setVisible(false);
-        strengthPanel.setVisible(false);
-        socialStandingPanel.setVisible(false);
-        compPanel1.setVisible(false);
-        compPanel2.setVisible(false);
-        compPanel3.setVisible(false);
-        compPanel4.setVisible(false);
-        taskPanel.setVisible(false);
-        task1Panel.setVisible(false);
-        task2Panel.setVisible(false);
+        hideEverything();
 
         menuPanel.setVisible(true);
         savePanel.setVisible(true);
@@ -1003,6 +988,8 @@ public class GameScreen {
         taskButtonPanel.setVisible(true);
     }
 
+    //While in the menu, clicking on the attribute button will display this screen
+    //This screen will list the players current attributes
     public void displayAttrScreen(){
         healthlabel.setText("Health: " + String.valueOf(g.getPlayer().getAttributeVal("Health")));
         strengthlabel.setText("Strength: " + String.valueOf(g.getPlayer().getAttributeVal("Strength")));
@@ -1024,6 +1011,8 @@ public class GameScreen {
         menuButtonPanel.setVisible(true);
     }
 
+    //While in the menu, clicking on the task button will display this screen
+    //This screen will list the current tasks
     public void displayTaskScreen(){
         ArrayList<Task> tasks = g.getCurrent().getTasks();
 
@@ -1041,7 +1030,8 @@ public class GameScreen {
         menuButtonPanel.setVisible(true);
     }
 
-    //
+    //This will change the room to display task rooms like the "Exercise" or "Lecture"
+    // rooms
     public void displayCurrentTaskScreen(){
         //I want to either move screen initializations to a new class to call
         //I want to give tasks and building buttons different handlers. They'll do the same thing but it'll be easier
@@ -1215,7 +1205,7 @@ public class GameScreen {
         actionButtonPanel.setVisible(false);
         imagePanel.setVisible(false);
 
-        if(buildingName == "Roommate"){
+        if(buildingName.equals("Roommate")){
             limage = new ImageIcon("idk/resources/roommate1.jpg");
             Image resizedImage = getScaledImage(limage.getImage(), 200, 200);
             limage.setImage(resizedImage);
@@ -1240,7 +1230,7 @@ public class GameScreen {
             rtext2Label.setText("increases intelligence");
         }
 
-        else if(buildingName == "Major"){
+        else if(buildingName.equals("Major")){
             limage = new ImageIcon("idk/resources/major1.jpg");
             Image resizedImage = getScaledImage(limage.getImage(), 200, 200);
             limage.setImage(resizedImage);
@@ -1347,7 +1337,6 @@ public class GameScreen {
     public void winScreen(){
         hideEverything();
         menuButtonPanel.setVisible(false);
-        quadButtonPanel.setVisible(false);
         timePanel.setVisible(false);
         buildingTextPanel.setVisible(false);
 
@@ -1363,7 +1352,6 @@ public class GameScreen {
     public void loseScreen(){
         hideEverything();
         menuButtonPanel.setVisible(false);
-        quadButtonPanel.setVisible(false);
         timePanel.setVisible(false);
         buildingTextPanel.setVisible(false);
 
@@ -1427,7 +1415,7 @@ public class GameScreen {
 
     //hides all building related buttons
     public void hideBuildingButtons(){
-        quadButtonPanel.setVisible(false);
+        mapButtonPanel.setVisible(false);
         moveToQuadButtonPanel.setVisible(false);
         southButtonPanel.setVisible(false);
         northButtonPanel.setVisible(false);
@@ -1529,27 +1517,25 @@ public class GameScreen {
     public class ScreenHandler implements ActionListener{
         public void actionPerformed(ActionEvent event){
             //Need to add a manner which differentiates between start/load
-
             buildingName = "";
-
             imagePanel.setBounds(-10,-10,800,600);
 
             if(event.getSource() == startButton){ //Display the introduction
                 displayIntroScreen();
             }
             //Move to quad from intro screen, building, map, or menu
-            JButton[] quadButtonList = {gStartButton,quadButton,moveToQuadButton};
+            JButton[] quadButtonList = {gStartButton,moveToQuadButton};
             if(containsButton(quadButtonList, event.getSource())){
-                buildingName = "Quad";
-                buildingImage = "idk/resources/CWRUquadDots.jpg";
+                lastMapName = buildingName = "Quad";
+                lastMapImage = buildingImage = "idk/resources/CWRUquadDots.jpg";
             }
             if(event.getSource() == northButton){ //go to northside
-                buildingName = "Northside";
-                buildingImage = "idk/resources/CWRUnorthDots.jpg";
+                lastMapName = buildingName = "Northside";
+                lastMapImage = buildingImage = "idk/resources/CWRUnorthDots.jpg";
             }
             if(event.getSource() == southButton){ //go to southside
-                buildingName = "Southside";
-                buildingImage = "idk/resources/CWRUsouthDots.jpg";
+                lastMapName = buildingName = "Southside";
+                lastMapImage = buildingImage = "idk/resources/CWRUsouthDots.jpg";
             }
             if(event.getSource() == awSmithButton){ //Enter AW Smith
                 buildingName = "Smith";
@@ -1691,12 +1677,12 @@ public class GameScreen {
                     buildingName = "Lecture";
                     buildingImage = "idk/resources/lecture.jpg";
                 }
-                if(previousScreenName == "Freshman Dorms"){
+                if(previousScreenName.equals("Freshman Dorms")){
                     buildingName = "Roommate";
                     taskName = "Choose Roommate";
                     displayChoiceTaskScreen();
                 }
-                if(previousScreenName == "Nord"){
+                if(previousScreenName.equals("Nord")){
                     buildingName = "Major";
                     taskName = "Choose Major";
                     displayChoiceTaskScreen();
@@ -1710,11 +1696,11 @@ public class GameScreen {
                 }
             }
             if(event.getSource() == ltextButton){
-                if(buildingName == "Roommate"){
+                if(buildingName.equals("Roommate")){
                     g.getPlayer().setAttributeVal("Strength", g.getPlayer().getAttributeVal("Strength") + 1);
                     reward = "Strength increased by 1";
                 }
-                else if(taskName == "Choose Major"){
+                else if(taskName.equals("Choose Major")){
                     reward = "Chosen Computer Science Major";
                 }
                 try {
@@ -1724,11 +1710,11 @@ public class GameScreen {
                 }
             }
             if(event.getSource() == ctextButton){
-                if(taskName == "Choose Roommate"){
+                if(taskName.equals("Choose Roommate")){
                     g.getPlayer().setAttributeVal("SocialStanding", g.getPlayer().getAttributeVal("SocialStanding") + 1);
                     reward = "Social Standing increased by 1";
                 }
-                else if(taskName == "Choose Major"){
+                else if(taskName.equals("Choose Major")){
                     reward = "Chosen Pre Med Major";
                 }
                 try {
@@ -1738,11 +1724,11 @@ public class GameScreen {
                 }
             }
             if(event.getSource() == rtextButton){
-                if(taskName == "Choose Roommate"){
+                if(taskName.equals("Choose Roommate")){
                     g.getPlayer().setAttributeVal("Intelligence", g.getPlayer().getAttributeVal("Intelligence") + 1);
                     reward = "Intelligence increased by 1";
                 }
-                else if(taskName == "Choose Major"){
+                else if(taskName.equals("Choose Major")){
                     reward = "Chosen Economics Major";
                 }
                 try {
@@ -1758,6 +1744,10 @@ public class GameScreen {
             if(event.getSource() == returnButton){ //return to previous screen
                 buildingName = previousScreenName;
                 buildingImage = previousScreenImage;
+            }
+            if(event.getSource() == mapButton){ //return to map from a building
+                buildingName = lastMapName;
+                buildingImage = lastMapImage;
             }
             if(event.getSource() == saveButton){
 
