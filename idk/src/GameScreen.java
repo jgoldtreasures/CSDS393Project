@@ -35,7 +35,8 @@ public class GameScreen {
     JTextPane buildingTextPane;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 25);
-    Font introFont = new Font("Times New Roman", Font.PLAIN, 20);
+    Font introFont = new Font("Times New Roman", Font.PLAIN, 23);
+    Font descFont = new Font("Times New Roman", Font.PLAIN, 20);
     Font medFont = new Font("Times New Roman", Font.PLAIN, 40);
     Font mapFont = new Font("Times New Roman", Font.PLAIN, 12);
     Day d;
@@ -127,9 +128,6 @@ public class GameScreen {
 
         gameScreen.setVisible(true);
 
-        //popup menu window
-
-        //image for maps
         imagePanel = new JPanel();
         imagePanel.setBounds(-10,-10,800,600);
         imageLabel = new JLabel();
@@ -162,12 +160,11 @@ public class GameScreen {
         String textIntro ="You are a student at Case Western Reserve University. Your goal is to graduate from the " +
                 "university. There will be both required and optional tasks, but the required tasks will be within " +
                 "your task list at the start of each year. Every \"year\" will last 7 in-game days. \n\n" +
-                "When on one of the three maps, you may move around the screen using the arrow-keys and you can enter" +
-                " a nearby building by pressing 'enter'\n\n" +
-                "When in a building, you can cycle between interactable objects using the 'up' and 'down' arrow keys." +
-                " Pressing 'enter' will start an interaction with the object.\n\n" +
-                "On any screen, pressing 'm' will bring up the in-game menu, which will allow you to save the game, " +
-                "look at your attributes, look at your task list, and exit the game. \n\n" +
+                "Use your mouse to interact with buttons on the screen. By clicking " +
+                "on the buttons, you will be able to enter buildings and interact " +
+                "with both the menu and available tasks.\n\nThe menu will allow you " +
+                "to look at your attributes, look at your task list, save the game, " +
+                "and return to the previous screen\n\n" +
                 "Press 'Start' to begin the game. Have fun playing!";
 
         introTextPanel = new JPanel();
@@ -200,7 +197,7 @@ public class GameScreen {
 
         buildingTextArea = new JTextArea(roomTextDesc);
         buildingTextArea.setBounds(25,440,725,100);
-        buildingTextArea.setFont(introFont);
+        buildingTextArea.setFont(descFont);
         buildingTextArea.setLineWrap(true);
         buildingTextArea.setWrapStyleWord(true);
 
@@ -1569,7 +1566,7 @@ public class GameScreen {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if(buildingName == "Freshman Dorms"){
+                if(buildingName.equals("Freshman Dorms")){
                     buildingName = "Roommate";
                     createChoiceTaskScreen();
                 }
