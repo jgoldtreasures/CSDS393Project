@@ -13,6 +13,12 @@ public class BuildingTest {
     }
 
     @Test
+    public void getXTest2(){
+        BuildingImplementation building= new BuildingImplementation();
+        assertEquals(615, building.veale.getX());
+    }
+
+    @Test
     public void getYTest(){
         TaskManager manager =  new TaskManager();
         Person[] npcs = {};

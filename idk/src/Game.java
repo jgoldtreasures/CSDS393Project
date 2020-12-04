@@ -12,7 +12,6 @@ public class Game{
     private Level Junior;
     private Level Senior;
     private Level current;
-    private String level;
 
     public Game(){
         //Building b needs to be changed
@@ -37,7 +36,6 @@ public class Game{
         Senior.addTask("Complete Capstone", "Go to you major's specific buildings and complete your major's specific objectives to graduate!", 6, new int[]{2,2,2,2,2});
 
         current = Freshman;
-        level = "Freshman";
     }
     public Level getFreshman(){return Freshman;}
 
@@ -49,7 +47,7 @@ public class Game{
 
     public boolean gameFinished() {
         if (Senior.isFinished()) {
-            System.out.println("Congratulaitons! You Win!");
+            System.out.println("Congratulations! You Win!");
             return true;
         }
         return false;
@@ -66,7 +64,7 @@ public class Game{
             else{
                 writer.write("false");
             }
-            temp = Sophomore.isFinished();;
+            temp = Sophomore.isFinished();
             if(temp){
                 writer.write("true");
             }
@@ -150,19 +148,19 @@ public class Game{
     public Level getCurrent(){return current;}
 
     public boolean nextLevel(){
-        if(level == "Freshman"){
+        if(current.getName().equals("Freshman")){
             current = Sophomore;
-            level = "Sophomore";
+            current.setName("Sophomore");
             return false;
         }
-        else if(level == "Sophomore"){
+        else if(current.getName().equals("Sophomore")){
             current = Junior;
-            level = "Junior";
+            current.setName("Junior");
             return false;
         }
-        else if(level == "Junior"){
+        else if(current.getName().equals("Junior")){
             current = Senior;
-            level = "Senior";
+            current.setName("Senior");
             return false;
         }
         else{
