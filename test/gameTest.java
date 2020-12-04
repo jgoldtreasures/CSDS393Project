@@ -67,7 +67,7 @@ public class gameTest {
         Day d = new Day("Monday");
         d.useHours(5);
         assertEquals(d.whatDayIsIt(), "Monday");
-        assertEquals(d.getHour(), 5);
+        assertEquals(d.getHour(), 4);
     }
 
     @Test
@@ -78,6 +78,6 @@ public class gameTest {
         Scanner reader = new Scanner("save.txt");
         assertEquals("save.txt", reader.next());
         g.load();
-        assertEquals(true, g.getFreshman().isFinished());
+        assertTrue(g.getFreshman().isFinished());
     }
 }
