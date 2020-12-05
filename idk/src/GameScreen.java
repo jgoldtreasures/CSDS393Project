@@ -11,6 +11,7 @@ import javax.swing.*;
 public class GameScreen {
     public String screenName, taskName, reward, buildingName, buildingImage,
             lastMapName, lastMapImage, previousScreenName, previousScreenImage;
+    public String major = "Major: Undeclared";
 
     JFrame gameScreen;
     Container con;
@@ -23,10 +24,12 @@ public class GameScreen {
             searsButtonPanel, thwingButtonPanel, tinkButtonPanel, whiteButtonPanel, wickendenButtonPanel, yostButtonPanel, tomlinsonButtonPanel, exerciseButtonPanel,
             compPanel1, compPanel2, compPanel3, compPanel4, startExButtonPanel, lectureButtonPanel,
             moveToQuadButtonPanel, denButtonPanel, freshDormsButtonPanel,
-            sophDormsButtonPanel, leutnerButtonPanel, taskPanel, taskButtonPanel, buildingTextPanel, actionButtonPanel, task1Panel, task2Panel, timePanel, limagePanel,
-            cimagePanel, rimagePanel, ltextPanel, ctextPanel, rtextPanel, ltextButtonPanel, ctext2Panel, rtext2Panel, ltext2Panel, ctextButtonPanel, rtextButtonPanel, continueButtonPanel;
+            schoolMajorPanel, sophDormsButtonPanel, leutnerButtonPanel, taskPanel, taskButtonPanel, buildingTextPanel, actionButtonPanel, task1Panel,
+            task2Panel, timePanel, limagePanel, cimagePanel, rimagePanel, ltextPanel, ctextPanel, rtextPanel, ltextButtonPanel, ctext2Panel, rtext2Panel, ltext2Panel, ctextButtonPanel, rtextButtonPanel, continueButtonPanel;
     JLabel titleNameLabel, imageLabel, intelligencelabel, healthlabel, socialStandinglabel, strengthlabel, hygienelabel, compLabel1, compLabel2, compLabel3, compLabel4, task1Label,
-            task2Label, timeLabel, limageLabel, cimageLabel, rimageLabel, ltextLabel, ctextLabel, rtextLabel, ltext2Label, ctext2Label, rtext2Label;
+            task2Label, timeLabel, limageLabel, cimageLabel, rimageLabel, ltextLabel,
+            ctextLabel, rtextLabel, ltext2Label, ctext2Label, rtext2Label,
+            schoolMajorLabel;
     JButton startButton, loadButton, vealeButton, mapButton, millisButton,
             strosackerButton, rockButton, northButton, southButton, gStartButton,
             menuButton, returnButton, saveButton, attrButton, awSmithButton, binghamButton, carltonButton, crawfordButton, eldredButton, elephantButton,
@@ -34,10 +37,9 @@ public class GameScreen {
             wickendenButton, yostButton, exerciseButton, startExButton, lectureButton, moveToQuadButton, denButton, taskButton,
             freshDormsButton, sophDormsButton, upperDormsButton, leutnerButton, actionButton, ltextButton, ctextButton, rtextButton, continueButton;
     JTextArea introTextArea, buildingTextArea;
-    JTextPane buildingTextPane;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 80);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 25);
-    Font introFont = new Font("Times New Roman", Font.PLAIN, 23);
+    Font introFont = new Font("Times New Roman", Font.PLAIN, 22);
     Font descFont = new Font("Times New Roman", Font.PLAIN, 20);
     Font medFont = new Font("Times New Roman", Font.PLAIN, 40);
     Font mapFont = new Font("Times New Roman", Font.PLAIN, 12);
@@ -166,8 +168,9 @@ public class GameScreen {
                 "Use your mouse to interact with buttons on the screen. By clicking " +
                 "on the buttons, you will be able to enter buildings and interact " +
                 "with both the menu and available tasks.\n\nThe menu will allow you " +
-                "to look at your attributes, look at your task list, save the game, " +
-                "and return to the previous screen\n\n" +
+                "to look at your attributes, task list, and major as well as save the " +
+                "game and return to the previous game screen. Your major will be " +
+                "able to be accessed through the attributes screen.\n\n" +
                 "Press 'Start' to begin the game. Have fun playing!";
 
         introTextPanel = new JPanel();
@@ -870,7 +873,7 @@ public class GameScreen {
         attrLabel.setForeground(Color.white);
 
         healthPanel = new JPanel();
-        healthPanel.setBounds(300, 400 ,150, 50);
+        healthPanel.setBounds(325, 375 ,150, 50);
         //String health = "Health: " + String.valueOf(g.getPlayer().getAttributeVal("Health"));
         healthlabel = new JLabel("Health: 1");
         healthlabel.setBackground(Color.white);
@@ -878,32 +881,39 @@ public class GameScreen {
         healthlabel.setFont(normalFont);
 
         hygienePanel = new JPanel();
-        hygienePanel.setBounds(300, 350 ,150, 50);
+        hygienePanel.setBounds(325, 325 ,150, 50);
         hygienelabel = new JLabel("Hygiene: 1");
         hygienelabel.setBackground(Color.white);
         hygienelabel.setForeground(Color.darkGray);
         hygienelabel.setFont(normalFont);
 
         intelligencePanel = new JPanel();
-        intelligencePanel.setBounds(300, 300 ,150, 50);
+        intelligencePanel.setBounds(325, 275 ,150, 50);
         intelligencelabel = new JLabel("Intelligence: 1");
         intelligencelabel.setBackground(Color.white);
         intelligencelabel.setForeground(Color.darkGray);
         intelligencelabel.setFont(normalFont);
 
         strengthPanel = new JPanel();
-        strengthPanel.setBounds(300, 250 ,150, 50);
+        strengthPanel.setBounds(325, 225 ,150, 50);
         strengthlabel = new JLabel("Strength: 1");
         strengthlabel.setBackground(Color.white);
         strengthlabel.setForeground(Color.darkGray);
         strengthlabel.setFont(normalFont);
 
         socialStandingPanel = new JPanel();
-        socialStandingPanel.setBounds(275, 200 ,200, 50);
+        socialStandingPanel.setBounds(300, 175 ,200, 50);
         socialStandinglabel = new JLabel("Social Standing: 1");
         socialStandinglabel.setBackground(Color.white);
         socialStandinglabel.setForeground(Color.darkGray);
         socialStandinglabel.setFont(normalFont);
+
+        schoolMajorPanel = new JPanel();
+        schoolMajorPanel.setBounds(300, 425 ,200, 50);
+        schoolMajorLabel = new JLabel("Major: " + major);
+        schoolMajorLabel.setBackground(Color.white);
+        schoolMajorLabel.setForeground(Color.darkGray);
+        schoolMajorLabel.setFont(normalFont);
 
         attrPanel.add(attrLabel);
         healthPanel.add(healthlabel);
@@ -911,6 +921,7 @@ public class GameScreen {
         intelligencePanel.add(intelligencelabel);
         strengthPanel.add(strengthlabel);
         socialStandingPanel.add(socialStandinglabel);
+        schoolMajorPanel.add(schoolMajorLabel);
 
         con.add(attrPanel);
         con.add(healthPanel);
@@ -918,6 +929,7 @@ public class GameScreen {
         con.add(intelligencePanel);
         con.add(strengthPanel);
         con.add(socialStandingPanel);
+        con.add(schoolMajorPanel);
 
         attrPanel.setVisible(false);
         healthPanel.setVisible(false);
@@ -925,6 +937,7 @@ public class GameScreen {
         intelligencePanel.setVisible(false);
         strengthPanel.setVisible(false);
         socialStandingPanel.setVisible(false);
+        schoolMajorPanel.setVisible(false);
     }
 
     public void displayIntroScreen(){
@@ -996,18 +1009,17 @@ public class GameScreen {
         hygienelabel.setText("Hygiene: " + String.valueOf(g.getPlayer().getAttributeVal("Hygiene")));
         intelligencelabel.setText("Intelligence: " + String.valueOf(g.getPlayer().getAttributeVal("Intelligence")));
         socialStandinglabel.setText("Social Standing: " + String.valueOf(g.getPlayer().getAttributeVal("SocialStanding")));
+        schoolMajorLabel.setText(major);
 
-        menuPanel.setVisible(false);
-        attrButtonPanel.setVisible(false);
-        savePanel.setVisible(false);
-        returnPanel.setVisible(false);
-        taskButtonPanel.setVisible(false);
+        hideMenuButtons();
+
         attrPanel.setVisible(true);
         healthPanel.setVisible(true);
         hygienePanel.setVisible(true);
         intelligencePanel.setVisible(true);
         strengthPanel.setVisible(true);
         socialStandingPanel.setVisible(true);
+        schoolMajorPanel.setVisible(true);
         menuButtonPanel.setVisible(true);
     }
 
@@ -1036,7 +1048,6 @@ public class GameScreen {
         //I want to either move screen initializations to a new class to call
         //I want to give tasks and building buttons different handlers. They'll do the same thing but it'll be easier
         // to look at
-        //I want a separate taskButtonHide method
         actionButtonPanel.setVisible(false);
         startExButtonPanel.setVisible(true);
 
@@ -1486,6 +1497,15 @@ public class GameScreen {
         returnPanel.setVisible(false);
         attrButtonPanel.setVisible(false);
         taskButtonPanel.setVisible(false);
+
+        attrPanel.setVisible(false);
+        healthPanel.setVisible(false);
+        hygienePanel.setVisible(false);
+        intelligencePanel.setVisible(false);
+        strengthPanel.setVisible(false);
+        socialStandingPanel.setVisible(false);
+        schoolMajorPanel.setVisible(false);
+        menuButtonPanel.setVisible(false);
     }
 
     //Scales an image to be a specific height and width
@@ -1549,7 +1569,6 @@ public class GameScreen {
                 buildingName = "Carlton";
                 buildingImage = "idk/resources/carlton.jpg";
                 actionButton.setText("Eat");
-                //createCarltonScreen();
             }
             if(event.getSource() == crawfordButton){ //Enter Crawford
                 buildingName = "Crawford";
@@ -1559,25 +1578,21 @@ public class GameScreen {
                 buildingName = "Dennys";
                 buildingImage = "idk/resources/dennys.jpg";
                 actionButton.setText("Eat");
-                //createDenScreen();
             }
             if(event.getSource() == eldredButton){ //Enter Eldred
                 buildingName = "Eldred";
                 buildingImage = "idk/resources/eldred.jpg";
                 actionButton.setText("Practice acting");
-                //createEldredScreen();
             }
             if(event.getSource() == elephantButton){ //Elephant Stairs
                 buildingName = "Elephant";
                 buildingImage = "idk/resources/elephant.jpg";
                 actionButton.setText("Walk up steps");
-                //createElephantScreen();
             }
             if(event.getSource() == freshDormsButton){ //Freshman Dorms
                 buildingName = "Freshman Dorms";
                 buildingImage = "idk/resources/freshDorms.jfif";
                 actionButton.setText("Choose Roommate");
-                //createFreshmanDormsScreen();
             }
             if(event.getSource() == glennanButton){ //Enter Glennan
                 buildingName = "Glennan";
@@ -1591,13 +1606,11 @@ public class GameScreen {
                 buildingName = "KSL";
                 buildingImage = "idk/resources/KSL.jpg";
                 actionButton.setText("Study");
-                //createKSLScreen();
             }
             if(event.getSource() == leutnerButton){ //Leutner
                 buildingName = "Leutner";
                 buildingImage = "idk/resources/leutner.jfif";
                 actionButton.setText("Eat");
-                //createLeutnerScreen();
             }
             if(event.getSource() == millisButton){ //Move to Millis Schmidt
                 buildingName = "Millis";
@@ -1607,7 +1620,6 @@ public class GameScreen {
                 buildingName = "Nord";
                 buildingImage = "idk/resources/nord.jpg";
                 actionButton.setText("Choose Major");
-                //createNordScreen();
             }
             if(event.getSource() == olinButton){ //Enter Olin
                 buildingName = "Olin";
@@ -1617,7 +1629,6 @@ public class GameScreen {
                 buildingName = "PBL";
                 buildingImage = "idk/resources/PBL.jpg";
                 actionButton.setText("Study");
-                //createPBLScreen();
             }
             if(event.getSource() == rockButton){ //Move to Rockefeller
                 buildingName = "Rockefeller";
@@ -1702,6 +1713,7 @@ public class GameScreen {
                 }
                 else if(taskName.equals("Choose Major")){
                     reward = "Chosen Computer Science Major";
+                    major = "Major: Computer Science";
                 }
                 try {
                     displayCompletionScreen();
@@ -1716,6 +1728,7 @@ public class GameScreen {
                 }
                 else if(taskName.equals("Choose Major")){
                     reward = "Chosen Pre Med Major";
+                    major = "Major: Pre Med";
                 }
                 try {
                     displayCompletionScreen();
@@ -1730,6 +1743,7 @@ public class GameScreen {
                 }
                 else if(taskName.equals("Choose Major")){
                     reward = "Chosen Economics Major";
+                    major = "Major: Economics";
                 }
                 try {
                     displayCompletionScreen();
