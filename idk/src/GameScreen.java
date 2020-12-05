@@ -742,7 +742,7 @@ public class GameScreen {
     //Following method creates the general building screen
     public void displayBuildingScreen(){
         hideEverything();
-        quadButtonPanel.setVisible(true);
+        mapButtonPanel.setVisible(true);
         menuButtonPanel.setVisible(true);
         String roomTextDesc = new ScreenDescriptions(buildingName).returnDesc();
 
