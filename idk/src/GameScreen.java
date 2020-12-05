@@ -914,7 +914,7 @@ public class GameScreen {
         socialStandinglabel.setFont(normalFont);
 
         schoolMajorPanel = new JPanel();
-        schoolMajorPanel.setBounds(300, 425 ,200, 50);
+        schoolMajorPanel.setBounds(200, 425 ,400, 50);
         schoolMajorLabel = new JLabel("Major: " + major);
         schoolMajorLabel.setBackground(Color.white);
         schoolMajorLabel.setForeground(Color.darkGray);
@@ -998,6 +998,8 @@ public class GameScreen {
     public void displayMenuScreen(){
         imagePanel.setVisible(false);
         hideEverything();
+        menuButtonPanel.setVisible(true);
+        mapButtonPanel.setVisible(true);
 
         menuPanel.setVisible(true);
         savePanel.setVisible(true);
@@ -1739,7 +1741,7 @@ public class GameScreen {
                     buildingName = "Lecture";
                     buildingImage = "idk/resources/lecture.jpg";
                 }
-                if(previousScreenName == "Freshman Dorms"){
+                if(previousScreenName.equals("Freshman Dorms")){
                     if(roommateComp){
                         alreadyCompleted();
                     }
@@ -1749,7 +1751,7 @@ public class GameScreen {
                         displayChoiceTaskScreen();
                     }
                 }
-                if(previousScreenName == "Nord"){
+                if(previousScreenName.equals("Nord")){
                     if(majorComp){
                         alreadyCompleted();
                     }
