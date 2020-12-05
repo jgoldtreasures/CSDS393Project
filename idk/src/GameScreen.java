@@ -686,7 +686,7 @@ public class GameScreen {
     public void initializeTaskButtons(){
         actionButtonPanel = new JPanel();
         actionButtonPanel.setVisible(false);
-        actionButtonPanel.setBounds(100, 150,180, 50);
+        actionButtonPanel.setBounds(100, 150,200, 50);
         actionButton = new JButton("");
         actionButton.setBackground(Color.white);
         actionButton.setForeground(Color.darkGray);
@@ -1768,7 +1768,7 @@ public class GameScreen {
                 }
             }
             if(event.getSource() == ltextButton){
-                if(buildingName.equals("Roommate")){
+                if(buildingName.equals("Choose Roommate")){
                     g.getPlayer().setAttributeVal("Strength", g.getPlayer().getAttributeVal("Strength") + 1);
                     reward = "Strength increased by 1";
                     roommateComp = true;
@@ -1833,7 +1833,7 @@ public class GameScreen {
                 buildingImage = lastMapImage;
             }
             if(event.getSource() == saveButton){
-
+                g.save();
             }
             if(event.getSource() == attrButton){ //show attributes
                 displayAttrScreen();
