@@ -998,8 +998,6 @@ public class GameScreen {
     public void displayMenuScreen(){
         imagePanel.setVisible(false);
         hideEverything();
-        menuButtonPanel.setVisible(true);
-        mapButtonPanel.setVisible(true);
 
         menuPanel.setVisible(true);
         savePanel.setVisible(true);
@@ -1221,6 +1219,7 @@ public class GameScreen {
 
     public void displayChoiceTaskScreen(){
         actionButtonPanel.setVisible(false);
+        mapButtonPanel.setVisible(false);
         imagePanel.setVisible(false);
 
         if(buildingName.equals("Roommate")){
@@ -1353,6 +1352,7 @@ public class GameScreen {
         compLabel3.setText(taskName);
         compLabel4.setText(reward);
 
+        mapButtonPanel.setVisible(false);
         imagePanel.setVisible(false);
         hideTaskButtons();
 
