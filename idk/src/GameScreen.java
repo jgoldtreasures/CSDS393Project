@@ -914,7 +914,7 @@ public class GameScreen {
         socialStandinglabel.setFont(normalFont);
 
         schoolMajorPanel = new JPanel();
-        schoolMajorPanel.setBounds(300, 425 ,200, 50);
+        schoolMajorPanel.setBounds(200, 425 ,400, 50);
         schoolMajorLabel = new JLabel("Major: " + major);
         schoolMajorLabel.setBackground(Color.white);
         schoolMajorLabel.setForeground(Color.darkGray);
