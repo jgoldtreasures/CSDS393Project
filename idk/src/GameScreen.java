@@ -228,6 +228,7 @@ public class GameScreen {
     public void buttonInitializer(){
         //Menu Button
         menuButtonPanel = new JPanel();
+        menuButtonPanel.setVisible(false);
         menuButtonPanel.setBounds(100, 50,100, 50);
         menuButton = new JButton("Menu");
         menuButton.setBackground(Color.white);
