@@ -1770,7 +1770,7 @@ public class GameScreen {
                 }
             }
             if(event.getSource() == ltextButton){
-                if(buildingName.equals("Choose Roommate")){
+                if(taskName.equals("Choose Roommate")){
                     g.getPlayer().setAttributeVal("Strength", g.getPlayer().getAttributeVal("Strength") + 1);
                     reward = "Strength increased by 1";
                     roommateComp = true;
