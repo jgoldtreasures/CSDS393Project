@@ -1331,7 +1331,7 @@ public class GameScreen {
         con.add(compPanel3);
 
         compPanel4 = new JPanel();
-        compPanel4.setBounds(145, 400 ,540, 50);
+        compPanel4.setBounds(145, 400 ,590, 50);
         compPanel4.setBackground(Color.DARK_GRAY);
         compLabel4 = new JLabel(" ");
         compLabel4.setForeground(Color.white);
