@@ -64,7 +64,7 @@ public class GameScreen {
 
     int[] visited = new int[27];
 
-    boolean majorComp, roommateComp = false;
+    boolean majorComp, roommateComp, campusComp = false;
 
     public static void main(String[] args){
         new GameScreen();
@@ -72,6 +72,7 @@ public class GameScreen {
 
     public GameScreen() {
         //image home screen - intro, save, and load
+
 
         building = new BuildingImplementation();
         g = new Game();
@@ -1354,6 +1355,8 @@ public class GameScreen {
 
         mapButtonPanel.setVisible(false);
         imagePanel.setVisible(false);
+        buildingTextPanel.setVisible(false);
+        mapButton.setVisible(true);
         hideTaskButtons();
 
         compPanel1.setVisible(true);
@@ -1774,6 +1777,7 @@ public class GameScreen {
                     g.getPlayer().setAttributeVal("Strength", g.getPlayer().getAttributeVal("Strength") + 1);
                     reward = "Strength increased by 1";
                     roommateComp = true;
+                    g.getCurrent().getTasks().get(1).setFinish();
                 }
                 else if(taskName.equals("Choose Major")){
                     reward = "Chosen Computer Science Major";
@@ -1791,6 +1795,7 @@ public class GameScreen {
                     g.getPlayer().setAttributeVal("SocialStanding", g.getPlayer().getAttributeVal("SocialStanding") + 1);
                     reward = "Social Standing increased by 1";
                     roommateComp = true;
+                    g.getCurrent().getTasks().get(1).setFinish();
                 }
                 else if(taskName.equals("Choose Major")){
                     reward = "Chosen Pre Med Major";
@@ -1808,6 +1813,7 @@ public class GameScreen {
                     g.getPlayer().setAttributeVal("Intelligence", g.getPlayer().getAttributeVal("Intelligence") + 1);
                     reward = "Intelligence increased by 1";
                     roommateComp = true;
+                    g.getCurrent().getTasks().get(1).setFinish();
                 }
                 else if(taskName.equals("Choose Major")){
                     reward = "Chosen Economics Major";
@@ -1866,18 +1872,27 @@ public class GameScreen {
                 }
             }
 
-            if(campusTour()){
+            if(campusTour() && !campusComp){
                 try {
                     taskName = "Campus Tour";
                     reward = "Good Job!";
                     g.getCurrent().getTasks().get(0).setFinish();
                     displayCompletionScreen();
+                    campusComp = true;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
 
-            if(g.getCurrent().isFinished()){
+            if((g.getCurrent().isFinished()) && (buildingName == "Quad")){
+                hideBuildingButtons();
+                reward = "You have advanced to the next grade!";
+                taskName = "Freshman Year";
+                try {
+                    displayCompletionScreen();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 if(g.nextLevel()){
                     winScreen();
                     buildingName = "Win";
