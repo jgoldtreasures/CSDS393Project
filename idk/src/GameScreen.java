@@ -64,6 +64,8 @@ public class GameScreen {
 
     int[] visited = new int[27];
 
+    boolean majorComp, roommateComp = false;
+
     public static void main(String[] args){
         new GameScreen();
     }
@@ -1344,7 +1346,6 @@ public class GameScreen {
     public void displayCompletionScreen() throws InterruptedException {
         TimeUnit.SECONDS.sleep(1/2);
 
-        hideEverything();
 
         compLabel3.setText(taskName);
         compLabel4.setText(reward);
@@ -1355,6 +1356,16 @@ public class GameScreen {
         compPanel1.setVisible(true);
         compPanel2.setVisible(true);
         compPanel3.setVisible(true);
+        compPanel4.setVisible(true);
+    }
+
+    public void alreadyCompleted(){
+
+        compLabel4.setText("You already did that task!");
+
+        imagePanel.setVisible(false);
+        hideTaskButtons();
+
         compPanel4.setVisible(true);
     }
 
@@ -1727,15 +1738,25 @@ public class GameScreen {
                     buildingName = "Lecture";
                     buildingImage = "idk/resources/lecture.jpg";
                 }
-                if(previousScreenName.equals("Freshman Dorms")){
-                    buildingName = "Roommate";
-                    taskName = "Choose Roommate";
-                    displayChoiceTaskScreen();
+                if(previousScreenName == "Freshman Dorms"){
+                    if(roommateComp){
+                        alreadyCompleted();
+                    }
+                    else {
+                        buildingName = "Roommate";
+                        taskName = "Choose Roommate";
+                        displayChoiceTaskScreen();
+                    }
                 }
-                if(previousScreenName.equals("Nord")){
-                    buildingName = "Major";
-                    taskName = "Choose Major";
-                    displayChoiceTaskScreen();
+                if(previousScreenName == "Nord"){
+                    if(majorComp){
+                        alreadyCompleted();
+                    }
+                    else {
+                        buildingName = "Major";
+                        taskName = "Choose Major";
+                        displayChoiceTaskScreen();
+                    }
                 }
             }
             if(event.getSource() == startExButton){
@@ -1749,9 +1770,11 @@ public class GameScreen {
                 if(buildingName.equals("Roommate")){
                     g.getPlayer().setAttributeVal("Strength", g.getPlayer().getAttributeVal("Strength") + 1);
                     reward = "Strength increased by 1";
+                    roommateComp = true;
                 }
                 else if(taskName.equals("Choose Major")){
                     reward = "Chosen Computer Science Major";
+                    majorComp = true;
                     major = "Major: Computer Science";
                 }
                 try {
@@ -1764,9 +1787,11 @@ public class GameScreen {
                 if(taskName.equals("Choose Roommate")){
                     g.getPlayer().setAttributeVal("SocialStanding", g.getPlayer().getAttributeVal("SocialStanding") + 1);
                     reward = "Social Standing increased by 1";
+                    roommateComp = true;
                 }
                 else if(taskName.equals("Choose Major")){
                     reward = "Chosen Pre Med Major";
+                    majorComp = true;
                     major = "Major: Pre Med";
                 }
                 try {
@@ -1779,9 +1804,11 @@ public class GameScreen {
                 if(taskName.equals("Choose Roommate")){
                     g.getPlayer().setAttributeVal("Intelligence", g.getPlayer().getAttributeVal("Intelligence") + 1);
                     reward = "Intelligence increased by 1";
+                    roommateComp = true;
                 }
                 else if(taskName.equals("Choose Major")){
                     reward = "Chosen Economics Major";
+                    majorComp = true;
                     major = "Major: Economics";
                 }
                 try {
